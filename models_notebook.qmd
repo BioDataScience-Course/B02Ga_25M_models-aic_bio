@@ -1,6 +1,6 @@
 ---
 title: "___"
-author: "___, ___, ___, ___"
+author: "Amal Abarou, Ide Tchuileng, Christelle Baseka"
 format:
   html:
     code-fold: true
