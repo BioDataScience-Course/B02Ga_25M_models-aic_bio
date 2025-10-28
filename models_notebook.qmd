@@ -23,11 +23,19 @@ bibliography: references.bib
 
 ... Introduction et but...
 
+Benoit et al. (2023) ont compilé une base de données morphologique de poissons des Grands Lacs afin d’évaluer l’influence des traits biologiques sur la capacité de franchissement des barrières fluviales. Cette base regroupe des mesures morphologiques, physiologiques et comportementales de 220 espèces. Les traits morphologiques sont essentiels pour comprendre la performance de nage et les adaptations écologiques des poissons.
+
+Nous explorons ici les relations linéaires entre différentes caractéristiques morphologiques, telles que la longueur maximale, la profondeur et la forme du corps, afin de déterminer comment ces traits influencent la performance de nage et la capacité à franchir des obstacles.
+
 ## Matériel et méthodes
 
 <!--% Indiquez ici d'où viennent les données et aussi quel logiciel (et version) vous utilisez pour les analyses. Inspirez-vous des projets du premier module de SDD II. -->
 
 ...Matériel et méthodes...
+
+Les données utilisées proviennent de la base FishPass Morphology compilée par Benoit et al. (2023, DOI: <https://doi.org/10.5061/dryad.fqz612jwj>). Elles incluent 10 variables morphologiques clés : longueur maximale, profondeur du corps, rapport d’aspect, étroitesse du pédoncule caudal, position et taille des nageoires pectorales, position verticale et taille de l’œil, ainsi que la forme du corps.
+
+Les analyses sont réalisées dans `r R.version.string` avec le package `{tidyverse}` version `r packageVersion("tidyverse")` et `{tabularise}` version `r packageVersion("tabularise")` pour le traitement et la visualisation des données, et `{labelled}` version `r packageVersion("labelled")` pour les labels et unités. Le seuil de significativité α est fixé à 5 %.
 
 ## Analyses
 
@@ -40,23 +48,23 @@ if (!"tools:tests" %in% search())
 knitr::opts_chunk$set(dev = "ragg_png")
 
 # Configuration de l'environnement
-
+SciViews::R("model", lang = "fr")
 ```
 
 <!--% Importez les données que vous aurez préalablement nettoyées, remaniées et labélisées dans le script R nommé `R/import.R`. -->
 
 ```{r import}
 # Lecture des données
-___ <- ___
+morpho_data <- read.csv("data/data_morpho.csv", header = TRUE, sep = ",")
 # Tableau des premières et dernières lignes
-tabularise$headtail(___)
+tabularise$headtail(morpho_data)
 ```
 
 ### Description des données
 
 <!--% Chaque étudiant réalise et interprète un graphique pertinent en lien avec le but fixé et les modèles qui seront réalisés. Graphique et interprétation de l'étudiant #1 ci-dessous. -->
 
-```{r chart1}
+```{r chart1 Amal}
 
 ```
 
@@ -64,7 +72,7 @@ tabularise$headtail(___)
 
 <!--% Graphique et interprétation de l'étudiant #2 ci-dessous. -->
 
-```{r chart2}
+```{r chart2 Ide}
 
 ```
 
@@ -72,19 +80,11 @@ tabularise$headtail(___)
 
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
-```{r chart3}
+```{r chart3 Christelle}
 
 ```
 
 ... interprétation #3...
-
-<!--% Graphique et interprétation de l'étudiant #4 ci-dessous. -->
-
-```{r chart4}
-
-```
-
-... interprétation #4...
 
 ### Modélisation
 
@@ -93,6 +93,8 @@ tabularise$headtail(___)
 #### Régression linéaire 1
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
+
+**3 modeles? ou 1?**
 
 #### Régression linéaire 2
 

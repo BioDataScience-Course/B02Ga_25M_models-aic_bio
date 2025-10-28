@@ -16,6 +16,12 @@ bibliography: references.bib
 
 <!--% Rédigez l'introduction de ce rapport en 5-6 phrases.-->
 
+L’étude de la morphologie des poissons est essentielle pour comprendre les adaptations fonctionnelles liées à leur écologie et leur mode de vie. Les caractéristiques morphologiques, telles que la longueur maximale, la forme du corps ou la position des nageoires, influencent la performance de nage, la prédation, la dispersion et la survie des espèces dans différents habitats aquatiques.
+
+Les barrières fluviales constituent un facteur majeur de fragmentation des habitats aquatiques et peuvent entraver la migration des poissons, limitant la connectivité entre populations (Benoit et al., 2023). Dans les Grands Lacs, ces structures sont parfois utilisées pour contrôler des espèces invasives comme la lamproie marine (*Petromyzon marinus*), mais elles peuvent également affecter les espèces indigènes. Pour concevoir des systèmes de passage sélectif efficaces, il est nécessaire de comprendre les caractéristiques biologiques influençant la capacité de passage.
+
+L’étude de Benoit et al. (2023) a rassemblé, dans une base de données intégrée, 21 attributs biologiques (phénologie, morphologie, physiologie et comportement) de 220 espèces de poissons des Grands Lacs. Ce projet s’appuie sur la **base de données FishPass Morphology** afin d’explorer les relations entre différentes mesures morphologiques des poissons, dans le but de comprendre comment la forme du corps pourrait influencer la performance de passage.
+
 ## But
 
 <!--% Rédigez le but de ce rapport en 2 phrases.-->
@@ -23,6 +29,44 @@ bibliography: references.bib
 ## Matériel et méthodes
 
 <!--% Cette section doit comprendre deux parties. La première partie doit expliciter les données employées et la seconde traiter des analyses réalisées et des logiciels employés.-->
+
+**Matériel :**
+
+-   **Source de données :** Base de données FishPass Morphology, compilée par Benoit et al. (2023), incluant 220 espèces de poissons et 21 variables biologiques (morphologie, physiologie, comportement, phénologie).
+
+-   **Variables étudiées :** Pour ce projet, seules les variables morphologiques quantitatives et qualitatives sont utilisées, notamment :
+
+    -   Longueur maximale (cm)
+
+    -   Profondeur du corps (% TL)
+
+    -   Rapport d’aspect
+
+    -   Étroitesse du pédoncule caudal
+
+    -   Position et taille de la nageoire pectorale
+
+    -   Position verticale de l’œil
+
+    -   Taille de l’œil
+
+    -   Forme du corps (qualitative)
+
+-   **Logiciel :** Les analyses statistiques sont réalisées dans `r R.version.string` et plus précisément avec `{tidyverse}` version `r packageVersion("tidyverse")`, `{tabularise}` version `r packageVersion("tabularise")` et `{labelled}` version `r packageVersion("labelled")` sous `r osVersion`. Les lignes avec valeurs manquantes sont supprimées pour les variables d’intérêt, et les variables numériques sont converties en type `numeric`, tandis que les variables qualitatives sont conservées en `character` ou `factor`. Le seuil α est fixé à 5 %.
+
+**Méthodes :**
+
+1.  **Importation des données** depuis le fichier CSV original.
+
+2.  **Renommage des colonnes** en français et uniformisation des noms (camel case).
+
+3.  **Conversion des variables numériques** et nettoyage des données : suppression des lignes avec valeurs manquantes sur les variables d’intérêt.
+
+4.  **Ajout de labels et d’unités** pour faciliter l’interprétation.
+
+5.  **Visualisation** et **exploration des données** : résumé statistique, nombre de modalités pour les variables qualitatives, comptage des valeurs manquantes.
+
+6.  **Sauvegarde** de la base de données nettoyée pour analyses ultérieures.
 
 ## Résultats
 

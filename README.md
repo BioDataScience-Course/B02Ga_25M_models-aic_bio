@@ -1,83 +1,156 @@
-# Modélisation de données librement choisies
+General information:
 
-## Avant-propos
+1. Title of dataset: FishPass Sortable Attribute Database (FSAD): A database of morphological, phenological, physiological, and behavioural traits related to passage and movement of freshwater fishes of the Great Lakes
+2. Author information:
+<br>
+    a.	Corresponding investigator information
+    Name: David Benoit
+    Institution: Great Lakes Fishery Commission &amp; University of Toronto
+    Email: d.benoit@mail.utoronto.ca
+<br>
+    b.	Co-investigator information
+    Name: Dan Zielinski
+    Institution: Great Lakes Fishery Commission
+    Email: dzielinski@glfc.org
+<br>
+    c.	Co-investigator information
+    Name: Reid Swanson
+    Institution: Great Lakes Fishery Commission
+    Email: rswanson@glfc.org
+<br>
+    d.	Co-investigator information
+    Name: Andrew Muir
+    Institution: Great Lakes Fishery Commission
+    Email: amuir@glfc.org
+3. Date of data collection: 2022
+4. Geographic span of data collection: The Laurentian Great Lakes
+5. Information about funding sources: Funding for this work was provided by the Great Lakes Fishery Commission
 
-Ce projet s'étale sur plusieurs modules du cours de Science des Données Biologiques 2. Il nécessite d'avoir assimilé l'ensemble des notions des modules 1 à 4. Il correspond au dépôt GitHub <https://github.com/BioDataScience-Course/B02Ga_models>.
+Sharing/access information:
 
-## Objectifs
+1. Recommended citation for this database: To be updated
 
-Ce projet est libre et sera réalisé par groupe de quatre étudiants. Répartissez-vous le travail. Il permettra de démontrer que vous avez acquis les compétences suivantes :
+Data and file overview:
+File 1 Name: FishPass_Phenology_Database.csv
+File 1 Description: Dataset including five phenological/life history traits for 220 species of freshwater fish established, or at risk of becoming established, in the Laurentian Great Lakes
 
--   trouver des données qui se prêtent à la modélisation linéaire
+File 2 Name: FishPass_Morphology_Database.csv
+File 2 Description: Dataset including nine morphological traits for 220 species of freshwater fish established, or at risk of becoming established, in the Laurentian Great Lakes
 
--   décrire les données (graphiques et tableaux)
+File 3 Name: FishPass_Physiology_Database.csv
+File 3 Description: Dataset including five physiological traits for 220 species of freshwater fish established, or at risk of becoming established, in the Laurentian Great Lakes
 
--   réaliser différents modèles linéaires pertinents (régression linéaire simple, régression linéaire multiple, régression linéaire polynomiale, modèle linéaire, modèle linéaire généralisé, modèle linéaire mixte...)
+File 4 Name: FishPass_Behaviour_Database.csv
+File 4 Description: Dataset including two behavioural traits for 220 species of freshwater fish established, or at risk of becoming established, in the Laurentian Great Lakes
 
--   analyser les modèles réalisés (analyse du résumé, analyse des résidus) et les paramétrer
+Data-specific information for: FishPass_Phenology_Database.csv
 
-## Consignes
+1. Number of variables: 21
+2. Number of rows: 220
+3. Variable list:
 
-Ce projet sera complété en cinq étapes qu'il faut finaliser dans l'ordre.
+| Varible | Data type | Description |
+| ------- | --------- | ----------- |
+| Order | Character | Taxonomic order |
+| Family | Character | Taxonomic family |
+| Genus | Character | Taxonomic genus |
+| Scientific Name | Character | Scientific name of species |
+| Common Name | Character | Common name of species |
+| Migratory Status | Character | Migratory behaviour of species: can be migratory, nonmigratory, both, or undetermined |
+| Spatial Scale of Movement | Character | Scale of migratory movement: can be diadromous, potamodromous, or both |
+| Spawning Frequency | Character | Semelparous or iteroparous |
+| Spring Spawner | Binary | Presence (1) or absence (0) of spring spawning |
+| Summer Spawner | Binary | Presence (1) or absence (0) of summer spawning |
+| Fall Spawner | Binary | Presence (1) or absence (0) of fall spawning |
+| Winter Spawner | Binary | Presence (1) or absence (0) of winter spawning |
+| 1-8C | Numeric | Proportion of species-specific spawning temperature range that falls between 1 and 8 C |
+| 9-16C | Numeric | Proportion of species-specific spawning temperature range that falls between 9 and 16 C |
+| 17-24C | Numeric | Proportion of species-specific spawning temperature range that falls between 17 and 24 C |
+| 25-32C | Numeric | Proportion of species-specific spawning temperature range that falls between 25 and 32 C |
+| Reference_MS | Character | Source for migratory status |
+| Reference_SSM | Character | Source for spatial scale of movement |
+| Reference_SF | Character | Source for spawning frequency |
+| Reference_SS | Character | Source for spawning season |
+| Reference_ST | Character | Source for spawning temperature |
 
-### Étape 1 (module 2)
+4. Missing data codes: NA
 
-Vous allez rechercher des données sur Internet qui se prêtent au type d'analyse que nous allons faire. Cette étape est cruciale pour le bon déroulement de la suite. Vos données doivent être sous la forme d'un tableau de données.
+Data-specific information for: FishPass_Morphology_Database.csv
 
--   avec au **minimum 50 lignes**
--   avec au moins cinq variables quantitatives continues
--   avec au moins deux variables qualitatives
-    -   au minimum une variable à deux niveaux
-    -   au minimum une variable à plusieurs niveaux
+1. Number of variables: 23
+2. Number of rows: 220
+3. Variable list:
 
-Vous devez être particulièrement vigilant sur la qualité des données et des métadonnées.
+| Variable | Data type | Description |
+| -------- | --------- | ----------- |
+| Order | Character | Taxonomic order |
+| Family | Character | Taxonomic family |
+| Genus | Character | Taxonomic genus |
+| Scientific Name | Character | Scientific name of species |
+| Common Name | Character | Common name of species |
+| Maximum Total Length (cm) | Numeric | Total length of each species measured in centimetres |
+| Body Depth | Numeric | Body depth as a proportion of total length |
+| Body Shape | Character | Relative shape of the body: may be fusiform, elongated, eel-like, short/deep, or compressiform |
+| Aspect Ratio | Numeric | Aspect ratio of the caudal fin measured as height of the caudal fin^2 divided by surface area |
+| Caudal Peduncle Throttling | Numeric | Caudal fin depth divided by caudal peduncle depth |
+| Pectoral Fin Vertical Position | Numeric | Distance between the upper pectoral fin insertion and the bottom of the body divided by body depth |
+| Pectoral Fin Size | Numeric | Pectoral fin length divided by body length |
+| Vertical Eye Position | Numeric | Eye height divided by head depth |
+| Eye Size | Numeric | Eye diameter divided by head length |
+| Reference_MTL | Character | Source for maximum total length |
+| Reference_BD | Character | Source for body depth |
+| Reference_BS | Character | Source for body shape |
+| Reference_AR | Character | Source for aspect ratio |
+| Reference_CPT | Character | Source for caudal peduncle throttling |
+| Reference_PFVP | Character | Source for pectoral fin vertical position |
+| Reference_PFS | Character | Source for pectoral fin size |
+| Reference_VEP | Character | Source for vertical eye position |
+| Reference_ES | Character | Source for eye size |
 
--   Avez-vous assez d'information pour comprendre l'objectif de l'acquisition de ces données ?
--   Avez-vous assez d'information pour comprendre chaque colonne du tableau ?
--   Assurez-vous d'avoir au moins 30 lignes sans valeur manquantes
--   Assurez-vous pour les variables facteurs que le nombre d'occurrences par niveau de la variable est relativement homogène.
+4. Missing data codes: NA
 
-Voici plusieurs sites que vous pouvez utiliser pour rechercher vos données :
+Data-specific information for: FishPass_Physiology_Database.csv
 
--   [Zenodo](https://zenodo.org/)
+1. Number of variables: 15
+2. Number of rows: 220
+3. Variable list:
 
--   [Dryad](https://datadryad.org/)
+| Variable | Data type | Description |
+| -------- | --------- | ----------- |
+| Order | Character | Taxonomic order |
+| Family | Character | Taxonomic family |
+| Genus | Character | Taxonomic genus |
+| Scientific Name | Character | Scientific name of species |
+| Common Name | Character | Common name of species |
+| Climbing Ability | Binary | Presence (1) or absence (0) of climbing ability |
+| Hearing Specialization | Binary | Presence (1) or absence (0) of hearing specializations |
+| Lateral Line Trunk Placement | Character | Lateral line placement on the trunk: may be complete, incomplete, or absent |
+| Trophic Level | Numeric | Trophic level of each species estimated from diet |
+| Presence of Ampullary Electroreceptors | Binary | Presence (1) or absence (0) of ampullary electroreceptors |
+| Reference_CA | Character | Source for climbing ability |
+| Reference_HS | Character | Source for hearing specialization |
+| Reference_LL | Character | Source for lateral line |
+| Reference_TL | Character | Source for trophic level |
+| Reference_AE | Character | Source for ampullary electroreceptors |
 
--   [Free and open access to biodiversity data](https://www.gbif.org/)
+4. Missing data codes: NA
 
--   [The Knowledge Network for Biocomplexity](https://knb.ecoinformatics.org/data)
+Data-specific information for: FishPass_Behaviour_Database.csv
 
--   [EDI Data Portal](https://portal.edirepository.org/nis/home.jsp)
+1. Number of variables: 9
+2. Number of rows: 220
+3. Variable list:
 
-Vous suivrez les instructions du fichier `data/README.md` pour récupérer vos données depuis une URL de téléchargement directe avec mise en cache dans `data/cache`.
+| Variable | Data type | Description |
+| -------- | --------- | ----------- |
+| Order | Character | Taxonomic order |
+| Family | Character | Taxonomic family |
+| Genus | Character | Taxonomic genus |
+| Scientific Name | Character | Scientific name of species |
+| Common Name | Character | Common name of species |
+| Vertical Station | Character | Preferred location of fish within the water column: may be pelagic, benthopelagic, or demersal |
+| Schooling Behaviour | Character | Indicates whether the species exhibits schooling or shoaling behaviour: schooling or non-schooling |
+| Reference_VS | Character | Source for vertical station |
+| Reference_SB | Character | Source for schooling behaviour |
 
-Effectuez une première description grossière des données pour vérifier, notamment, s'il n'y a pas trop de valeurs manquantes et consultez un enseignant pour qu'il valide votre choix avant de passer à l'étape suivante. Les différentes étapes sont à réaliser dans le script R `import.R`.
-
-### Étape 2 (module 2)
-
--   Rédigez une courte introduction et un but à votre carnet de notes nommé `models_notebook.qmd`.
--   Complétez la section relative aux régressions linéaires simples, polynomiales et multiples.
-
-### Étape 3 (module 3)
-
--   Complétez la section relative aux modèles linéaires.
-
-### Étape 4 (module 4)
-
--   Complétez la section relative aux modèles linéaires généralisés et/ou mixtes.
-
-### Étape 5 (modules 4 et 5)
-
--   Sélectionnez vos deux modèles les plus pertinents et rédigez un rapport complet dans `models_report.qmd`.
-
-Utilisez un style et une présentation de l'information adéquats par rapport à ce type de document (donc pas un simple copier-coller du bloc-notes). Ajoutez des légendes aux figures et aux tables, numérotez-les et citez-les dans le texte à l'aide de la syntaxe adéquate des documents Quarto (voir <https://quarto.org/docs/authoring/cross-references.html>). Citez également vos références dans le texte (voir <https://quarto.org/docs/authoring/footnotes-and-citations.html>).
-
-**Vous devriez vous inspirer de l'exemple de rapport dans le projet `B02Ia_achatina`, voir <https://github.com/BioDataScience-Course/B02Ia_achatina/tree/main>.**
-
-## Important
-
-Faites des commit - pull - push réguliers et gérez les conflits éventuels immédiatement.
-
-Effectuez un 'Rendu' des documents finaux en HTML et assurez-vous que ce rendu se fait sans erreurs à la fin de votre travail (c'est très important car c'est en effet ce document final que l'on souhaite obtenir en éditant un fichier Quarto) !
-
-À la fin, vérifiez que le dernier commit soit bien pris en compte dans votre dépôt sur GitHub. Vos enseignants ne voient que la version GitHub et c'est cette dernière qui sera corrigée et évaluée. Il est donc crucial que vos dépôts locaux soient bien synchronisés avec GitHub à la fin de votre travail.
+4. Missing data codes: NA
