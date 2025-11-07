@@ -37,7 +37,7 @@ L’enjeu de cette étude est de déterminer si certains profils morphologiques 
 Le jeu de données utilisé provient de la base FishPass Sortable Attribute Database, rassemblée par Benoit *et al.* (2023). Cette base regroupe des informations morphologiques, physiologiques, comportementales et phénologiques pour les poissons des Grands Lacs.\
 Dans ce projet, nous avons plus spécifiquement exploité les fichiers FishPass_Morphology_Database.csv et FishPass_Behaviour_Database.csv.
 
-La base combinée couvre 220 espèces, réparties initialement sur 20 ordres taxonomiques et comprenant 21 variables biologiques. Afin d’étudier le lien entre morphologie et stratégies de nage, nous nous sommes concentrés sur un ensemble restreint mais pertinent de variables morphologiques et comportementales.
+La base combinée couvre 220 espèces, réparties initialement sur 21 ordres taxonomiques et comprenant 21 variables biologiques. Afin d’étudier le lien entre morphologie et stratégies de nage, nous nous sommes concentrés sur un ensemble restreint mais pertinent de variables morphologiques et comportementales.
 
 ### Variables quantitatives retenues (8) :
 
