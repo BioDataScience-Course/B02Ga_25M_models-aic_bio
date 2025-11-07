@@ -23,9 +23,12 @@ bibliography: references.bib
 
 ... Introduction et but...
 
-Benoit et al. (2023) ont compilé une base de données morphologique de poissons des Grands Lacs afin d’évaluer l’influence des traits biologiques sur la capacité de franchissement des barrières fluviales. Cette base regroupe des mesures morphologiques, physiologiques et comportementales de 220 espèces. Les traits morphologiques sont essentiels pour comprendre la performance de nage et les adaptations écologiques des poissons.
+Les poissons des Grands Lacs présentent une grande diversité de morphologies et de comportements, qui influencent leur capacité à se déplacer dans leur environnement et à franchir des obstacles tels que barrages, passes à poissons ou variations de débit. L’ensemble de ces caractéristiques peut conditionner leur performance de nage et donc leurs chances de migration et de survie.
 
-Nous explorons ici les relations linéaires entre différentes caractéristiques morphologiques, telles que la longueur maximale, la profondeur et la forme du corps, afin de déterminer comment ces traits influencent la performance de nage et la capacité à franchir des obstacles.
+Dans ce travail, nous utilisons les données du *FishPass Sortable Attribute Database* (Benoit *et al.*, 2023) qui regroupent des traits morphologiques (par ex. longueur maximale, forme du corps, taille et position des nageoires) ainsi que des traits comportementaux (position verticale dans la colonne d'eau, comportement de banc).
+
+**But** :\
+Nous explorons ici les **relations linéaires** entre certaines caractéristiques morphologiques et certains comportements afin d’évaluer dans quelle mesure la morphologie peut expliquer des stratégies de nage et de déplacement.
 
 ## Matériel et méthodes
 
@@ -33,7 +36,9 @@ Nous explorons ici les relations linéaires entre différentes caractéristiques
 
 ...Matériel et méthodes...
 
-Les données utilisées proviennent de la base FishPass Morphology compilée par Benoit et al. (2023, DOI: <https://doi.org/10.5061/dryad.fqz612jwj>). Elles incluent 10 variables morphologiques clés : longueur maximale, profondeur du corps, rapport d’aspect, étroitesse du pédoncule caudal, position et taille des nageoires pectorales, position verticale et taille de l’œil, ainsi que la forme du corps.
+Les données utilisées proviennent de la base FishPass Morphology et de la base FishPass Behaviour compilées par Benoit et al. (2023, DOI: <https://doi.org/10.5061/dryad.fqz612jwj>). Les deux bases ont été fusionnées par espèce (Order, Family, Genus, Scientific.Name, Common.Name), ce qui a permis d’obtenir un jeu unique intégrant à la fois des mesures morphologiques et des informations comportementales pour chaque espèce. Pour ce projet, seules les variables morphologiques et comportementales les plus pertinentes ont été retenues : longueur maximale, profondeur du corps, rapport d’aspect, étroitesse du pédoncule caudal, position et taille des nageoires pectorales, position verticale et taille de l’œil, forme du corps et comportement de banc.
+
+Les données ont été nettoyées et harmonisées : renommage des colonnes, conversion des variables numériques, suppression des lignes avec valeurs manquantes et ajout de labels et unités. Afin d’assurer une représentativité statistique suffisante, seuls les ordres présentant un effectif ≥ 10 individus ont été conservés. Les ordres retenus pour les analyses sont *Cypriniformes, Perciformes et Salmoniformes.* Les autres ordres, comportant trop peu d’observations, ont été exclus pour garantir la robustesse des résultats.
 
 Les analyses sont réalisées dans `r R.version.string` avec le package `{tidyverse}` version `r packageVersion("tidyverse")` et `{tabularise}` version `r packageVersion("tabularise")` pour le traitement et la visualisation des données, et `{labelled}` version `r packageVersion("labelled")` pour les labels et unités. Le seuil de significativité α est fixé à 5 %.
 
@@ -55,9 +60,9 @@ SciViews::R("model", lang = "fr")
 
 ```{r import}
 # Lecture des données
-morpho_data <- read.csv("data/data_morpho.csv", header = TRUE, sep = ",")
+Fish_data <- read.csv("data/Fish_data.csv", header = TRUE, sep = ",")
 # Tableau des premières et dernières lignes
-tabularise$headtail(morpho_data)
+tabularise$headtail(Fish_data)
 ```
 
 ### Description des données
@@ -81,10 +86,21 @@ tabularise$headtail(morpho_data)
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
 ```{r chart3 Christelle}
+chart(data = Fish_data, Profondeur_corps ~ Comportement_banc | Ordre) +
+  geom_boxplot () + labs(
+    x = "Comportement de banc",
+    y = "Profondeur du corps (% TL)",
+    title = "Profondeur du corps selon le comportement de banc"
+  )
+
 
 ```
 
 ... interprétation #3...
+
+On voit que selon les ordres de poissons, les espèces qui vivent en banc (schooling) tendent à avoir un corps plus profond que celles qui vivent seules (non-schooling). Cette forme plus profonde aide les poissons à rester stables lorsqu’ils nagent ensemble et à mieux contrôler leurs mouvements dans le banc. Par exemple, chez les Perciformes, la différence est particulièrement visible, alors que chez les Salmoniformes elle est plus faible. Cela suggère que la forme du corps joue un rôle dans la coordination et la cohésion du groupe.
+
+*L’analyse des boxplots facettés par ordre montre que la profondeur corporelle (% TL) varie avec le comportement de banc. Pour les Cypriniformes et Perciformes, les individus schooling présentent en moyenne une profondeur corporelle plus élevée que les non-schooling, ce qui pourrait refléter une adaptation morphologique à la nage collective. Cette morphologie est susceptible d’améliorer la stabilité hydrodynamique et la manœuvrabilité lors des déplacements synchronisés. Chez les Salmoniformes, la différence entre les comportements est moins marquée, suggérant une plasticité morphologique moindre ou des contraintes écologiques différentes.*
 
 ### Modélisation
 
@@ -93,8 +109,6 @@ tabularise$headtail(morpho_data)
 #### Régression linéaire 1
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
-
-**3 modeles? ou 1?**
 
 #### Régression linéaire 2
 
