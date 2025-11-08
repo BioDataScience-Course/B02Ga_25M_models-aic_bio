@@ -93,7 +93,13 @@ chart(data = Fish_data, Profondeur_corps ~ Comportement_banc | Ordre) +
     title = "Profondeur du corps selon le comportement de banc"
   )
 
-
+chart(Fish_data, Profondeur_corps ~ Comportement_banc %fill=% Comportement_banc | Ordre) +
+  geom_boxplot() +
+  labs(
+    x = "Comportement de banc",
+    y = "Profondeur du corps (% TL)",
+    title = "Effet du comportement de banc sur la profondeur du corps selon l'ordre"
+  )
 ```
 
 ... interprétation #3...
@@ -103,6 +109,19 @@ On voit que selon les ordres de poissons, les espèces qui vivent en banc (schoo
 *L’analyse des boxplots facettés par ordre montre que la profondeur corporelle (% TL) varie avec le comportement de banc. Pour les Cypriniformes et Perciformes, les individus schooling présentent en moyenne une profondeur corporelle plus élevée que les non-schooling, ce qui pourrait refléter une adaptation morphologique à la nage collective. Cette morphologie est susceptible d’améliorer la stabilité hydrodynamique et la manœuvrabilité lors des déplacements synchronisés. Chez les Salmoniformes, la différence entre les comportements est moins marquée, suggérant une plasticité morphologique moindre ou des contraintes écologiques différentes.*
 
 ### Modélisation
+
+Voici la corrélation de Pearson observée entre les variables quantitatives :
+
+<!--% Création ci-dessous du tableau des corrélations de Pearson entre les variables quantitatives en passant par un objet correlation. -->
+
+```{r corr, record='ROA', object='corr', arg='dimnames', warning=FALSE}
+(Fish_data_corr <- correlation(sselect(Fish_data,Longueur_max, Profondeur_corps, Rapport_aspect, Etroitesse_pedoncule, Position_nageoire_pectorale, Taille_nageoire_pectorale, Position_oeil_vertical, Taille_oeil))) |>
+  tabularise()
+plot(Fish_data_corr, type = "lower")
+
+```
+
+<!-- Commentez la table des corrélations. -->
 
 <!--% Chaque modèle doit être décrit à l'aide d'un graphique et d'un tableau résumant le modèle. Les équations paramétrées de tous les modèles doivent être également présentes. L'analyse des résidus sera réalisée et interprétée pour chaque modèle. -->
 
