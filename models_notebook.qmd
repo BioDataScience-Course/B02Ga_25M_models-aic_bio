@@ -71,9 +71,27 @@ tabularise$headtail(Fish_data)
 
 ```{r chart1 Amal}
 
+# Relation entre rapport d’aspect et étroitesse du pédoncule caudal
+chart(data = Fish_data,
+      Etroitesse_pedoncule ~ Rapport_aspect %col=% Comportement_banc | Ordre) +
+  geom_point(size = 3, alpha = 0.8) +
+  labs(
+    x = "Rapport d’aspect de la nageoire caudale",
+    y = "Étroitesse du pédoncule caudal",
+    title = "Relation entre la morphologie caudale et le comportement de banc",
+    subtitle = "Comparaison du rapport d’aspect et de l’étroitesse du pédoncule caudal selon l’ordre"
+  )
 ```
 
-... interprétation #1...
+Le graphique illustre la relation entre le rapport d’aspect de la nageoire caudale et l’étroitesse du pédoncule caudal chez trois ordres de poissons (Cypriniformes, Perciformes et Salmoniformes), en distinguant les espèces grégaires (schooling) des espèces solitaires (non-schooling).
+
+Globalement, on observe que les espèces grégaires(schooling) tendent à présenter des valeurs de rapport d’aspect plus élevées et un pédoncule caudal plus étroit que les espèces solitaires. Cette combinaison morphologique est typique d’une nage rapide, efficace et soutenue, adaptée aux déplacements collectifs dans la colonne d’eau. Elle favorise la réduction de la traînée hydrodynamique et une meilleure endurance, caractéristiques essentielles pour maintenir la cohésion d’un banc en mouvement.
+
+Chez les Cypriniformes, cette tendance apparaît particulièrement nette : les espèces grégaires se concentrent dans une zone du graphique où le pédoncule est plus fin et le rapport d’aspect plus élevé.\
+Chez les Perciformes, la dispersion est plus grande, ce qui suggère une diversité morphologique plus importante au sein du groupe, reflétant des stratégies de nage variées selon les espèces.\
+Les Salmoniformes montrent un profil plus homogène, avec des morphologies globalement adaptées à la nage en pleine eau, indépendamment du comportement social, ce qui peut s’expliquer par leurs contraintes migratoires et leur mode de déplacement particulier.
+
+Ce graphique met en évidence que les espèces présentant une morphologie caudale optimisée pour la vitesse et l’endurance c’est-à-dire un pédoncule étroit et un rapport d’aspect élevé sont majoritairement associées à un comportement grégaire. Ces résultats soutiennent l’hypothèse selon laquelle la morphologie influence la stratégie de déplacement, en particulier la capacité à se déplacer collectivement.
 
 <!--% Graphique et interprétation de l'étudiant #2 ci-dessous. -->
 
@@ -123,11 +141,37 @@ plot(Fish_data_corr, type = "lower")
 
 <!-- Commentez la table des corrélations. -->
 
+La plupart des corrélations entre traits morphologiques sont faibles à modérées. Le rapport d’aspect et l’étroitesse du pédoncule caudal montrent une corrélation positive notable (r = 0,38), suggérant une adaptation à la nage rapide. La longueur maximale est fortement négativement corrélée avec la taille de l’œil (r = -0,69), tandis que la profondeur du corps est modérément liée à la taille des nageoires pectorales (r = 0,45).
+
 <!--% Chaque modèle doit être décrit à l'aide d'un graphique et d'un tableau résumant le modèle. Les équations paramétrées de tous les modèles doivent être également présentes. L'analyse des résidus sera réalisée et interprétée pour chaque modèle. -->
 
 #### Régression linéaire 1
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
+
+Amal
+
+```{r}
+# Modèle de régression linéaire polynomial
+
+#Polyamal_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil)
+
+Polyamal_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + I(Taille_oeil^2))
+summary_(Polyamal_lm) |> tabularise()
+
+
+```
+
+```{r}
+# Visualisation du modèle
+chart(Polyamal_lm)
+
+```
+
+```{r}
+# Analyse des résidus
+chart$residuals(Polyamal_lm)
+```
 
 #### Régression linéaire 2
 
