@@ -1,0 +1,33 @@
+{
+    "id": "057F5961",
+    "path": "~/workspace/B02Ga_25M_models-aic_bio/models_notebook.qmd",
+    "project_path": "models_notebook.qmd",
+    "type": "quarto_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1761208147240.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "rmdVisualMode": "true",
+        "rmdVisualWrapConfigured": "true",
+        "source_window_id": "",
+        "Source": "Source",
+        "docOutlineVisible": "1",
+        "rmdVisualCollapsedChunks": "",
+        "rmdVisualModeLocation": "202:0",
+        "cursorPosition": "66,0",
+        "scrollLine": "0",
+        "last_setup_crc32": "",
+        "docOutlineSize": "58"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1762423469,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1762423469657,
+    "read_only": false,
+    "read_only_alternatives": []
+}

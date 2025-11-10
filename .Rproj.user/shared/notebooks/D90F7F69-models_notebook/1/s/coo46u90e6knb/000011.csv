@@ -1,0 +1,8 @@
+"0",""
+"0","chart(Fish_data, Profondeur_corps ~ Comportement_banc %fill=% Comportement_banc | Ordre) +"
+"0","  geom_boxplot() +"
+"0","  labs("
+"0","    x = ""Comportement de banc"","
+"0","    y = ""Profondeur du corps (% TL)"","
+"0","    title = ""Effet du comportement de banc sur la profondeur du corps selon l'ordre"""
+"0","  )"

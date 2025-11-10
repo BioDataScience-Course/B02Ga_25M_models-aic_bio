@@ -1,0 +1,4 @@
+"0","#modele_1 <- lm(data = Fish_data, Longueur_max ~ Taille_oeil * Ordre ) summary(modele_1) |> tabularise()"
+"0",""
+"0","modele_1 <- lm(data = Fish_data, Longueur_max ~ (Taille_oeil + Ordre ) * Comportement_banc ) "
+"0","summary(modele_1) |> tabularise()"

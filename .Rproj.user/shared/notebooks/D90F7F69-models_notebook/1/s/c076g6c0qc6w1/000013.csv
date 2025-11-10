@@ -1,0 +1,2 @@
+"0","(Fish_data_corr <- correlation(sselect(Fish_data,Longueur_max, Profondeur_corps, Rapport_aspect, Etroitesse_pedoncule, Position_nageoire_pectorale, Taille_nageoire_pectorale, Position_oeil_vertical, Taille_oeil))) |>"
+"0","  tabularise()"
