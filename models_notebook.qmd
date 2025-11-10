@@ -66,6 +66,7 @@ tabularise$headtail(morpho_data)
 
 ```{r chart1 Amal}
 
+
 ```
 
 ... interprétation #1...
