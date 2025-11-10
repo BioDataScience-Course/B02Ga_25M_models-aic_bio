@@ -1,10 +1,8 @@
 # History files
 .Rhistory
 .Rapp.history
-
 # Session Data files
 .RData
-
 # R files
 .Rhistory
 .Rapp.history
@@ -12,12 +10,10 @@
 .RDataTmp
 .Ruserdata
 .Renviron
-
 # RStudio files
 .Rproj.user
 .Rproj.user/
 rsconnect/
-
 # Compiled files and temporary R Markdown files
 README.html
 *.utf8.md
@@ -34,7 +30,6 @@ figure-html/
 *.doc
 *.pptx
 *.ppt
-
 # Quarto, bookdown, pkgdown website, etc
 inst/doc
 docs
@@ -45,31 +40,26 @@ _bookdown_files/
 /_site/
 .quarto/
 _site/
-
 # Compilation results
 tests/results/
-
 # Key
 tests/.key
 tests/.cnt
-
 # Knitr cache
 *_cache/
 /cache/
-
 # Package build files
 *-Ex.R
 po/*~
 /*.Rcheck/
 vignettes/*.html
 vignettes/*.pdf
-
 # OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
 .httr-oauth
-
 # System files and others
 www/.vscode/
 .DS_Store
 .Thumbs.db
 Thumbs.db
 core.*
+DRYAD_Raw_Data_Distribution_Patterns_and_Body_Size_in_RPW_Mites.xlsx

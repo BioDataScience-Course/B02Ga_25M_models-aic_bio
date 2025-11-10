@@ -1,0 +1,128 @@
+---
+title: "___"
+author: "Amal Abarou, Ide Tchuileng, Christelle Baseka"
+format:
+  html:
+    code-fold: true
+    code-tools: true
+    toc: true
+editor: visual
+lang: fr
+bibliography: references.bib
+---
+
+<!--# Ceci est un commentaire. -->
+
+<!--% Ceci est une consigne. Ne jamais modifier ni déplacer les consignes dans le document ! -->
+
+<!--% Complétez le titre et le nom des auteurs (auteur1, auteur2, auteur3 et auteur 4) dans l'entête YAML.-->
+
+## Introduction et but
+
+<!--% Rédigez une courte introduction de 3 ou 5 phrases qui présente vos données. Ajoutez une phrase de but (que vous remanierez éventuellement en fonction des modèles que vous ajouterez plus tard). Vous pouvez citer la bibliographie en utilisant le formatage Markdown ad hoc et en incluant votre référence au format bibtex dans le fichier references.bib. -->
+
+... Introduction et but...
+
+Benoit et al. (2023) ont compilé une base de données morphologique de poissons des Grands Lacs afin d’évaluer l’influence des traits biologiques sur la capacité de franchissement des barrières fluviales. Cette base regroupe des mesures morphologiques, physiologiques et comportementales de 220 espèces. Les traits morphologiques sont essentiels pour comprendre la performance de nage et les adaptations écologiques des poissons.
+
+Nous explorons ici les relations linéaires entre différentes caractéristiques morphologiques, telles que la longueur maximale, la profondeur et la forme du corps, afin de déterminer comment ces traits influencent la performance de nage et la capacité à franchir des obstacles.
+
+## Matériel et méthodes
+
+<!--% Indiquez ici d'où viennent les données et aussi quel logiciel (et version) vous utilisez pour les analyses. Inspirez-vous des projets du premier module de SDD II. -->
+
+...Matériel et méthodes...
+
+Les données utilisées proviennent de la base FishPass Morphology compilée par Benoit et al. (2023, DOI: <https://doi.org/10.5061/dryad.fqz612jwj>). Elles incluent 10 variables morphologiques clés : longueur maximale, profondeur du corps, rapport d’aspect, étroitesse du pédoncule caudal, position et taille des nageoires pectorales, position verticale et taille de l’œil, ainsi que la forme du corps.
+
+Les analyses sont réalisées dans `r R.version.string` avec le package `{tidyverse}` version `r packageVersion("tidyverse")` et `{tabularise}` version `r packageVersion("tabularise")` pour le traitement et la visualisation des données, et `{labelled}` version `r packageVersion("labelled")` pour les labels et unités. Le seuil de significativité α est fixé à 5 %.
+
+## Analyses
+
+```{r setup, include=FALSE}
+# Ceci est nécessaire pour les tests SDD, ne pas utiliser dans un "vrai" projet
+if (!"tools:tests" %in% search())
+  source(here::here("tests/tools_tests.R"), attach(NULL, name = "tools:tests"))
+
+# Configure Knitr to use AGG as graphic device
+knitr::opts_chunk$set(dev = "ragg_png")
+
+# Configuration de l'environnement
+SciViews::R("model", lang = "fr")
+```
+
+<!--% Importez les données que vous aurez préalablement nettoyées, remaniées et labélisées dans le script R nommé `R/import.R`. -->
+
+```{r import}
+# Lecture des données
+morpho_data <- read.csv("data/data_morpho.csv", header = TRUE, sep = ",")
+# Tableau des premières et dernières lignes
+tabularise$headtail(morpho_data)
+```
+
+### Description des données
+
+<!--% Chaque étudiant réalise et interprète un graphique pertinent en lien avec le but fixé et les modèles qui seront réalisés. Graphique et interprétation de l'étudiant #1 ci-dessous. -->
+
+```{r chart1 Amal}
+
+
+```
+
+... interprétation #1...
+
+<!--% Graphique et interprétation de l'étudiant #2 ci-dessous. -->
+
+```{r chart2 Ide}
+
+```
+
+... interprétation #2...
+
+<!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
+
+```{r chart3 Christelle}
+
+```
+
+... interprétation #3...
+
+### Modélisation
+
+<!--% Chaque modèle doit être décrit à l'aide d'un graphique et d'un tableau résumant le modèle. Les équations paramétrées de tous les modèles doivent être également présentes. L'analyse des résidus sera réalisée et interprétée pour chaque modèle. -->
+
+#### Régression linéaire 1
+
+<!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
+
+**3 modeles? ou 1?**
+
+#### Régression linéaire 2
+
+<!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
+
+#### Modèle linéaire 1
+
+<!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
+
+#### Modèle linéaire 2
+
+<!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
+
+#### Modèle linéaire généralisé et/ou mixte 1
+
+<!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
+
+#### Modèle linéaire généralisé et/ou mixte 2
+
+<!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
+
+## Conclusion
+
+<!--% Lorsque toutes les analyses sont réalisées, terminez ce bloc-notes avec 3 à 6 phrases de conclusion en rapport avec ce que vous avez observé dans vos analyses. Quels sont les modèles les plus pertinents que vous retenez ? -->
+
+...vos conclusions ici...
+
+## Références
+
+<!--% N'indiquez rien ci-dessous. Quarto se chargera de rajouter vos références bibliographiques automatiquement. -->
