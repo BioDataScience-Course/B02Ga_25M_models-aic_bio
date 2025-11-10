@@ -185,6 +185,24 @@ chart$residuals(Polyamal_lm)
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
+Amal
+
+```{r}
+Fishamal_lm2 <- lm(data = Fish_data, Taille_oeil ~ Longueur_max  * Comportement_banc )
+summary_(Fishamal_lm2) |> tabularise()
+```
+
+```{r}
+chart(data = Fish_data, Taille_oeil ~ Longueur_max   %col=% Comportement_banc) +
+  geom_point() +
+  stat_smooth(method = "lm", formula = y ~ x)
+```
+
+```{r}
+# Analyse des résidus
+chart$residuals(Fishamal_lm2)
+```
+
 #### Modèle linéaire généralisé et/ou mixte 1
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
