@@ -16,11 +16,13 @@ bibliography: references.bib
 
 <!--% Rédigez l'introduction de ce rapport en 5-6 phrases.-->
 
-L’étude de la morphologie des poissons est essentielle pour comprendre les adaptations fonctionnelles liées à leur écologie et leur mode de vie. Les caractéristiques morphologiques, telles que la longueur maximale, la forme du corps ou la position des nageoires, influencent la performance de nage, la prédation, la dispersion et la survie des espèces dans différents habitats aquatiques.
+La morphologie des poissons constitue un déterminant majeur de leur écologie de déplacement, influençant la performance de nage, l’efficacité énergétique, les interactions sociales ainsi que la capacité à franchir des obstacles physiques tels que des rapides ou des passes à poissons. Les traits morphologiques tels que la forme du corps, la profondeur relative, le rapport d’aspect de la nageoire caudale ou encore la taille des nageoires pectorales sont directement associés aux stratégies de nage, qu’elles soient axées sur la vitesse, l’endurance, la manœuvrabilité ou la stabilité dans la colonne d’eau. De même, certains traits comportementaux, tels que la tendance à former des bancs, constituent des réponses écologiques façonnées par le régime hydrodynamique, la prédation ou les modes d’alimentation.
 
-Les barrières fluviales constituent un facteur majeur de fragmentation des habitats aquatiques et peuvent entraver la migration des poissons, limitant la connectivité entre populations (Benoit et al., 2023). Dans les Grands Lacs, ces structures sont parfois utilisées pour contrôler des espèces invasives comme la lamproie marine (*Petromyzon marinus*), mais elles peuvent également affecter les espèces indigènes. Pour concevoir des systèmes de passage sélectif efficaces, il est nécessaire de comprendre les caractéristiques biologiques influençant la capacité de passage.
+Dans ce contexte, la base de données FishPass Sortable Attribute Database proposée par Benoit *et al.* (2023) représente une ressource particulièrement pertinente. Elle regroupe des informations morphologiques, physiologiques, comportementales et phénologiques pour un large ensemble d’espèces de poissons des Grands Lacs. Cette base vise notamment à mieux comprendre les facteurs influençant la capacité des poissons à se déplacer et à franchir les aménagements anthropiques.
 
-L’étude de Benoit et al. (2023) a rassemblé, dans une base de données intégrée, 21 attributs biologiques (phénologie, morphologie, physiologie et comportement) de 220 espèces de poissons des Grands Lacs. Ce projet s’appuie sur la **base de données FishPass Morphology** afin d’explorer les relations entre différentes mesures morphologiques des poissons, dans le but de comprendre comment la forme du corps pourrait influencer la performance de passage.
+Dans le cadre de ce projet, nous avons sélectionné et combiné deux ensembles de données issus de cette base : FishPass Morphology et FishPass Behaviour. Notre objectif est d’analyser les relations entre traits morphologiques et comportements de nage, en particulier la tendance à former des bancs, ainsi que la position verticale dans la colonne d’eau. Les variables retenues incluent des indicateurs de forme corporelle (ex. profondeur du corps, rapport d’aspect, étroitesse du pédoncule caudal) et des traits fonctionnels liés à la nage (position et taille des nageoires, position et taille de l’œil).
+
+L’enjeu de cette étude est de déterminer si certains profils morphologiques sont associés à des stratégies collectives ou individuelles de déplacement, et dans quelle mesure la morphologie peut être considérée comme un prédicteur du comportement. Une meilleure compréhension de ces relations contribue à éclairer les mécanismes sous-jacents à l’adaptation écologique, mais également à l’aménagement de dispositifs favorisant la migration des poissons, notamment au sein des systèmes fluviaux aménagés.
 
 ## But
 
@@ -32,41 +34,48 @@ L’étude de Benoit et al. (2023) a rassemblé, dans une base de données inté
 
 **Matériel :**
 
--   **Source de données :** Base de données FishPass Morphology, compilée par Benoit et al. (2023), incluant 220 espèces de poissons et 21 variables biologiques (morphologie, physiologie, comportement, phénologie).
+Le jeu de données utilisé provient de la base FishPass Sortable Attribute Database, rassemblée par Benoit *et al.* (2023). Cette base regroupe des informations morphologiques, physiologiques, comportementales et phénologiques pour les poissons des Grands Lacs.\
+Dans ce projet, nous avons plus spécifiquement exploité les fichiers FishPass_Morphology_Database.csv et FishPass_Behaviour_Database.csv.
 
--   **Variables étudiées :** Pour ce projet, seules les variables morphologiques quantitatives et qualitatives sont utilisées, notamment :
+La base combinée couvre 220 espèces, réparties initialement sur 21 ordres taxonomiques et comprenant 21 variables biologiques. Afin d’étudier le lien entre morphologie et stratégies de nage, nous nous sommes concentrés sur un ensemble restreint mais pertinent de variables morphologiques et comportementales.
 
-    -   Longueur maximale (cm)
+### Variables quantitatives retenues (8) :
 
-    -   Profondeur du corps (% TL)
+-   Longueur maximale (cm) : taille maximale observée de l’espèce.
 
-    -   Rapport d’aspect
+-   Profondeur du corps (% TL) : rapport entre la profondeur maximale et la longueur totale du corps.
 
-    -   Étroitesse du pédoncule caudal
+-   Rapport d’aspect : indicateur de la forme et de la performance de la nageoire caudale.
 
-    -   Position et taille de la nageoire pectorale
+-   Étroitesse du pédoncule caudal : finesse de la jonction entre le corps et la nageoire caudale.
 
-    -   Position verticale de l’œil
+-   Position verticale de la nageoire pectorale
 
-    -   Taille de l’œil
+-   Taille de la nageoire pectorale
 
-    -   Forme du corps (qualitative)
+-   Position verticale de l’œil
 
--   **Logiciel :** Les analyses statistiques sont réalisées dans `r R.version.string` et plus précisément avec `{tidyverse}` version `r packageVersion("tidyverse")`, `{tabularise}` version `r packageVersion("tabularise")` et `{labelled}` version `r packageVersion("labelled")` sous `r osVersion`. Les lignes avec valeurs manquantes sont supprimées pour les variables d’intérêt, et les variables numériques sont converties en type `numeric`, tandis que les variables qualitatives sont conservées en `character` ou `factor`. Le seuil α est fixé à 5 %.
+-   Taille de l’œil (% HL) : diamètre de l’œil rapporté à la longueur de la tête.
 
-**Méthodes :**
+### Variables qualitatives retenues (3) :
 
-1.  **Importation des données** depuis le fichier CSV original.
+-   Ordre : classification taxonomique de l’espèce.
 
-2.  **Renommage des colonnes** en français et uniformisation des noms (camel case).
+-   Forme du corps : fusiforme, allongée, comprimée, etc.
 
-3.  **Conversion des variables numériques** et nettoyage des données : suppression des lignes avec valeurs manquantes sur les variables d’intérêt.
+-   Comportement de banc : schooling / non-schooling.
 
-4.  **Ajout de labels et d’unités** pour faciliter l’interprétation.
+#### Méthodes
 
-5.  **Visualisation** et **exploration des données** : résumé statistique, nombre de modalités pour les variables qualitatives, comptage des valeurs manquantes.
+-   **Fusion des données** : Les bases Morphology et Behaviour ont été combinées par espèce en utilisant les clés: `Order`, `Family`, `Genus`, `Scientific.Name` et `Common.Name`.
 
-6.  **Sauvegarde** de la base de données nettoyée pour analyses ultérieures.
+-   **Nettoyage** : renommage des colonnes en français, conversion des variables numériques, suppression des lignes avec valeurs manquantes et ajout de labels et unités.
+
+-   **Filtrage des ordres** : afin d’assurer une représentativité statistique suffisante, seuls les ordres présentant un effectif ≥ 10 individus ont été conservés. Les ordres retenus pour les analyses sont *Cypriniformes, Perciformes et Salmoniformes.* Les autres ordres ont été exclus pour éviter les biais liés aux faibles tailles d’échantillon.
+
+    **Traitement des données :**
+
+    **Logiciel :** Les analyses statistiques sont réalisées dans `r R.version.string` et plus précisément avec `{tidyverse}` version `r packageVersion("tidyverse")`, `{tabularise}` version `r packageVersion("tabularise")` et `{labelled}` version `r packageVersion("labelled")` sous `r osVersion`. Les lignes avec valeurs manquantes sont supprimées pour les variables d’intérêt, et les variables numériques sont converties en type `numeric`, tandis que les variables qualitatives sont conservées en `character` ou `factor`. Le seuil α est fixé à 5 %.
 
 ## Résultats
 
@@ -77,3 +86,5 @@ L’étude de Benoit et al. (2023) a rassemblé, dans une base de données inté
 <!--% En tenant compte du but de votre carnet de notes et de vos résultats, discutez de résultats et proposez des conclusions à votre analyse en 5 à 10 phrases. -->
 
 ## Bibliographie
+
+Benoit, D., Zielinski, D. P., Swanson, R. A., McLaughlin, R. L., Castro-Santos, T., Goodwin, A. E., Pratt, T. C., & Muir, A. M. (2023). *FishPass Sortable Attribute Database* (Version 1) \[Data set\]. Dryad. <https://doi.org/10.5061/dryad.fqz612jwj>
