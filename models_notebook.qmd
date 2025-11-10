@@ -114,6 +114,8 @@ Voici la corrélation de Pearson observée entre les variables quantitatives :
 
 <!--% Création ci-dessous du tableau des corrélations de Pearson entre les variables quantitatives en passant par un objet correlation. -->
 
+Pour explorer les relations potentielles entre les différentes caractéristiques morphologiques des poissons étudiés, nous avons réalisé une analyse de corrélation de Pearson. Cette méthode permet d’évaluer la force et le sens de l’association linéaire entre deux variables quantitatives.
+
 ```{r corr, record='ROA', object='corr', arg='dimnames', warning=FALSE}
 (Fish_data_corr <- correlation(sselect(Fish_data,Longueur_max, Profondeur_corps, Rapport_aspect, Etroitesse_pedoncule, Position_nageoire_pectorale, Taille_nageoire_pectorale, Position_oeil_vertical, Taille_oeil))) |>
   tabularise()
@@ -122,6 +124,8 @@ plot(Fish_data_corr, type = "lower")
 ```
 
 <!-- Commentez la table des corrélations. -->
+
+*La matrice révèle une indépendance générale entre les caractères, avec deux associations notables : Profondeur du corps \~ Taille nageoire pectorale (r≈0.45) et Longueur max \~ Taille de l’œil (r≈−0.69).*
 
 <!--% Chaque modèle doit être décrit à l'aide d'un graphique et d'un tableau résumant le modèle. Les équations paramétrées de tous les modèles doivent être également présentes. L'analyse des résidus sera réalisée et interprétée pour chaque modèle. -->
 
@@ -136,6 +140,20 @@ plot(Fish_data_corr, type = "lower")
 #### Modèle linéaire 1
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
+
+```{r}
+mod_ancova <- lm(Taille_nageoire_pectorale ~ Profondeur_corps * Ordre, data = Fish_data)
+summary(mod_ancova) |>
+tabularise()
+
+chart(Fish_data, Taille_nageoire_pectorale ~ Profondeur_corps %color=% Ordre) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+mod2 <- lm(Taille_oeil ~ Longueur_max, data = Fish_data)
+
+
+```
 
 #### Modèle linéaire 2
 
