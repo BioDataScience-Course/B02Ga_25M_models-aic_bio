@@ -142,18 +142,30 @@ plot(Fish_data_corr, type = "lower")
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 ```{r}
-mod_ancova <- lm(Taille_nageoire_pectorale ~ Profondeur_corps * Ordre, data = Fish_data)
-summary(mod_ancova) |>
-tabularise()
+modele_1 <- lm(data = Fish_data, Longueur_max ~ Profondeur_corps + Rapport_aspect + Etroitesse_pedoncule + Taille_nageoire_pectorale + Taille_oeil + Ordre + Vertical_station + Comportement_banc + Position_nageoire_pectorale + Position_oeil_vertical)
 
-chart(Fish_data, Taille_nageoire_pectorale ~ Profondeur_corps %color=% Ordre) +
-  geom_point() +
-  geom_smooth(method = "lm")
+summary(modele_1) |> tabularise()
 
-mod2 <- lm(Taille_oeil ~ Longueur_max, data = Fish_data)
+modele_1 <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + Ordre )
+summary(modele_1) |> tabularise()
+#modele_1 <- lm(data = Fish_data, Longueur_max ~ Taille_oeil * Ordre ) summary(modele_1) |> tabularise()
 
+modele_1 <- lm(data = Fish_data, Longueur_max ~ (Taille_oeil + Ordre ) * Comportement_banc ) 
+summary(modele_1) |> tabularise()
 
 ```
+
+# c'est un brouillon plz c pq j'écris l'interpretation pour ne pas me perdre à la suite du travail, quand ca sera bon je vous dirai dans le groupe, merci
+
+modele significatif dans son ensemble pvalue statistique F 6.11 10\^-13
+
+R2 ajusted est assez faible 0.5392 on ne peut pas vraiment faire confiance à ce modele
+
+seules la taill de l'oeil et l'ordre sont significatives, toutes les utres variables ne les sont pas car pvalue superieur au seuil , la plupart des variables **n’apportent pas d’information supplémentaire** après avoir pris en compte la taille de l’œil et l’ordre.
+
+mod1 reduced:
+
+**α = 152.39** → valeur de Longueur_max lorsque Taille_oeil = 0 et Ordre = référence (probablement Cypriniformes si c’est le niveau de base). **β₁ = -4.80** → chaque unité de **Taille_oeil supplémentaire** diminue la Longueur_max de 4.8 unités, toutes choses égales par ailleurs. **β₂ = -4.79** → non significatif → Pas d’effet clair pour Perciformes par rapport à Cypriniformes. **β₃ = 31.22** → Salmoniformes sont significativement plus longs (\~31 unités) que les Cypriniformes de référence.
 
 #### Modèle linéaire 2
 
