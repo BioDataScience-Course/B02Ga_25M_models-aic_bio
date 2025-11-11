@@ -162,7 +162,6 @@ Amal
 Polyamal_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + I(Taille_oeil^2))
 summary_(Polyamal_lm) |> tabularise()
 
-
 ```
 
 ```{r}
