@@ -96,10 +96,47 @@ Ce graphique met en évidence que les espèces présentant une morphologie cauda
 <!--% Graphique et interprétation de l'étudiant #2 ci-dessous. -->
 
 ```{r chart2 Ide}
+chart(data = Fish_data, Profondeur_corps ~ Taille_oeil %col=% Vertical_station | Ordre) +
+  geom_point(size = 3) +
+  labs(
+    x = "Profondeur moyenne de vie (m)",
+    y = "Taille de l’œil (mm)",
+    title = "Influence de la profondeur sur la taille de l’œil selon l'ordre"
+  )
 
 ```
 
 ... interprétation #2...
+
+**Cypriniformes** :
+
+Les tailles des yeux sont plutôt dispersées entre \~15 et 35 mm.
+
+Les benthopélagiques (rose) semblent légèrement plus nombreux à avoir des yeux grands ou moyens.
+
+Il n’y a pas de tendance très claire avec la profondeur.
+
+Les démersaux (vert) ont des yeux dans une gamme similaire, sans réelle distinction.
+
+**Perciformes** :
+
+Ici, on voit une tendance plus nette : certains individus benthopélagiques ont des yeux très grands (\~40 mm) à des profondeurs moyennes autour de 20-25 m.
+
+Les démersaux (vert) ont tendance à avoir des yeux plus petits que les benthopélagiques à des profondeurs similaires.
+
+Peu de pélagiques (bleu), mais ils ont de petits yeux (\~18 mm) à profondeur faible (\~18 m).
+
+**Salmoniformes** :
+
+Les tailles des yeux sont globalement plus petites (15-27 mm) et la variation avec la profondeur est faible.
+
+Les benthopélagiques ont des yeux légèrement plus grands que les démersaux et pélagiques.
+
+De facon generale:
+
+Les poissons benthopélagiques semblent parfois avoir des yeux plus grands, surtout chez les Perciformes. Et donc vivent souvent près du fond ou dans des zones plus sombres, peuvent avoir développé des yeux plus grands pour mieux capter la lumière.
+
+Les pélagiques ou démersaux n’ont pas cette pression et donc des yeux plus petits suffisent.
 
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
@@ -177,6 +214,17 @@ chart$residuals(Polyamal_lm)
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
+Ide
+
+```{r}
+
+```
+
+```{r}
+```
+
+```{r}
+```
 #### Modèle linéaire 1
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
