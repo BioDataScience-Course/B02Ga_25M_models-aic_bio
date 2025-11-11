@@ -1,4 +1,0 @@
-"0","# Lecture des données"
-"0","morpho_data <- read.csv(""data/data_morpho.csv"", header = TRUE, sep = "","")"
-"0","# Tableau des premières et dernières lignes"
-"0","tabularise$headtail(morpho_data)"
