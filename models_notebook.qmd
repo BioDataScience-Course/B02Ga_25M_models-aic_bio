@@ -69,7 +69,7 @@ tabularise$headtail(Fish_data)
 
 <!--% Chaque étudiant réalise et interprète un graphique pertinent en lien avec le but fixé et les modèles qui seront réalisés. Graphique et interprétation de l'étudiant #1 ci-dessous. -->
 
-```{r chart1 Amal}
+```{r chart1 }
 
 # Relation entre rapport d’aspect et étroitesse du pédoncule caudal
 chart(data = Fish_data,
@@ -95,7 +95,7 @@ Ce graphique met en évidence que les espèces présentant une morphologie cauda
 
 <!--% Graphique et interprétation de l'étudiant #2 ci-dessous. -->
 
-```{r chart2 Ide}
+```{r chart2 }
 
 ```
 
@@ -103,21 +103,12 @@ Ce graphique met en évidence que les espèces présentant une morphologie cauda
 
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
-```{r chart3 Christelle}
+```{r chart3 }
 chart(data = Fish_data, Profondeur_corps ~ Comportement_banc | Ordre) +
   geom_boxplot () + labs(
     x = "Comportement de banc",
     y = "Profondeur du corps (% TL)",
-    title = "Profondeur du corps selon le comportement de banc"
-  )
-
-chart(Fish_data, Profondeur_corps ~ Comportement_banc %fill=% Comportement_banc | Ordre) +
-  geom_boxplot() +
-  labs(
-    x = "Comportement de banc",
-    y = "Profondeur du corps (% TL)",
-    title = "Effet du comportement de banc sur la profondeur du corps selon l'ordre"
-  )
+    title = "Profondeur du corps selon le comportement de banc et l’ordre")
 ```
 
 ... interprétation #3...
@@ -157,68 +148,82 @@ Amal
 ```{r}
 # Modèle de régression linéaire polynomial
 
-#Polyamal_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil)
+#Poly1_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil)
 
-Polyamal_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + I(Taille_oeil^2))
-summary_(Polyamal_lm) |> tabularise()
+Poly1_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + I(Taille_oeil^2))
+summary_(Poly1_lm) |> tabularise()
 
 ```
 
 ```{r}
 # Visualisation du modèle
-chart(Polyamal_lm)
+chart(Poly1_lm)
 
 ```
 
 ```{r}
 # Analyse des résidus
-chart$residuals(Polyamal_lm)
+chart$residuals(Poly1_lm)
 ```
 
+Discussion: Christelle
 #### Régression linéaire 2
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
-
+Discussion: Amal
 #### Modèle linéaire 1
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
-```{r}
-modele_1 <- lm(data = Fish_data, Longueur_max ~ Profondeur_corps + Rapport_aspect + Etroitesse_pedoncule + Taille_nageoire_pectorale + Taille_oeil + Ordre + Vertical_station + Comportement_banc + Position_nageoire_pectorale + Position_oeil_vertical)
+```{r record='RNCS'}
+chart(data = Fish_data, Longueur_max ~ Profondeur_corps %col=% Comportement_banc) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x, se = TRUE) +
+  labs(title = "Interaction Profondeur_corps et Comportement_banc",
+       x = "Profondeur du corps",
+       y = "Longueur max (cm)")
+```
+```{r record='RNCS'}
+chart(data = Fish_data, Longueur_max ~ Rapport_aspect %col=% Vertical_station) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x, se = TRUE) +
+  labs(title = "Interaction Vertical_station et Rapport_aspect",
+       x = "Rapport d'aspect",
+       y = "Longueur max")
+```
 
-summary(modele_1) |> tabularise()
 
-modele_1 <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + Ordre )
-summary(modele_1) |> tabularise()
-#modele_1 <- lm(data = Fish_data, Longueur_max ~ Taille_oeil * Ordre ) summary(modele_1) |> tabularise()
+```{r record='RODFS'}
+#Fish_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps * Comportement_banc + Vertical_station * Rapport_aspect) 
+#summary(Fish_lm) |> tabularise()
 
-modele_1 <- lm(data = Fish_data, Longueur_max ~ (Taille_oeil + Ordre ) * Comportement_banc ) 
-summary(modele_1) |> tabularise()
+Fish_lm1 <- lm(data = Fish_data,
+               subset = Vertical_station %in% c("pelagic", "benthopelagic"), 
+Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps * Comportement_banc + Vertical_station * Rapport_aspect)
+summary_(Fish_lm1) |> tabularise()
 
 ```
 
-# c'est un brouillon plz c pq j'écris l'interpretation pour ne pas me perdre à la suite du travail, quand ca sera bon je vous dirai dans le groupe, merci
+```{r record='RNCS', analyse residus}
+chart$residuals(Fish_lm1)
+```
 
-modele significatif dans son ensemble pvalue statistique F 6.11 10\^-13
 
-R2 ajusted est assez faible 0.5392 on ne peut pas vraiment faire confiance à ce modele
-
-seules la taill de l'oeil et l'ordre sont significatives, toutes les utres variables ne les sont pas car pvalue superieur au seuil , la plupart des variables **n’apportent pas d’information supplémentaire** après avoir pris en compte la taille de l’œil et l’ordre.
-
-mod1 reduced:
-
-**α = 152.39** → valeur de Longueur_max lorsque Taille_oeil = 0 et Ordre = référence (probablement Cypriniformes si c’est le niveau de base). **β₁ = -4.80** → chaque unité de **Taille_oeil supplémentaire** diminue la Longueur_max de 4.8 unités, toutes choses égales par ailleurs. **β₂ = -4.79** → non significatif → Pas d’effet clair pour Perciformes par rapport à Cypriniformes. **β₃ = 31.22** → Salmoniformes sont significativement plus longs (\~31 unités) que les Cypriniformes de référence.
-
+Discussion: Ide 
 #### Modèle linéaire 2
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
-Amal
-
 ```{r}
-Fishamal_lm2 <- lm(data = Fish_data, Taille_oeil ~ Longueur_max  * Comportement_banc )
-summary_(Fishamal_lm2) |> tabularise()
+Fish_lm2 <- lm(data = Fish_data, Taille_oeil ~ Longueur_max  * Comportement_banc )
+summary_(Fish_lm2) |> tabularise()
 ```
+
+-le pvalue de Fstatistique est inférieur au seuil, le modeèle est significatif dans son ensemble.
+-R²ajusté = 0.4982 : le modèle explique environ 50% de la variation de la taille d’œil.
+-Toutes les variables sont significatives (p < 0.05), donc l’interaction est pertinente.
+-Les résidus sont raisonnables (étendue [-13.56, 13.35]), suggérant que le modèle est bien ajusté.
+-La taille d’œil est influencée par la longueur du poisson et par le comportement de banc. L’interaction montre que l’effet de la taille du poisson sur l’œil dépend du comportement de banc : schooling vs non-schooling.
 
 ```{r}
 chart(data = Fish_data, Taille_oeil ~ Longueur_max   %col=% Comportement_banc) +
@@ -226,19 +231,26 @@ chart(data = Fish_data, Taille_oeil ~ Longueur_max   %col=% Comportement_banc) +
   stat_smooth(method = "lm", formula = y ~ x)
 ```
 
+-Les poissons non-schooling ont une relation plus linéaire et moins raide.
+-Les poissons schooling montrent une pente plus prononcée, confirmant l’interaction trouvée dans le modèle (β3).
+
 ```{r}
 # Analyse des résidus
-chart$residuals(Fishamal_lm2)
+chart$residuals(Fish_lm2)
 ```
-
+- L'etendue des residus est elevée par rapport aux valeurs prédites 
+- Les résidus suivent à peu près une distribution normale
+- Il n' y a pas de tendance forte, homoscédasticité
+- Il y a présence d'observations influentes par leur distance de cook
+- Une observation a un effet de levier important avec une distance de cook influente
 #### Modèle linéaire généralisé et/ou mixte 1
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
-
+Discussion: Amal
 #### Modèle linéaire généralisé et/ou mixte 2
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
-
+Discusson: Ide
 ## Conclusion
 
 <!--% Lorsque toutes les analyses sont réalisées, terminez ce bloc-notes avec 3 à 6 phrases de conclusion en rapport avec ce que vous avez observé dans vos analyses. Quels sont les modèles les plus pertinents que vous retenez ? -->
