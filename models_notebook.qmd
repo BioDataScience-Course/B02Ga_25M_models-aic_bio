@@ -161,7 +161,6 @@ summary_(Poly1_lm) |> tabularise()
 ```{r}
 # Visualisation du modèle
 chart(Poly1_lm)
-
 ```
 
 
