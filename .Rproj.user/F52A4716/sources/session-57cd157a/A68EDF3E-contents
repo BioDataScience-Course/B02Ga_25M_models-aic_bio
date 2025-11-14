@@ -154,19 +154,26 @@ Poly1_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + I(Taille_oeil^2))
 summary_(Poly1_lm) |> tabularise()
 
 ```
+-Tous les coefficients sont statistiquement significatifs (p-value < au seuil), ce qui signifie que la taille de l’œil et son carré ont un effet significatif sur la longueur maximale.
+-Étendue des résidus : [-95.43, 105.6], les résidus sont très larges par rapport aux valeurs prédites, ce qui suggère des erreurs importantes pour certaines observations.
+-Le modèle dans son ensemble est significatif (p-value de Statistique F < au seuil alpha) et explique un peu plus de la moitié de la variation de la longueur maximale(R^2 ajusté 54%), ce qui est correct mais laisse encore beaucoup de variabilité non expliquée.
 
 ```{r}
 # Visualisation du modèle
 chart(Poly1_lm)
-
 ```
+
 
 ```{r}
 # Analyse des résidus
 chart$residuals(Poly1_lm)
 ```
 
-Discussion: Christelle
+- la distribition des residus est très élevé par rapports aux valeurs predites (A)
+- Les points suivent globalement la ligne,sauf pour les grandes valeurs qui s'écartent, donc la normalité est raisonnable.(B)
+- La tendance ascendante montre que la variance augmente avec la valeur prédite il y a hétéroscédasticité modérée.(C)
+-Présence des points influents avec une grande distance de cook et un effet de levier.
+
 #### Régression linéaire 2
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
@@ -219,11 +226,11 @@ Fish_lm2 <- lm(data = Fish_data, Taille_oeil ~ Longueur_max  * Comportement_banc
 summary_(Fish_lm2) |> tabularise()
 ```
 
--le pvalue de Fstatistique est inférieur au seuil, le modeèle est significatif dans son ensemble.
+-le pvalue de Fstatistique est inférieur au seuil, le modèle est significatif dans son ensemble.
 -R²ajusté = 0.4982 : le modèle explique environ 50% de la variation de la taille d’œil.
 -Toutes les variables sont significatives (p < 0.05), donc l’interaction est pertinente.
 -Les résidus sont raisonnables (étendue [-13.56, 13.35]), suggérant que le modèle est bien ajusté.
--La taille d’œil est influencée par la longueur du poisson et par le comportement de banc. L’interaction montre que l’effet de la taille du poisson sur l’œil dépend du comportement de banc : schooling vs non-schooling.
+-La taille d’œil est influencée par la longueur du poisson et par le comportement de banc. L’interaction montre que l’effet de la taille du poisson sur l’œil dépend du comportement de banc : schooling et non-schooling.
 
 ```{r}
 chart(data = Fish_data, Taille_oeil ~ Longueur_max   %col=% Comportement_banc) +
