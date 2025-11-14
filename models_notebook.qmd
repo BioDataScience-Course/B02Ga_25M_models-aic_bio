@@ -108,7 +108,7 @@ chart(data = Fish_data, Profondeur_corps ~ Taille_oeil %col=% Vertical_station |
 
 ... interprétation #2...
 
-**Cypriniformes** :
+Cypriniformes :
 
 Les tailles des yeux sont plutôt dispersées entre \~15 et 35 mm.
 
@@ -118,7 +118,7 @@ Il n’y a pas de tendance très claire avec la profondeur.
 
 Les démersaux (vert) ont des yeux dans une gamme similaire, sans réelle distinction.
 
-**Perciformes** :
+Perciformes :
 
 Ici, on voit une tendance plus nette : certains individus benthopélagiques ont des yeux très grands (\~40 mm) à des profondeurs moyennes autour de 20-25 m.
 
@@ -126,7 +126,7 @@ Les démersaux (vert) ont tendance à avoir des yeux plus petits que les benthop
 
 Peu de pélagiques (bleu), mais ils ont de petits yeux (\~18 mm) à profondeur faible (\~18 m).
 
-**Salmoniformes** :
+Salmoniformes :
 
 Les tailles des yeux sont globalement plus petites (15-27 mm) et la variation avec la profondeur est faible.
 
@@ -235,7 +235,6 @@ chart(data = Fish_data, log(Longueur_max) ~ pred %col=% Vertical_station) +
 ```
 
 ```{r}
-```
 
 #### Modèle linéaire 1
 
@@ -247,7 +246,6 @@ chart(data = Fish_data, log(Longueur_max) ~ pred %col=% Vertical_station) +
 
 Amal
 
-```{r}
 Fishamal_lm2 <- lm(data = Fish_data, Taille_oeil ~ Longueur_max  * Comportement_banc )
 summary_(Fishamal_lm2) |> tabularise()
 ```
