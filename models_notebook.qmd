@@ -184,7 +184,6 @@ plot(Fish_data_corr, type = "lower")
 
 <!-- Commentez la table des corrélations. -->
 
-La plupart des corrélations entre traits morphologiques sont faibles à modérées. Le rapport d’aspect et l’étroitesse du pédoncule caudal montrent une corrélation positive notable (r = 0,38), suggérant une adaptation à la nage rapide. La longueur maximale est fortement négativement corrélée avec la taille de l’œil (r = -0,69), tandis que la profondeur du corps est modérément liée à la taille des nageoires pectorales (r = 0,45).
 
 La plupart des corrélations entre caractères sont faibles à modérées. Le rapport d’aspect et l’étroitesse du pédoncule caudal montrent une corrélation positive notable (r = 0,38), suggérant une adaptation à la nage rapide. La longueur maximale est fortement négativement corrélée avec la taille de l’œil (r = -0,69), tandis que la profondeur du corps est modérément liée à la taille des nageoires pectorales (r = 0,45).
 
@@ -199,10 +198,6 @@ Amal
 ```{r}
 # Modèle de régression linéaire polynomial
 
-#Polyamal_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil)
-
-Polyamal_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + I(Taille_oeil^2))
-summary_(Polyamal_lm) |> tabularise()
 #Poly1_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil)
 
 Poly1_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + I(Taille_oeil^2))
@@ -215,15 +210,12 @@ summary_(Poly1_lm) |> tabularise()
 
 ```{r}
 # Visualisation du modèle
-chart(Polyamal_lm)
-
 chart(Poly1_lm)
 ```
 
 
 ```{r}
 # Analyse des résidus
-chart$residuals(Polyamal_lm)
 chart$residuals(Poly1_lm)
 ```
 
@@ -236,7 +228,6 @@ chart$residuals(Poly1_lm)
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
-Ide
 
 ```{r}
 # Modèle polynomial avec interaction
@@ -318,7 +309,6 @@ Fish_lm2 <- lm(data = Fish_data, Taille_oeil ~ Longueur_max  * Comportement_banc
 summary_(Fish_lm2) |> tabularise()
 ```
 
-Fishamal_lm2 \<- lm(data = Fish_data, Taille_oeil \~ Longueur_max \* Comportement_banc ) summary\_(Fishamal_lm2) \|\> tabularise()
 -le pvalue de Fstatistique est inférieur au seuil, le modèle est significatif dans son ensemble.
 -R²ajusté = 0.4982 : le modèle explique environ 50% de la variation de la taille d’œil.
 -Toutes les variables sont significatives (p < 0.05), donc l’interaction est pertinente.
@@ -336,7 +326,6 @@ chart(data = Fish_data, Taille_oeil ~ Longueur_max   %col=% Comportement_banc) +
 
 ```{r}
 # Analyse des résidus
-chart$residuals(Fishamal_lm2)
 chart$residuals(Fish_lm2)
 ```
 
