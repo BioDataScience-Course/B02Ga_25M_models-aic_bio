@@ -217,14 +217,26 @@ chart$residuals(Polyamal_lm)
 Ide
 
 ```{r}
+# Modèle polynomial avec interaction
+Fish_poly <- lm(data = Fish_data, log(Longueur_max) ~ I(Taille_oeil^2) * Vertical_station) 
+summary_(Fish_poly) |> tabularise()
 
+```
+
+```{r}
+#calcul de la valeur prédite du log(Longueur_max)
+#Fish_data$pred <- predict(Fish_poly)
+
+#Visualisation du modele
+
+#chart(data = Fish_data, log(Longueur_max) ~ pred %col=% Vertical_station) +
+  #geom_point(alpha = 0.7, size = 2) 
+chart(Fish_poly)
 ```
 
 ```{r}
 ```
 
-```{r}
-```
 #### Modèle linéaire 1
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
