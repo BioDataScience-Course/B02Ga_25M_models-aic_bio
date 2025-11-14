@@ -225,13 +225,13 @@ summary_(Fish_poly) |> tabularise()
 
 ```{r}
 #calcul de la valeur prédite du log(Longueur_max)
-#Fish_data$pred <- predict(Fish_poly)
+Fish_data$pred <- predict(Fish_poly)
 
 #Visualisation du modele
 
-#chart(data = Fish_data, log(Longueur_max) ~ pred %col=% Vertical_station) +
-  #geom_point(alpha = 0.7, size = 2) 
-chart(Fish_poly)
+chart(data = Fish_data, log(Longueur_max) ~ pred %col=% Vertical_station) +
+  geom_point(alpha = 0.7, size = 2) 
+
 ```
 
 ```{r}
