@@ -95,7 +95,7 @@ Ce graphique met en évidence que les espèces présentant une morphologie cauda
 
 <!--% Graphique et interprétation de l'étudiant #2 ci-dessous. -->
 
-```{r chart2 Ide}
+```{r chart2}
 chart(data = Fish_data, Profondeur_corps ~ Taille_oeil %col=% Vertical_station | Ordre) +
   geom_point(size = 3) +
   labs(
@@ -225,16 +225,26 @@ summary_(Fish_poly) |> tabularise()
 
 ```{r}
 #calcul de la valeur prédite du log(Longueur_max)
-Fish_data$pred <- predict(Fish_poly)
+#Fish_data$pred <- predict(Fish_poly)
 
 #Visualisation du modele
 
-chart(data = Fish_data, log(Longueur_max) ~ pred %col=% Vertical_station) +
-  geom_point(alpha = 0.7, size = 2) 
+#chart(data = Fish_data, log(Longueur_max) ~ pred %col=% Vertical_station) +
+  #geom_point(alpha = 0.7, size = 2) 
+
+chart(data = Fish_data, log(Longueur_max) ~ Taille_oeil %col=% Vertical_station) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm",
+              formula = y ~ poly(x, 2),
+              se = FALSE, size = 1.2) +
+  labs(title = "Régression polynomiale par groupe",
+       x = "Taille œil",
+       y = "log(Longueur_max)")
 
 ```
 
 ```{r}
+```
 
 #### Modèle linéaire 1
 
@@ -246,9 +256,7 @@ chart(data = Fish_data, log(Longueur_max) ~ pred %col=% Vertical_station) +
 
 Amal
 
-Fishamal_lm2 <- lm(data = Fish_data, Taille_oeil ~ Longueur_max  * Comportement_banc )
-summary_(Fishamal_lm2) |> tabularise()
-```
+Fishamal_lm2 \<- lm(data = Fish_data, Taille_oeil \~ Longueur_max \* Comportement_banc ) summary\_(Fishamal_lm2) \|\> tabularise()
 
 ```{r}
 chart(data = Fish_data, Taille_oeil ~ Longueur_max   %col=% Comportement_banc) +
