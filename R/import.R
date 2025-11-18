@@ -57,15 +57,10 @@ Fish_data$Ordre <- as.factor(Fish_data$Ordre)
 Fish_data$Vertical_station <- as.factor(Fish_data$Vertical_station)
 Fish_data$Comportement_banc <- as.factor(Fish_data$Comportement_banc)
 
-head(Fish_data)
-
 # FILTRAGE des ordres les plus grands
 ordres_a_garder <- c("Cypriniformes", "Perciformes", "Salmoniformes")
 Fish_data <- Fish_data %>%
   filter(Ordre %in% ordres_a_garder)
-
-# Vérification du filtrage
-table(Fish_data$Ordre)
 
 # Sauvegarde
 write.csv(Fish_data, "data/Fish_data.csv", row.names = FALSE)
