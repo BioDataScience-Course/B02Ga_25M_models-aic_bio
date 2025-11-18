@@ -69,7 +69,11 @@ tabularise$headtail(Fish_data)
 
 <!--% Chaque étudiant réalise et interprète un graphique pertinent en lien avec le but fixé et les modèles qui seront réalisés. Graphique et interprétation de l'étudiant #1 ci-dessous. -->
 
+<<<<<<< HEAD
 ```{r chart1 }
+=======
+```{r chart1 Amal}
+>>>>>>> ceedd79a16072ad294efc2c1c9a6460530498d6b
 
 # Relation entre rapport d’aspect et étroitesse du pédoncule caudal
 chart(data = Fish_data,
@@ -140,7 +144,11 @@ Les pélagiques ou démersaux n’ont pas cette pression et donc des yeux plus p
 
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
+<<<<<<< HEAD
 ```{r chart3 }
+=======
+```{r chart3 Christelle}
+>>>>>>> ceedd79a16072ad294efc2c1c9a6460530498d6b
 chart(data = Fish_data, Profondeur_corps ~ Comportement_banc | Ordre) +
   geom_boxplot () + labs(
     x = "Comportement de banc",
@@ -210,38 +218,42 @@ chart$residuals(Poly1_lm)
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
 ```{r}
-# Modèle polynomial avec interaction
-Fish_poly <- lm(data = Fish_data, log(Longueur_max) ~ I(Taille_oeil^2) * Vertical_station) 
-summary_(Fish_poly) |> tabularise()
+Fish_poly2 <- lm(data= Fish_data, log(Longueur_max) ~ Taille_oeil + I(Taille_oeil^2))
+summary_(Fish_poly2) |> tabularise()
 
 ```
 
 ```{r}
-#calcul de la valeur prédite du log(Longueur_max)
-#Fish_data$pred <- predict(Fish_poly)
-
 #Visualisation du modele
+chart(data = Fish_data, log(Longueur_max) ~ Taille_oeil) +
+  geom_point() +
+  geom_smooth(
+    method = "lm",
+    formula = y ~ x + I(x^2),
+    se = TRUE,
+    color = "blue"
+  ) +
+  labs(
+    title = "Visualisation du modèle polynomial (log-transformé)",
+    x = "Taille de l'œil",
+    y = "log(Longueur_max)"
+  )
 
-#chart(data = Fish_data, log(Longueur_max) ~ pred %col=% Vertical_station) +
-  #geom_point(alpha = 0.7, size = 2) 
-
-chart(data = Fish_data, log(Longueur_max) ~ Taille_oeil %col=% Vertical_station) +
-  geom_point(alpha = 0.5) +
-  geom_smooth(method = "lm",
-              formula = y ~ poly(x, 2),
-              se = FALSE, size = 1.2) +
-  labs(title = "Régression polynomiale par groupe",
-       x = "Taille œil",
-       y = "log(Longueur_max)")
 
 ```
 
 ```{r}
+#Analyse des residus
+chart$residuals(Fish_poly2)
 ```
 
 Discussion: Amal
 
+<<<<<<< HEAD
 \#### Modèle linéaire 1
+=======
+#### Modèle linéaire 1
+>>>>>>> ceedd79a16072ad294efc2c1c9a6460530498d6b
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
@@ -280,9 +292,13 @@ summary_(Fish_lm1) |> tabularise()
 chart$residuals(Fish_lm1)
 ```
 
+<<<<<<< HEAD
 Discussion: Ide
 
 \#### Modèle linéaire 2
+=======
+Discussion: Ide \#### Modèle linéaire 2
+>>>>>>> ceedd79a16072ad294efc2c1c9a6460530498d6b
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
@@ -320,6 +336,7 @@ Discussion: Amal \#### Modèle linéaire généralisé et/ou mixte 2
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
 
+<<<<<<< HEAD
 ```{r}
 Fish_data$Comportement_banc_num <- ifelse(Fish_data$Comportement_banc == "schooling", 1, 0)
 
@@ -339,6 +356,8 @@ chart(data = Fish_data,
   )
 ```
 
+=======
+>>>>>>> ceedd79a16072ad294efc2c1c9a6460530498d6b
 Discusson: Ide \## Conclusion
 
 <!--% Lorsque toutes les analyses sont réalisées, terminez ce bloc-notes avec 3 à 6 phrases de conclusion en rapport avec ce que vous avez observé dans vos analyses. Quels sont les modèles les plus pertinents que vous retenez ? -->
