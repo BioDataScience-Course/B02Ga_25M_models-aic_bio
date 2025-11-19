@@ -6,4 +6,4 @@
 "0","knitr::opts_chunk$set(dev = ""ragg_png"")"
 "0",""
 "0","# Configuration de l'environnement"
-"0","SciViews::R(""model"", lang = ""fr"")"
+"0","SciViews::R(""model"",""infer"", lang = ""fr"")"
