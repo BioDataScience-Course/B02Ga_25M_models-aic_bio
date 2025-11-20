@@ -57,25 +57,27 @@ La base combinée couvre 220 espèces, réparties initialement sur 21 ordres tax
 
 -   Taille de l’œil (% HL) : diamètre de l’œil rapporté à la longueur de la tête.
 
-### Variables qualitatives retenues (3) :
+### Variables qualitatives retenues (4) :
 
 -   Ordre : classification taxonomique de l’espèce.
 
--   Forme du corps : fusiforme, allongée, comprimée, etc.
+-   Forme du corps : fusiform, elongated et short/deep.
 
--   Comportement de banc : schooling / non-schooling.
+-   Comportement de banc : schooling et non-schooling.
+
+-   Position verticale dans la colonne d'eau : benthopelagic, dermesal et pelagic
 
 #### Méthodes
 
 -   **Fusion des données** : Les bases Morphology et Behaviour ont été combinées par espèce en utilisant les clés: `Order`, `Family`, `Genus`, `Scientific.Name` et `Common.Name`.
 
--   **Nettoyage** : renommage des colonnes en français, conversion des variables numériques, suppression des lignes avec valeurs manquantes et ajout de labels et unités.
+-   **Nettoyage** : renommage des colonnes en français, conversion des variables numériques, suppression des lignes avec valeurs manquantes, conversion en `factor` pour les variables qualitatives et ajout de labels et unités.
 
 -   **Filtrage des ordres** : afin d’assurer une représentativité statistique suffisante, seuls les ordres présentant un effectif ≥ 10 individus ont été conservés. Les ordres retenus pour les analyses sont *Cypriniformes, Perciformes et Salmoniformes.* Les autres ordres ont été exclus pour éviter les biais liés aux faibles tailles d’échantillon.
 
     **Traitement des données :**
 
-    **Logiciel :** Les analyses statistiques sont réalisées dans `r R.version.string` et plus précisément avec `{tidyverse}` version `r packageVersion("tidyverse")`, `{tabularise}` version `r packageVersion("tabularise")` et `{labelled}` version `r packageVersion("labelled")` sous `r osVersion`. Les lignes avec valeurs manquantes sont supprimées pour les variables d’intérêt, et les variables numériques sont converties en type `numeric`, tandis que les variables qualitatives sont conservées en `character` ou `factor`. Le seuil α est fixé à 5 %.
+    **Logiciel :** Les analyses statistiques sont réalisées dans `r R.version.string` et plus précisément avec `{tidyverse}` version `r packageVersion("tidyverse")`, `{tabularise}` version `r packageVersion("tabularise")` et `{labelled}` version `r packageVersion("labelled")` sous `r osVersion`. Le seuil α est fixé à 5 %.
 
 ## Résultats
 
