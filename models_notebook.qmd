@@ -222,8 +222,8 @@ chart$residuals(Poly1_lm)
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
 ```{r}
-Fish_poly2 <- lm(data= Fish_data, log(Longueur_max) ~ Taille_oeil + I(Taille_oeil^2))
-summary_(Fish_poly2) |> tabularise()
+Fish_rl2 <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + I(Taille_oeil^2) + Profondeur_corps + I(Profondeur_corps^2))
+summary_(Fish_rl2) |> tabularise()
 
 ```
 
@@ -285,6 +285,8 @@ Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_co
 summary_(Fish_lm1) |> tabularise()
 
 ```
+
+Les résultats du modèle montrent qu’aucune des variables incluses n’apporte une contribution statistiquement significative à la prédiction de Longueur_max, car les p-values associées aux coefficients sont toutes supérieures au seuil de 0.05. Les interactions Profondeur_corps × Comportement_banc ainsi que Vertical_station × Rapport_aspect ne semblent pas non plus expliquer une part significative de la variance, comme l’indiquent leurs coefficients faibles et leurs p-values élevées. Le R² et le R² ajusté suggèrent que le modèle explique une très faible proportion de la variabilité observée dans la longueur maximale des poissons, indiquant un pouvoir prédictif limité. Globalement, sur base des valeurs statistiques, le modèle n’identifie aucun prédicteur robuste ni aucune interaction pertinente pour expliquer la variable Longueur_max.
 
 ```{r record='RNCS', analyse residus}
 chart$residuals(Fish_lm1)
