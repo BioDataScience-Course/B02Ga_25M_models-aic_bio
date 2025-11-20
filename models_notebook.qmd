@@ -91,48 +91,29 @@ Ce graphique met en évidence que les espèces présentant une morphologie cauda
 
 <!--% Graphique et interprétation de l'étudiant #2 ci-dessous. -->
 
-```{r chart2}
-chart(data = Fish_data, Profondeur_corps ~ Taille_oeil %col=% Vertical_station | Ordre) +
-  geom_point(size = 3) +
+```{r chart2} +}
+#chart(data = Fish_data, Profondeur_corps ~ Taille_oeil %col=% Vertical_station | Ordre) +
+chart(data = Fish_data, Taille_oeil ~ Vertical_station %fill=% Comportement_banc) +
+  geom_violin(trim = FALSE, alpha = 0.7) +
+  geom_boxplot(width = 0.2, color = "black", alpha = 0.6, position = position_dodge(width = 0.9)) +
+  geom_jitter(size = 1.8, width = 0.15, alpha = 0.6) +
   labs(
-    x = "Profondeur moyenne de vie (m)",
-    y = "Taille de l’œil (mm)",
-    title = "Influence de la profondeur sur la taille de l’œil selon l'ordre"
+    title = "Variation de la taille de l’œil selon la position verticale et le comportement de banc",
+    x = "Position dans la colonne d’eau",
+    y = "Taille de l’œil (% HL)",
+    fill = "Comportement de banc"
   )
+
 
 ```
 
 ... interprétation #2...
 
-Cypriniformes :
+Benthopelagic: Les espèces **en groupe (bleu)** ont généralement une **médiane et un écart interquartile plus élevés** que les espèces non-schooling (rouge). Et donc l'on peut dire que les poissons benthopelagic en groupe tendent a avoir des yeux proportionnellement plus grands,impliquant ainsi une dependance accrue a la vision dans ce comportement.
 
-Les tailles des yeux sont plutôt dispersées entre \~15 et 35 mm.
+Demersal: La mediane des especes en grope(bleu) est egalement plus elevee que celle des especes non en groupe(rouge). La distribution en groupe est aussi plus compacte(moins de variabilite). Ici, le comportement en groupe est associe a des yeux plus grands, mais la distinction est moins nette que pour le groupe benthopelagic.
 
-Les benthopélagiques (rose) semblent légèrement plus nombreux à avoir des yeux grands ou moyens.
-
-Il n’y a pas de tendance très claire avec la profondeur.
-
-Les démersaux (vert) ont des yeux dans une gamme similaire, sans réelle distinction.
-
-Perciformes :
-
-Ici, on voit une tendance plus nette : certains individus benthopélagiques ont des yeux très grands (\~40 mm) à des profondeurs moyennes autour de 20-25 m.
-
-Les démersaux (vert) ont tendance à avoir des yeux plus petits que les benthopélagiques à des profondeurs similaires.
-
-Peu de pélagiques (bleu), mais ils ont de petits yeux (\~18 mm) à profondeur faible (\~18 m).
-
-Salmoniformes :
-
-Les tailles des yeux sont globalement plus petites (15-27 mm) et la variation avec la profondeur est faible.
-
-Les benthopélagiques ont des yeux légèrement plus grands que les démersaux et pélagiques.
-
-De facon generale:
-
-Les poissons benthopélagiques semblent parfois avoir des yeux plus grands, surtout chez les Perciformes. Et donc vivent souvent près du fond ou dans des zones plus sombres, peuvent avoir développé des yeux plus grands pour mieux capter la lumière.
-
-Les pélagiques ou démersaux n’ont pas cette pression et donc des yeux plus petits suffisent.
+Pelagic: Les especes en groupe(bleu) presentent une mediane tres similaire a celle des solitaires(rouge), mais la distribution solitaire est beaucoup plus dispersee(le violon est tres large). Nous pouvons dire qu'ici la taille moyenne de l'oeil n'est pas un facteur discriminant entre le comportement en groupe chez les especes pelagiques. La grande dispersion du comportement solitaire pourrait etre due a desespeces tres profondes ou tres superficielles
 
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
@@ -217,34 +198,18 @@ chart$residuals(Poly1_lm)
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
-Discussion: Amal
-
-#### Modèle linéaire 1
-
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 ```{r}
-Fish_rl2 <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + I(Taille_oeil^2) + Profondeur_corps + I(Profondeur_corps^2))
+Fish_rl2 <- lm(data = Fish_data, Rapport_aspect ~ Etroitesse_pedoncule + I(Etroitesse_pedoncule^2) + Ordre)
+  #Taille_oeil + I(Taille_oeil^2) + Profondeur_corps + I(Profondeur_corps^2))
 summary_(Fish_rl2) |> tabularise()
 
 ```
 
 ```{r}
 #Visualisation du modele
-chart(data = Fish_data, log(Longueur_max) ~ Taille_oeil) +
-  geom_point() +
-  geom_smooth(
-    method = "lm",
-    formula = y ~ x + I(x^2),
-    se = TRUE,
-    color = "blue"
-  ) +
-  labs(
-    title = "Visualisation du modèle polynomial (log-transformé)",
-    x = "Taille de l'œil",
-    y = "log(Longueur_max)"
-  )
-
+chart(Fish_rl2)
 
 ```
 
@@ -254,6 +219,8 @@ chart$residuals(Fish_poly2)
 ```
 
 Discussion: Amal
+
+#### Modèle linéaire 1
 
 Modèle linéaire 1
 
@@ -299,8 +266,6 @@ Fish_lm1 <- lm(data = Fish_data,
 Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps * Comportement_banc + Vertical_station * Rapport_aspect)
 summary_(Fish_lm1) |> tabularise()
 ```
-
-Les résultats du modèle montrent qu’aucune des variables incluses n’apporte une contribution statistiquement significative à la prédiction de Longueur_max, car les p-values associées aux coefficients sont toutes supérieures au seuil de 0.05. Les interactions Profondeur_corps × Comportement_banc ainsi que Vertical_station × Rapport_aspect ne semblent pas non plus expliquer une part significative de la variance, comme l’indiquent leurs coefficients faibles et leurs p-values élevées. Le R² et le R² ajusté suggèrent que le modèle explique une très faible proportion de la variabilité observée dans la longueur maximale des poissons, indiquant un pouvoir prédictif limité. Globalement, sur base des valeurs statistiques, le modèle n’identifie aucun prédicteur robuste ni aucune interaction pertinente pour expliquer la variable Longueur_max.
 
 ```{r}
 chart$residuals(Fish_lm1)
