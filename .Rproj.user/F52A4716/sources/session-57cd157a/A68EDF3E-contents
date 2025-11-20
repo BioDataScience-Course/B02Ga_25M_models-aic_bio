@@ -1,5 +1,5 @@
 ---
-title: "___"
+title: "Relations morphologie-comportement chez les poissons des Grands Lacs : (à completer)"
 author: "Amal Abarou, Ide Tchuileng, Christelle Baseka"
 format:
   html:
@@ -28,7 +28,6 @@ Les poissons des Grands Lacs présentent une grande diversité de morphologies e
 Dans ce travail, nous utilisons les données du *FishPass Sortable Attribute Database* (Benoit *et al.*, 2023) qui regroupent des traits morphologiques (par ex. longueur maximale, forme du corps, taille et position des nageoires) ainsi que des traits comportementaux (position verticale dans la colonne d'eau, comportement de banc).
 
 **But** :\
-Nous explorons ici les **relations linéaires** entre certaines caractéristiques morphologiques et certains comportements afin d’évaluer dans quelle mesure la morphologie peut expliquer des stratégies de nage et de déplacement.
 
 ## Matériel et méthodes
 
@@ -53,7 +52,7 @@ if (!"tools:tests" %in% search())
 knitr::opts_chunk$set(dev = "ragg_png")
 
 # Configuration de l'environnement
-SciViews::R("model", lang = "fr")
+SciViews::R("model","infer", lang = "fr")
 ```
 
 <!--% Importez les données que vous aurez préalablement nettoyées, remaniées et labélisées dans le script R nommé `R/import.R`. -->
@@ -95,27 +94,78 @@ Ce graphique met en évidence que les espèces présentant une morphologie cauda
 
 <!--% Graphique et interprétation de l'étudiant #2 ci-dessous. -->
 
-```{r chart2 }
+```{r chart2}
+chart(data = Fish_data, Profondeur_corps ~ Taille_oeil %col=% Vertical_station | Ordre) +
+  geom_point(size = 3) +
+  labs(
+    x = "Profondeur moyenne de vie (m)",
+    y = "Taille de l’œil (mm)",
+    title = "Influence de la profondeur sur la taille de l’œil selon l'ordre"
+  )
 
 ```
 
 ... interprétation #2...
 
+Cypriniformes :
+
+Les tailles des yeux sont plutôt dispersées entre \~15 et 35 mm.
+
+Les benthopélagiques (rose) semblent légèrement plus nombreux à avoir des yeux grands ou moyens.
+
+Il n’y a pas de tendance très claire avec la profondeur.
+
+Les démersaux (vert) ont des yeux dans une gamme similaire, sans réelle distinction.
+
+Perciformes :
+
+Ici, on voit une tendance plus nette : certains individus benthopélagiques ont des yeux très grands (\~40 mm) à des profondeurs moyennes autour de 20-25 m.
+
+Les démersaux (vert) ont tendance à avoir des yeux plus petits que les benthopélagiques à des profondeurs similaires.
+
+Peu de pélagiques (bleu), mais ils ont de petits yeux (\~18 mm) à profondeur faible (\~18 m).
+
+Salmoniformes :
+
+Les tailles des yeux sont globalement plus petites (15-27 mm) et la variation avec la profondeur est faible.
+
+Les benthopélagiques ont des yeux légèrement plus grands que les démersaux et pélagiques.
+
+De facon generale:
+
+Les poissons benthopélagiques semblent parfois avoir des yeux plus grands, surtout chez les Perciformes. Et donc vivent souvent près du fond ou dans des zones plus sombres, peuvent avoir développé des yeux plus grands pour mieux capter la lumière.
+
+Les pélagiques ou démersaux n’ont pas cette pression et donc des yeux plus petits suffisent.
+
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
 ```{r chart3 }
-chart(data = Fish_data, Profondeur_corps ~ Comportement_banc | Ordre) +
-  geom_boxplot () + labs(
+
+chart(data = Fish_data,
+      Taille_nageoire_pectorale ~ Comportement_banc %fill=% Forme_corps) +
+  geom_boxplot(alpha = 1, width = 0.6, position = position_dodge(0.8)) +
+  labs(
     x = "Comportement de banc",
-    y = "Profondeur du corps (% TL)",
-    title = "Profondeur du corps selon le comportement de banc et l’ordre")
+    y = "Taille de la nageoire pectorale (mm)",
+    title = "Taille des nageoires pectorales selon le comportement et la forme du corps"
+  ) 
 ```
 
 ... interprétation #3...
 
-On voit que selon les ordres de poissons, les espèces qui vivent en banc (schooling) tendent à avoir un corps plus profond que celles qui vivent seules (non-schooling). Cette forme plus profonde aide les poissons à rester stables lorsqu’ils nagent ensemble et à mieux contrôler leurs mouvements dans le banc. Par exemple, chez les Perciformes, la différence est particulièrement visible, alors que chez les Salmoniformes elle est plus faible. Cela suggère que la forme du corps joue un rôle dans la coordination et la cohésion du groupe.
+#### Effet du comportement de banc
 
-*L’analyse des boxplots facettés par ordre montre que la profondeur corporelle (% TL) varie avec le comportement de banc. Pour les Cypriniformes et Perciformes, les individus schooling présentent en moyenne une profondeur corporelle plus élevée que les non-schooling, ce qui pourrait refléter une adaptation morphologique à la nage collective. Cette morphologie est susceptible d’améliorer la stabilité hydrodynamique et la manœuvrabilité lors des déplacements synchronisés. Chez les Salmoniformes, la différence entre les comportements est moins marquée, suggérant une plasticité morphologique moindre ou des contraintes écologiques différentes.*
+-   Les poissons non-schooling présentent des nageoires pectorales plus grandes en moyenne que ceux en schooling, surtout pour la forme *short/deep*.
+
+-   En schooling, la taille des nageoires est plus homogène et réduite, ce qui peut indiquer une adaptation à la nage collective où la manœuvrabilité individuelle est moins cruciale.
+
+    #### Effet de la forme du corps
+
+    -   Short/deep : Ce groupe a les nageoires les plus grandes, particulièrement chez les individus non-schooling (médiane ≈ 0,26 mm). Cela suggère que les poissons à corps court et profond ont besoin de nageoires plus développées pour compenser leur morphologie et assurer la stabilité.
+
+    -   Elongated : Taille intermédiaire, mais avec une forte variabilité chez les non-schooling (médiane ≈ 0,18 mm, mais étendue large). Cela pourrait refléter des stratégies variées selon l’habitat ou le comportement.
+
+    -   Fusiform : Les nageoires sont les plus petites et les plus constantes (≈ 0,17 mm), ce qui est cohérent avec une forme hydrodynamique favorisant la nage rapide sans nécessiter de grandes nageoires.
 
 ### Modélisation
 
@@ -134,7 +184,6 @@ plot(Fish_data_corr, type = "lower")
 
 <!-- Commentez la table des corrélations. -->
 
-
 La plupart des corrélations entre caractères sont faibles à modérées. Le rapport d’aspect et l’étroitesse du pédoncule caudal montrent une corrélation positive notable (r = 0,38), suggérant une adaptation à la nage rapide. La longueur maximale est fortement négativement corrélée avec la taille de l’œil (r = -0,69), tandis que la profondeur du corps est modérément liée à la taille des nageoires pectorales (r = 0,45).
 
 <!--% Chaque modèle doit être décrit à l'aide d'un graphique et d'un tableau résumant le modèle. Les équations paramétrées de tous les modèles doivent être également présentes. L'analyse des résidus sera réalisée et interprétée pour chaque modèle. -->
@@ -142,8 +191,6 @@ La plupart des corrélations entre caractères sont faibles à modérées. Le ra
 #### Régression linéaire 1
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
-
-Amal
 
 ```{r}
 # Modèle de régression linéaire polynomial
@@ -154,33 +201,64 @@ Poly1_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + I(Taille_oeil^2))
 summary_(Poly1_lm) |> tabularise()
 
 ```
--Tous les coefficients sont statistiquement significatifs (p-value < au seuil), ce qui signifie que la taille de l’œil et son carré ont un effet significatif sur la longueur maximale.
--Étendue des résidus : [-95.43, 105.6], les résidus sont très larges par rapport aux valeurs prédites, ce qui suggère des erreurs importantes pour certaines observations.
--Le modèle dans son ensemble est significatif (p-value de Statistique F < au seuil alpha) et explique un peu plus de la moitié de la variation de la longueur maximale(R^2 ajusté 54%), ce qui est correct mais laisse encore beaucoup de variabilité non expliquée.
+
+-Tous les coefficients sont statistiquement significatifs (p-value \< au seuil), ce qui signifie que la taille de l’œil et son carré ont un effet significatif sur la longueur maximale. -Étendue des résidus : \[-95.43, 105.6\], les résidus sont très larges par rapport aux valeurs prédites, ce qui suggère des erreurs importantes pour certaines observations. -Le modèle dans son ensemble est significatif (p-value de Statistique F \< au seuil alpha) et explique un peu plus de la moitié de la variation de la longueur maximale(R\^2 ajusté 54%), ce qui est correct mais laisse encore beaucoup de variabilité non expliquée.
 
 ```{r}
 # Visualisation du modèle
 chart(Poly1_lm)
 ```
 
-
 ```{r}
 # Analyse des résidus
 chart$residuals(Poly1_lm)
 ```
 
-- la distribition des residus est très élevé par rapports aux valeurs predites (A)
-- Les points suivent globalement la ligne,sauf pour les grandes valeurs qui s'écartent, donc la normalité est raisonnable.(B)
-- La tendance ascendante montre que la variance augmente avec la valeur prédite il y a hétéroscédasticité modérée.(C)
--Présence des points influents avec une grande distance de cook et un effet de levier.
+-   la distribition des residus est très élevé par rapports aux valeurs predites (A)
+-   Les points suivent globalement la ligne,sauf pour les grandes valeurs qui s'écartent, donc la normalité est raisonnable.(B)
+-   La tendance ascendante montre que la variance augmente avec la valeur prédite il y a hétéroscédasticité modérée.(C) -Présence des points influents avec une grande distance de cook et un effet de levier.
 
 #### Régression linéaire 2
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
+
+```{r}
+Fish_poly2 <- lm(data= Fish_data, log(Longueur_max) ~ Taille_oeil + I(Taille_oeil^2))
+summary_(Fish_poly2) |> tabularise()
+
+```
+
+```{r}
+#Visualisation du modele
+chart(data = Fish_data, log(Longueur_max) ~ Taille_oeil) +
+  geom_point() +
+  geom_smooth(
+    method = "lm",
+    formula = y ~ x + I(x^2),
+    se = TRUE,
+    color = "blue"
+  ) +
+  labs(
+    title = "Visualisation du modèle polynomial (log-transformé)",
+    x = "Taille de l'œil",
+    y = "log(Longueur_max)"
+  )
+
+
+```
+
+```{r}
+#Analyse des residus
+chart$residuals(Fish_poly2)
+```
+
 Discussion: Amal
-#### Modèle linéaire 1
+
+Modèle linéaire 1
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
+
+Examiner l’effet combiné de plusieurs traits morphologiques et comportementaux sur la longueur maximale.
 
 ```{r record='RNCS'}
 chart(data = Fish_data, Longueur_max ~ Profondeur_corps %col=% Comportement_banc) +
@@ -190,6 +268,7 @@ chart(data = Fish_data, Longueur_max ~ Profondeur_corps %col=% Comportement_banc
        x = "Profondeur du corps",
        y = "Longueur max (cm)")
 ```
+
 ```{r record='RNCS'}
 chart(data = Fish_data, Longueur_max ~ Rapport_aspect %col=% Vertical_station) +
   geom_point() +
@@ -198,7 +277,6 @@ chart(data = Fish_data, Longueur_max ~ Rapport_aspect %col=% Vertical_station) +
        x = "Rapport d'aspect",
        y = "Longueur max")
 ```
-
 
 ```{r record='RODFS'}
 #Fish_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps * Comportement_banc + Vertical_station * Rapport_aspect) 
@@ -215,22 +293,19 @@ summary_(Fish_lm1) |> tabularise()
 chart$residuals(Fish_lm1)
 ```
 
+Discussion: Ide
 
-Discussion: Ide 
-#### Modèle linéaire 2
+Modèle linéaire 2
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 ```{r}
+
 Fish_lm2 <- lm(data = Fish_data, Taille_oeil ~ Longueur_max  * Comportement_banc )
 summary_(Fish_lm2) |> tabularise()
 ```
 
--le pvalue de Fstatistique est inférieur au seuil, le modèle est significatif dans son ensemble.
--R²ajusté = 0.4982 : le modèle explique environ 50% de la variation de la taille d’œil.
--Toutes les variables sont significatives (p < 0.05), donc l’interaction est pertinente.
--Les résidus sont raisonnables (étendue [-13.56, 13.35]), suggérant que le modèle est bien ajusté.
--La taille d’œil est influencée par la longueur du poisson et par le comportement de banc. L’interaction montre que l’effet de la taille du poisson sur l’œil dépend du comportement de banc : schooling et non-schooling.
+-le pvalue de Fstatistique est inférieur au seuil, le modèle est significatif dans son ensemble. -R²ajusté = 0.4982 : le modèle explique environ 50% de la variation de la taille d’œil. -Toutes les variables sont significatives (p \< 0.05), donc l’interaction est pertinente. -Les résidus sont raisonnables (étendue \[-13.56, 13.35\]), suggérant que le modèle est bien ajusté. -La taille d’œil est influencée par la longueur du poisson et par le comportement de banc. L’interaction montre que l’effet de la taille du poisson sur l’œil dépend du comportement de banc : schooling et non-schooling.
 
 ```{r}
 chart(data = Fish_data, Taille_oeil ~ Longueur_max   %col=% Comportement_banc) +
@@ -238,27 +313,57 @@ chart(data = Fish_data, Taille_oeil ~ Longueur_max   %col=% Comportement_banc) +
   stat_smooth(method = "lm", formula = y ~ x)
 ```
 
--Les poissons non-schooling ont une relation plus linéaire et moins raide.
--Les poissons schooling montrent une pente plus prononcée, confirmant l’interaction trouvée dans le modèle (β3).
+-Les poissons non-schooling ont une relation plus linéaire et moins raide. -Les poissons schooling montrent une pente plus prononcée, confirmant l’interaction trouvée dans le modèle (β3).
 
 ```{r}
 # Analyse des résidus
 chart$residuals(Fish_lm2)
 ```
-- L'etendue des residus est elevée par rapport aux valeurs prédites 
-- Les résidus suivent à peu près une distribution normale
-- Il n' y a pas de tendance forte, homoscédasticité
-- Il y a présence d'observations influentes par leur distance de cook
-- Une observation a un effet de levier important avec une distance de cook influente
-#### Modèle linéaire généralisé et/ou mixte 1
+
+-   L'etendue des residus est elevée par rapport aux valeurs prédites
+
+-   Les résidus suivent à peu près une distribution normale
+
+-   Il n' y a pas de tendance forte, homoscédasticité
+
+-   Il y a présence d'observations influentes par leur distance de cook
+
+-   Une observation a un effet de levier important avec une distance de cook influente
+
+    \#### Modèle linéaire généralisé et/ou mixte 1
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
+
 Discussion: Amal
-#### Modèle linéaire généralisé et/ou mixte 2
+
+\#### Modèle linéaire généralisé et/ou mixte 2
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
-Discusson: Ide
-## Conclusion
+
+```{r}
+Fish_data$Comportement_banc_num <- ifelse(Fish_data$Comportement_banc == "schooling", 1, 0)
+
+Fish_glm2 <- glm(data = Fish_data, Comportement_banc_num ~ Longueur_max * Taille_nageoire_pectorale,
+    family = binomial())
+summary_(Fish_glm2) |> tabularise()
+
+#Fish_data$Prob_predite <- predict(Fish_glm2, type = "response")
+chart(data = Fish_data,
+      Comportement_banc_num ~ Longueur_max %col=% Taille_nageoire_pectorale ) +
+  geom_point(size = 2, alpha = 0.7) +
+  scale_color_viridis_c() +
+ geom_smooth(method = "glm", formula = y ~ x, se = TRUE, color = "magenta") +
+  labs(
+    x = "Longueur maximale (cm)",
+    y = "Comportement de banc (0 = non, 1 = schooling)",
+    title = "Probabilité prédite du comportement en banc en fonction de la longueur et de la taille de la nageoire pectorale"
+  )
+
+```
+
+Discussion: Ide
+
+\## Conclusion
 
 <!--% Lorsque toutes les analyses sont réalisées, terminez ce bloc-notes avec 3 à 6 phrases de conclusion en rapport avec ce que vous avez observé dans vos analyses. Quels sont les modèles les plus pertinents que vous retenez ? -->
 

@@ -24,13 +24,12 @@ colnames(Fish_data) <- c(
   "Position_oeil_vertical","Taille_oeil",
   "Ref_longueur","Ref_profondeur","Ref_forme","Ref_rapport","Ref_etroitesse",
   "Ref_position_pectorale","Ref_taille_pectorale","Ref_position_oeil","Ref_taille_oeil",
-  "Vertical_station","Comportement_banc","Ref_vertical_station","Ref_comportement_banc"
-)
+  "Vertical_station","Comportement_banc","Ref_vertical_station","Ref_comportement_banc")
 
 Fish_data <- Fish_data %>%
   select(
     Ordre, Longueur_max, Profondeur_corps, Rapport_aspect, Etroitesse_pedoncule,
-    Position_nageoire_pectorale, Taille_nageoire_pectorale,
+    Position_nageoire_pectorale, Taille_nageoire_pectorale, Forme_corps,
     Position_oeil_vertical, Taille_oeil,
     Vertical_station, Comportement_banc
   ) %>%
@@ -57,15 +56,10 @@ Fish_data$Ordre <- as.factor(Fish_data$Ordre)
 Fish_data$Vertical_station <- as.factor(Fish_data$Vertical_station)
 Fish_data$Comportement_banc <- as.factor(Fish_data$Comportement_banc)
 
-head(Fish_data)
-
 # FILTRAGE des ordres les plus grands
 ordres_a_garder <- c("Cypriniformes", "Perciformes", "Salmoniformes")
 Fish_data <- Fish_data %>%
   filter(Ordre %in% ordres_a_garder)
-
-# Vérification du filtrage
-table(Fish_data$Ordre)
 
 # Sauvegarde
 write.csv(Fish_data, "data/Fish_data.csv", row.names = FALSE)
