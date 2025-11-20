@@ -346,8 +346,6 @@ chart(data = Fish_data, Comportement_banc_num ~ Longueur_max %col=% Taille_nageo
     x = "Longueur maximale (cm)",
   labs( x = "Longueur maximale (cm)",
     y = "Comportement de banc (0 = non, 1 = schooling)",
-    title = "Probabilité prédite du comportement en banc en fonction de la longueur et de la taille de la nageoire pectorale"
-  )
     title = "Comportement en banc en fonction de la longueur et de la taille de la nageoire pectorale")
 ```
 
