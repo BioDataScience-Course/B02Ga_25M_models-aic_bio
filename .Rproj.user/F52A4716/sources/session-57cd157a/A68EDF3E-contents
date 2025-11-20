@@ -134,6 +134,7 @@ plot(Fish_data_corr, type = "lower")
 
 <!-- Commentez la table des corrélations. -->
 
+
 La plupart des corrélations entre caractères sont faibles à modérées. Le rapport d’aspect et l’étroitesse du pédoncule caudal montrent une corrélation positive notable (r = 0,38), suggérant une adaptation à la nage rapide. La longueur maximale est fortement négativement corrélée avec la taille de l’œil (r = -0,69), tandis que la profondeur du corps est modérément liée à la taille des nageoires pectorales (r = 0,45).
 
 <!--% Chaque modèle doit être décrit à l'aide d'un graphique et d'un tableau résumant le modèle. Les équations paramétrées de tous les modèles doivent être également présentes. L'analyse des résidus sera réalisée et interprétée pour chaque modèle. -->
@@ -153,32 +154,35 @@ Poly1_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + I(Taille_oeil^2))
 summary_(Poly1_lm) |> tabularise()
 
 ```
-
--Tous les coefficients sont statistiquement significatifs (p-value \< au seuil), ce qui signifie que la taille de l’œil et son carré ont un effet significatif sur la longueur maximale. -Étendue des résidus : \[-95.43, 105.6\], les résidus sont très larges par rapport aux valeurs prédites, ce qui suggère des erreurs importantes pour certaines observations. -Le modèle dans son ensemble est significatif (p-value de Statistique F \< au seuil alpha) et explique un peu plus de la moitié de la variation de la longueur maximale(R\^2 ajusté 54%), ce qui est correct mais laisse encore beaucoup de variabilité non expliquée.
+-Tous les coefficients sont statistiquement significatifs (p-value < au seuil), ce qui signifie que la taille de l’œil et son carré ont un effet significatif sur la longueur maximale.
+-Étendue des résidus : [-95.43, 105.6], les résidus sont très larges par rapport aux valeurs prédites, ce qui suggère des erreurs importantes pour certaines observations.
+-Le modèle dans son ensemble est significatif (p-value de Statistique F < au seuil alpha) et explique un peu plus de la moitié de la variation de la longueur maximale(R^2 ajusté 54%), ce qui est correct mais laisse encore beaucoup de variabilité non expliquée.
 
 ```{r}
 # Visualisation du modèle
 chart(Poly1_lm)
 ```
 
+
 ```{r}
 # Analyse des résidus
 chart$residuals(Poly1_lm)
 ```
 
--   la distribition des residus est très élevé par rapports aux valeurs predites (A)
--   Les points suivent globalement la ligne,sauf pour les grandes valeurs qui s'écartent, donc la normalité est raisonnable.(B)
--   La tendance ascendante montre que la variance augmente avec la valeur prédite il y a hétéroscédasticité modérée.(C) -Présence des points influents avec une grande distance de cook et un effet de levier.
+- la distribition des residus est très élevé par rapports aux valeurs predites (A)
+- Les points suivent globalement la ligne,sauf pour les grandes valeurs qui s'écartent, donc la normalité est raisonnable.(B)
+- La tendance ascendante montre que la variance augmente avec la valeur prédite il y a hétéroscédasticité modérée.(C)
+-Présence des points influents avec une grande distance de cook et un effet de levier.
 
 #### Régression linéaire 2
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
-
-Discussion: Amal \#### Modèle linéaire 1
+Discussion: Amal
+#### Modèle linéaire 1
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
-```{r}
+```{r record='RNCS'}
 chart(data = Fish_data, Longueur_max ~ Profondeur_corps %col=% Comportement_banc) +
   geom_point() +
   geom_smooth(method = "lm", formula = y ~ x, se = TRUE) +
@@ -186,8 +190,7 @@ chart(data = Fish_data, Longueur_max ~ Profondeur_corps %col=% Comportement_banc
        x = "Profondeur du corps",
        y = "Longueur max (cm)")
 ```
-
-```{r}
+```{r record='RNCS'}
 chart(data = Fish_data, Longueur_max ~ Rapport_aspect %col=% Vertical_station) +
   geom_point() +
   geom_smooth(method = "lm", formula = y ~ x, se = TRUE) +
@@ -195,6 +198,7 @@ chart(data = Fish_data, Longueur_max ~ Rapport_aspect %col=% Vertical_station) +
        x = "Rapport d'aspect",
        y = "Longueur max")
 ```
+
 
 ```{r record='RODFS'}
 #Fish_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps * Comportement_banc + Vertical_station * Rapport_aspect) 
@@ -207,11 +211,13 @@ summary_(Fish_lm1) |> tabularise()
 
 ```
 
-```{r analyse residus}
+```{r record='RNCS', analyse residus}
 chart$residuals(Fish_lm1)
 ```
 
-Discussion: Ide \#### Modèle linéaire 2
+
+Discussion: Ide 
+#### Modèle linéaire 2
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
@@ -220,7 +226,11 @@ Fish_lm2 <- lm(data = Fish_data, Taille_oeil ~ Longueur_max  * Comportement_banc
 summary_(Fish_lm2) |> tabularise()
 ```
 
--le pvalue de Fstatistique est inférieur au seuil, le modèle est significatif dans son ensemble. -R²ajusté = 0.4982 : le modèle explique environ 50% de la variation de la taille d’œil. -Toutes les variables sont significatives (p \< 0.05), donc l’interaction est pertinente. -Les résidus sont raisonnables (étendue \[-13.56, 13.35\]), suggérant que le modèle est bien ajusté. -La taille d’œil est influencée par la longueur du poisson et par le comportement de banc. L’interaction montre que l’effet de la taille du poisson sur l’œil dépend du comportement de banc : schooling et non-schooling.
+-le pvalue de Fstatistique est inférieur au seuil, le modèle est significatif dans son ensemble.
+-R²ajusté = 0.4982 : le modèle explique environ 50% de la variation de la taille d’œil.
+-Toutes les variables sont significatives (p < 0.05), donc l’interaction est pertinente.
+-Les résidus sont raisonnables (étendue [-13.56, 13.35]), suggérant que le modèle est bien ajusté.
+-La taille d’œil est influencée par la longueur du poisson et par le comportement de banc. L’interaction montre que l’effet de la taille du poisson sur l’œil dépend du comportement de banc : schooling et non-schooling.
 
 ```{r}
 chart(data = Fish_data, Taille_oeil ~ Longueur_max   %col=% Comportement_banc) +
@@ -228,26 +238,27 @@ chart(data = Fish_data, Taille_oeil ~ Longueur_max   %col=% Comportement_banc) +
   stat_smooth(method = "lm", formula = y ~ x)
 ```
 
--Les poissons non-schooling ont une relation plus linéaire et moins raide. -Les poissons schooling montrent une pente plus prononcée, confirmant l’interaction trouvée dans le modèle (β3).
+-Les poissons non-schooling ont une relation plus linéaire et moins raide.
+-Les poissons schooling montrent une pente plus prononcée, confirmant l’interaction trouvée dans le modèle (β3).
 
 ```{r}
 # Analyse des résidus
 chart$residuals(Fish_lm2)
 ```
-
--   L'etendue des residus est elevée par rapport aux valeurs prédites
--   Les résidus suivent à peu près une distribution normale
--   Il n' y a pas de tendance forte, homoscédasticité
--   Il y a présence d'observations influentes par leur distance de cook
--   Une observation a un effet de levier important avec une distance de cook influente \#### Modèle linéaire généralisé et/ou mixte 1
-
-<!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
-
-Discussion: Amal \#### Modèle linéaire généralisé et/ou mixte 2
+- L'etendue des residus est elevée par rapport aux valeurs prédites 
+- Les résidus suivent à peu près une distribution normale
+- Il n' y a pas de tendance forte, homoscédasticité
+- Il y a présence d'observations influentes par leur distance de cook
+- Une observation a un effet de levier important avec une distance de cook influente
+#### Modèle linéaire généralisé et/ou mixte 1
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
+Discussion: Amal
+#### Modèle linéaire généralisé et/ou mixte 2
 
-Discusson: Ide \## Conclusion
+<!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
+Discusson: Ide
+## Conclusion
 
 <!--% Lorsque toutes les analyses sont réalisées, terminez ce bloc-notes avec 3 à 6 phrases de conclusion en rapport avec ce que vous avez observé dans vos analyses. Quels sont les modèles les plus pertinents que vous retenez ? -->
 
