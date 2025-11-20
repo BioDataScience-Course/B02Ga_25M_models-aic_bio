@@ -279,14 +279,19 @@ chart(data = Fish_data, Longueur_max ~ Rapport_aspect %col=% Vertical_station) +
 ```
 
 ```{r record='RODFS'}
-#Fish_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps * Comportement_banc + Vertical_station * Rapport_aspect) 
-#summary(Fish_lm) |> tabularise()
+Fish_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps * Comportement_banc + Vertical_station * Rapport_aspect) 
+summary(Fish_lm) |> tabularise()
+```
 
+La pente de la variable profondeur du corps n'est pas significatif quand il est seul, mais en interaction elle l'est pour certain niveaux de la variable vertical station.
+
+certains niveaux de la variable vertical station ne sont pas significatif, et l'ajustement de R2 ne que 54% de données; nous allons essayer de simplifier notre modèle.
+
+```{r}
 Fish_lm1 <- lm(data = Fish_data,
                subset = Vertical_station %in% c("pelagic", "benthopelagic"), 
 Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps * Comportement_banc + Vertical_station * Rapport_aspect)
 summary_(Fish_lm1) |> tabularise()
-
 ```
 
 ```{r record='RNCS', analyse residus}
@@ -339,6 +344,15 @@ Discussion: Amal
 \#### Modèle linéaire généralisé et/ou mixte 2
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
+
+```{r}
+Fish_data$Comportement_banc_num <- ifelse(Fish_data$Comportement_banc == "schooling", 1, 0)
+
+Fish_glm2 <- glm(data = Fish_data, Comportement_banc_num ~ Longueur_max * Taille_nageoire_pectorale,
+    family = binomial())
+summary_(Fish_glm2) |> tabularise()
+
+```
 
 ```{r}
 Fish_data$Comportement_banc_num <- ifelse(Fish_data$Comportement_banc == "schooling", 1, 0)
