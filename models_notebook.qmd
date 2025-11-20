@@ -33,7 +33,6 @@ Dans ce travail, nous utilisons les données du *FishPass Sortable Attribute Dat
 
 <!--% Indiquez ici d'où viennent les données et aussi quel logiciel (et version) vous utilisez pour les analyses. Inspirez-vous des projets du premier module de SDD II. -->
 
-
 Les données utilisées proviennent de la base FishPass Morphology et de la base FishPass Behaviour compilées par Benoit et al. (2023, DOI: <https://doi.org/10.5061/dryad.fqz612jwj>). Les deux bases ont été fusionnées par espèce (Order, Family, Genus, Scientific.Name, Common.Name), ce qui a permis d’obtenir un jeu unique intégrant à la fois des mesures morphologiques et des informations comportementales pour chaque espèce. Pour ce projet, seules les variables morphologiques et comportementales les plus pertinentes ont été retenues : longueur maximale, profondeur du corps, rapport d’aspect, étroitesse du pédoncule caudal, position et taille des nageoires pectorales, position verticale et taille de l’œil, forme du corps et comportement de banc.
 
 Les données ont été nettoyées et harmonisées : renommage des colonnes, conversion des variables numériques, suppression des lignes avec valeurs manquantes et ajout de labels et unités. Afin d’assurer une représentativité statistique suffisante, seuls les ordres présentant un effectif ≥ 10 individus ont été conservés. Les ordres retenus pour les analyses sont *Cypriniformes, Perciformes et Salmoniformes.* Les autres ordres, comportant trop peu d’observations, ont été exclus pour garantir la robustesse des résultats.
@@ -218,7 +217,7 @@ chart$residuals(Poly1_lm)
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
-Discussion: Amal 
+Discussion: Amal
 
 #### Modèle linéaire 1
 
@@ -271,7 +270,6 @@ chart(data = Fish_data, Longueur_max ~ Profondeur_corps %col=% Comportement_banc
        x = "Profondeur du corps",
        y = "Longueur max (cm)")
 ```
-
 
 ```{r}
 
@@ -343,7 +341,7 @@ chart$residuals(Fish_lm2)
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
 
-Discussion: Amal 
+Discussion: Amal
 
 #### Modèle linéaire généralisé et/ou mixte 2
 
