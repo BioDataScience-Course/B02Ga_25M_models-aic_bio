@@ -250,6 +250,10 @@ chart(data = Fish_data, Longueur_max ~ Rapport_aspect %col=% Vertical_station) +
        y = "Longueur max")
 ```
 
+Le graphique Profondeur_corps - Comportement_banc démontre une forte interaction entre la morphologie et le comportement sur la Longueur_max. Pour les espèces non-schooling (rouge), la Longueur_max est stable ou diminue légèrement lorsque la Profondeur_corps augmente (pente négative). En revanche, pour les espèces schooling (cyan), la Longueur_max augmente clairement et fortement lorsque la Profondeur_corps augmente (pente positive), ce qui suggère une allométrie positive chez ce groupe où les individus plus grands sont également plus profonds ou massifs.
+
+Le graphique Vertical_station - Rapport_aspect montre que l'effet du Rapport_aspect sur la Longueur_max est inversé selon l'habitat. Chez les espèces benthopélagiques (saumon, près du fond), l'augmentation du Rapport_aspect (vitesse) est faiblement associée à une Longueur_max plus grande (pente légèrement positive). Au contraire, chez les espèces pélagiques (bleu, pleine eau), l'augmentation du Rapport_aspect est associée à une Longueur_max plus petite (pente clairement négative), ce qui justifie l'inclusion du terme d'interaction beta_4 dans votre modèle.
+
 ```{r}
 #Fish_lm1A <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps + Comportement_banc + Vertical_station + Rapport_aspect) 
 #summary(Fish_lm1A) 
@@ -274,7 +278,8 @@ summary_(Fish_lm1) |> tabularise()
 chart$residuals(Fish_lm1)
 ```
 
-Discussion: Ide
+Le Modèle est très robuste avec un R^2 ajusté de 0.581 et tous ses coefficients sont significatifs, notamment le terme d'interaction qui confirme l'inversion de la pente pour les pélagiques. 
+Cependant, le diagnostic des résidus (Image C) révèle une hétéroscédasticité (variance des erreurs augmente avec les valeurs prédites), justifiant l'utilisation d'une transformation logarithmique sur la Longueur_max dans le prochain modèle pour stabiliser la variance et améliorer la précision des coefficients.
 
 #### Modèle linéaire
 
