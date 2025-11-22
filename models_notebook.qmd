@@ -91,48 +91,29 @@ Ce graphique met en évidence que les espèces présentant une morphologie cauda
 
 <!--% Graphique et interprétation de l'étudiant #2 ci-dessous. -->
 
-```{r chart2}
-chart(data = Fish_data, Profondeur_corps ~ Taille_oeil %col=% Vertical_station | Ordre) +
-  geom_point(size = 3) +
+```{r chart2} +}
+#chart(data = Fish_data, Profondeur_corps ~ Taille_oeil %col=% Vertical_station | Ordre) +
+chart(data = Fish_data, Taille_oeil ~ Vertical_station %fill=% Comportement_banc) +
+  geom_violin(trim = FALSE, alpha = 0.7) +
+  geom_boxplot(width = 0.2, color = "black", alpha = 0.6, position = position_dodge(width = 0.9)) +
+  geom_jitter(size = 1.8, width = 0.15, alpha = 0.6) +
   labs(
-    x = "Profondeur moyenne de vie (m)",
-    y = "Taille de l’œil (mm)",
-    title = "Influence de la profondeur sur la taille de l’œil selon l'ordre"
+    title = "Variation de la taille de l’œil selon la position verticale et le comportement de banc",
+    x = "Position dans la colonne d’eau",
+    y = "Taille de l’œil (% HL)",
+    fill = "Comportement de banc"
   )
+
 
 ```
 
 ... interprétation #2...
 
-Cypriniformes :
+Benthopelagic: Les espèces **en groupe (bleu)** ont généralement une **médiane et un écart interquartile plus élevés** que les espèces non-schooling (rouge). Et donc l'on peut dire que les poissons benthopelagic en groupe tendent a avoir des yeux proportionnellement plus grands,impliquant ainsi une dependance accrue a la vision dans ce comportement.
 
-Les tailles des yeux sont plutôt dispersées entre \~15 et 35 mm.
+Demersal: La mediane des especes en grope(bleu) est egalement plus elevee que celle des especes non en groupe(rouge). La distribution en groupe est aussi plus compacte(moins de variabilite). Ici, le comportement en groupe est associe a des yeux plus grands, mais la distinction est moins nette que pour le groupe benthopelagic.
 
-Les benthopélagiques (rose) semblent légèrement plus nombreux à avoir des yeux grands ou moyens.
-
-Il n’y a pas de tendance très claire avec la profondeur.
-
-Les démersaux (vert) ont des yeux dans une gamme similaire, sans réelle distinction.
-
-Perciformes :
-
-Ici, on voit une tendance plus nette : certains individus benthopélagiques ont des yeux très grands (\~40 mm) à des profondeurs moyennes autour de 20-25 m.
-
-Les démersaux (vert) ont tendance à avoir des yeux plus petits que les benthopélagiques à des profondeurs similaires.
-
-Peu de pélagiques (bleu), mais ils ont de petits yeux (\~18 mm) à profondeur faible (\~18 m).
-
-Salmoniformes :
-
-Les tailles des yeux sont globalement plus petites (15-27 mm) et la variation avec la profondeur est faible.
-
-Les benthopélagiques ont des yeux légèrement plus grands que les démersaux et pélagiques.
-
-De facon generale:
-
-Les poissons benthopélagiques semblent parfois avoir des yeux plus grands, surtout chez les Perciformes. Et donc vivent souvent près du fond ou dans des zones plus sombres, peuvent avoir développé des yeux plus grands pour mieux capter la lumière.
-
-Les pélagiques ou démersaux n’ont pas cette pression et donc des yeux plus petits suffisent.
+Pelagic: Les especes en groupe(bleu) presentent une mediane tres similaire a celle des solitaires(rouge), mais la distribution solitaire est beaucoup plus dispersee(le violon est tres large). Nous pouvons dire qu'ici la taille moyenne de l'oeil n'est pas un facteur discriminant entre le comportement en groupe chez les especes pelagiques. La grande dispersion du comportement solitaire pourrait etre due a desespeces tres profondes ou tres superficielles
 
 <!--% Graphique et interprétation de l'étudiant #3 ci-dessous. -->
 
@@ -149,19 +130,11 @@ chart(data = Fish_data,
 
 ... interprétation #3...
 
-#### Effet du comportement de banc
+\- Les poissons non-schooling présentent des nageoires pectorales plus grandes en moyenne que ceux en schooling, surtout pour la forme *short/deep*.
 
--   Les poissons non-schooling présentent des nageoires pectorales plus grandes en moyenne que ceux en schooling, surtout pour la forme *short/deep*.
+\- En schooling, la taille des nageoires est plus homogène et réduite, ce qui peut indiquer une adaptation à la nage collective où la manœuvrabilité individuelle est moins cruciale.
 
--   En schooling, la taille des nageoires est plus homogène et réduite, ce qui peut indiquer une adaptation à la nage collective où la manœuvrabilité individuelle est moins cruciale.
-
-#### Effet de la forme du corps
-
--   Short/deep : Ce groupe a les nageoires les plus grandes, particulièrement chez les individus non-schooling (médiane ≈ 0,26 mm). Cela suggère que les poissons à corps court et profond ont besoin de nageoires plus développées pour compenser leur morphologie et assurer la stabilité.
-
--   Elongated : Taille intermédiaire, mais avec une forte variabilité chez les non-schooling (médiane ≈ 0,18 mm, mais étendue large). Cela pourrait refléter des stratégies variées selon l’habitat ou le comportement.
-
--   Fusiform : Les nageoires sont les plus petites et les plus constantes (≈ 0,17 mm), ce qui est cohérent avec une forme hydrodynamique favorisant la nage rapide sans nécessiter de grandes nageoires.
+Effet de la forme du corps : le groupe Short/deep a des nageoires plus grandes, particulièrement chez les individus non-schooling (médiane ≈ 0,26 mm). Cela suggère que les poissons à corps court et profond ont besoin de nageoires plus développées pour compenser leur morphologie et assurer la stabilité. Les poissons ayant le corps allongé (Elongated) ont une taille intermédiaire de nageoires, mais avec une forte variabilité chez les non-schooling (médiane ≈ 0,18 mm, mais étendue large). Cela pourrait refléter des stratégies variées selon l’habitat ou le comportement. En fin, les poissons fuiformes (Fusiform) ont des nageoires les plus petites et les plus constantes (≈ 0,17 mm), ce qui est cohérent avec une forme hydrodynamique favorisant la nage rapide sans nécessiter de grandes nageoires.
 
 ### Modélisation
 
@@ -217,34 +190,18 @@ chart$residuals(Poly1_lm)
 
 <!--% Ajustez une régression linéaire simple, multiple ou polynomiale par paire d'étudiants dans cette section (donc, deux modèles pour l'équipe de quatre). -->
 
-Discussion: Amal
-
-#### Modèle linéaire 1
-
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 ```{r}
-Fish_rl2 <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + I(Taille_oeil^2) + Profondeur_corps + I(Profondeur_corps^2))
+Fish_rl2 <- lm(data = Fish_data, Rapport_aspect ~ Etroitesse_pedoncule + I(Etroitesse_pedoncule^2) + Ordre)
+  #Taille_oeil + I(Taille_oeil^2) + Profondeur_corps + I(Profondeur_corps^2))
 summary_(Fish_rl2) |> tabularise()
 
 ```
 
 ```{r}
 #Visualisation du modele
-chart(data = Fish_data, log(Longueur_max) ~ Taille_oeil) +
-  geom_point() +
-  geom_smooth(
-    method = "lm",
-    formula = y ~ x + I(x^2),
-    se = TRUE,
-    color = "blue"
-  ) +
-  labs(
-    title = "Visualisation du modèle polynomial (log-transformé)",
-    x = "Taille de l'œil",
-    y = "log(Longueur_max)"
-  )
-
+chart(Fish_rl2)
 
 ```
 
@@ -254,6 +211,8 @@ chart$residuals(Fish_poly2)
 ```
 
 Discussion: Amal
+
+#### Modèle linéaire 1
 
 Modèle linéaire 1
 
@@ -269,10 +228,6 @@ chart(data = Fish_data, Longueur_max ~ Profondeur_corps %col=% Comportement_banc
   labs(title = "Interaction Profondeur_corps et Comportement_banc",
        x = "Profondeur du corps",
        y = "Longueur max (cm)")
-```
-
-```{r}
-
 chart(data = Fish_data, Longueur_max ~ Rapport_aspect %col=% Vertical_station) +
   geom_point() +
   geom_smooth(method = "lm", formula = y ~ x, se = TRUE) +
@@ -282,25 +237,24 @@ chart(data = Fish_data, Longueur_max ~ Rapport_aspect %col=% Vertical_station) +
 ```
 
 ```{r}
-#Fish_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps * Comportement_banc + Vertical_station * Rapport_aspect) 
-#summary(Fish_lm) |> tabularise()
+#Fish_lm1A <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps + Comportement_banc + Vertical_station + Rapport_aspect) 
+#summary(Fish_lm1A) 
 
-Fish_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps * Comportement_banc + Vertical_station * Rapport_aspect) 
-summary(Fish_lm) |> tabularise()
+#Fish_lm1B <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps * Comportement_banc + Vertical_station * Rapport_aspect) 
+#summary(Fish_lm1B) 
+
+#Fish_lm1C <- lm(data = Fish_data, subset = Vertical_station %in% c("pelagic", "benthopelagic"), Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps * Comportement_banc + Vertical_station * Rapport_aspect)  
+#summary_(Fish_lm1C) 
 ```
 
-La pente de la variable profondeur du corps n'est pas significatif quand il est seul, mais en interaction elle l'est pour certain niveaux de la variable vertical station.
-
-certains niveaux de la variable vertical station ne sont pas significatif, et l'ajustement de R2 ne que 54% de données; nous allons essayer de simplifier notre modèle.
+Les premiers modèles présentent plusieurs limites. Le modèle initial sans interaction, bien que simple, n’explique que 51 % de la variance et ne retient qu’une seule variable significative, ce qui réduit sa pertinence biologique. L’ajout d’interactions dans le second modèle améliore légèrement l’ajustement (R² ajusté = 54 %), mais introduit une complexité importante sans gain substantiel, avec plusieurs termes non significatifs. Le troisième modèle, plus ciblé, atteint un meilleur R² (59 %), mais reste relativement complexe et inclut des variables dont l’effet est faible. Ces limites justifient la recherche d’un modèle plus parcimonieux, capable de conserver les variables biologiquement pertinentes tout en améliorant la qualité de l’ajustement.
 
 ```{r}
 Fish_lm1 <- lm(data = Fish_data,
                subset = Vertical_station %in% c("pelagic", "benthopelagic"), 
-Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps * Comportement_banc + Vertical_station * Rapport_aspect)
+Longueur_max ~ Taille_oeil + Vertical_station + Vertical_station * Rapport_aspect)
 summary_(Fish_lm1) |> tabularise()
 ```
-
-Les résultats du modèle montrent qu’aucune des variables incluses n’apporte une contribution statistiquement significative à la prédiction de Longueur_max, car les p-values associées aux coefficients sont toutes supérieures au seuil de 0.05. Les interactions Profondeur_corps × Comportement_banc ainsi que Vertical_station × Rapport_aspect ne semblent pas non plus expliquer une part significative de la variance, comme l’indiquent leurs coefficients faibles et leurs p-values élevées. Le R² et le R² ajusté suggèrent que le modèle explique une très faible proportion de la variabilité observée dans la longueur maximale des poissons, indiquant un pouvoir prédictif limité. Globalement, sur base des valeurs statistiques, le modèle n’identifie aucun prédicteur robuste ni aucune interaction pertinente pour expliquer la variable Longueur_max.
 
 ```{r}
 chart$residuals(Fish_lm1)
@@ -333,17 +287,7 @@ chart(data = Fish_data, Taille_oeil ~ Longueur_max   %col=% Comportement_banc) +
 chart$residuals(Fish_lm2)
 ```
 
--   L'etendue des residus est elevée par rapport aux valeurs prédites
--   Les résidus suivent à peu près une distribution normale
--   Il n' y a pas de tendance forte, homoscédasticité
--   Il y a présence d'observations influentes par leur distance de cook
--   Une observation a un effet de levier important avec une distance de cook influente \#### Modèle linéaire généralisé et/ou mixte 1
-
-<!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
-
-Discussion: Amal
-
-#### Modèle linéaire généralisé et/ou mixte 2
+-   L'etendue des residus est elevée par rapport aux valeurs prédites \#### Modèle linéaire généralisé et/ou mixte 2
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
 
@@ -369,15 +313,20 @@ Discussion: Amal
 
 ```{r}
 Fish_data$Comportement_banc_num <- ifelse(Fish_data$Comportement_banc == "schooling", 1, 0)
+#Fish_glm2A <- glm(data = Fish_data, Comportement_banc_num ~ Longueur_max, family = binomial())
+#summary(Fish_glm2A)
 
 Fish_glm2 <- glm(data = Fish_data, Comportement_banc_num ~ Longueur_max * Taille_nageoire_pectorale,
     family = binomial())
 summary_(Fish_glm2) |> tabularise()
 
+#Fish_glm2B <- glm(data = Fish_data, Comportement_banc_num ~ Longueur_max + Taille_nageoire_pectorale, family = binomial())
+#summary(Fish_glm2B) 
 ```
 
 ```{r}
 Fish_data$Comportement_banc_num <- ifelse(Fish_data$Comportement_banc == "schooling", 1, 0)
+Le premier modèle, basé uniquement sur la longueur maximale, présente une faible capacité explicative (AIC = 127,6) et ne montre qu’un effet marginalement significatif. Le second modèle améliore l’ajustement (AIC = 120,1) mais reste limité par la complexité croissante et la sensibilité des coefficients.
 
 Fish_glm2 <- glm(data = Fish_data, Comportement_banc_num ~ Longueur_max * Taille_nageoire_pectorale,
     family = binomial())
@@ -387,13 +336,18 @@ summary_(Fish_glm2) |> tabularise()
 chart(data = Fish_data,
       Comportement_banc_num ~ Longueur_max %col=% Taille_nageoire_pectorale ) +
   geom_point(size = 2, alpha = 0.7) +
+chart(data = Fish_data, Comportement_banc_num ~ Longueur_max %col=% Taille_nageoire_pectorale ) +
+  geom_point(size = 3, alpha = 0.7) +
   scale_color_viridis_c() +
  geom_smooth(method = "glm", formula = y ~ x, se = TRUE, color = "magenta") +
   labs(
     x = "Longueur maximale (cm)",
+  labs( x = "Longueur maximale (cm)",
     y = "Comportement de banc (0 = non, 1 = schooling)",
-    title = "Probabilité prédite du comportement en banc en fonction de la longueur et de la taille de la nageoire pectorale"
-  )
+    title = "Comportement en banc en fonction de la longueur et de la taille de la nageoire pectorale")
+```
+
+```{r}
 
 ```
 
