@@ -109,7 +109,7 @@ chart(data = Fish_data, Taille_oeil ~ Vertical_station %fill=% Comportement_banc
 
 ... interprétation #2...
 
-Benthopelagic: Les espèces **en groupe (bleu)** ont généralement une **médiane et un écart interquartile plus élevés** que les espèces non-schooling (rouge). Et donc l'on peut dire que les poissons benthopelagic en groupe tendent a avoir des yeux proportionnellement plus grands,impliquant ainsi une dependance accrue a la vision dans ce comportement.
+Benthopelagic: Les espèces en groupe (bleu) ont généralement une médiane et un écart interquartile plus élevés que les espèces non-schooling (rouge). Et donc l'on peut dire que les poissons benthopelagic en groupe tendent a avoir des yeux proportionnellement plus grands,impliquant ainsi une dependance accrue a la vision dans ce comportement.
 
 Demersal: La mediane des especes en grope(bleu) est egalement plus elevee que celle des especes non en groupe(rouge). La distribution en groupe est aussi plus compacte(moins de variabilite). Ici, le comportement en groupe est associe a des yeux plus grands, mais la distinction est moins nette que pour le groupe benthopelagic.
 
@@ -193,21 +193,35 @@ chart$residuals(Poly1_lm)
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 ```{r}
-Fish_rl2 <- lm(data = Fish_data, Rapport_aspect ~ Etroitesse_pedoncule + I(Etroitesse_pedoncule^2) + Ordre)
-  #Taille_oeil + I(Taille_oeil^2) + Profondeur_corps + I(Profondeur_corps^2))
+Fish_rl2 <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + I(Taille_oeil^2) + Profondeur_corps)
 summary_(Fish_rl2) |> tabularise()
 
 ```
 
 ```{r}
 #Visualisation du modele
-chart(Fish_rl2)
+chart(data = Fish_data,
+      Longueur_max ~ Taille_oeil) +
+  geom_point(alpha = 0.5, size = 3) +
+  geom_smooth(
+    method = "lm",
+    formula = y ~ x + I(x^2),   # modèle quadratique simple
+    se = TRUE,
+    linewidth = 1,
+    color = "blue"
+  ) +
+  labs(
+    title = "Relation entre Longueur_max et Taille_oeil",
+    subtitle = "Visualisation du terme quadratique",
+    x = "Taille de l’œil",
+    y = "Longueur maximale"
+  )
 
 ```
 
 ```{r}
 #Analyse des residus
-chart$residuals(Fish_poly2)
+chart$residuals(Fish_rl2)
 ```
 
 Discussion: Amal
@@ -262,14 +276,12 @@ chart$residuals(Fish_lm1)
 
 Discussion: Ide
 
-#### linéaire 2
+#### Modèle linéaire
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 ```{r}
 
-Fish_lm2 <- lm(data = Fish_data, Taille_oeil ~ Longueur_max  * Comportement_banc )
-summary_(Fish_lm2) |> tabularise()
 ```
 
 -le pvalue de Fstatistique est inférieur au seuil, le modèle est significatif dans son ensemble. -R²ajusté = 0.4982 : le modèle explique environ 50% de la variation de la taille d’œil. -Toutes les variables sont significatives (p \< 0.05), donc l’interaction est pertinente. -Les résidus sont raisonnables (étendue \[-13.56, 13.35\]), suggérant que le modèle est bien ajusté. -La taille d’œil est influencée par la longueur du poisson et par le comportement de banc. L’interaction montre que l’effet de la taille du poisson sur l’œil dépend du comportement de banc : schooling et non-schooling.
@@ -287,12 +299,7 @@ chart(data = Fish_data, Taille_oeil ~ Longueur_max   %col=% Comportement_banc) +
 chart$residuals(Fish_lm2)
 ```
 
--   L'etendue des residus est elevée par rapport aux valeurs prédites
-#### Modèle linéaire généralisé et/ou mixte 2
-
-<!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
-
-Discusson: Ide
+-   L'etendue des residus est elevée par rapport aux valeurs prédites \#### Modèle linéaire généralisé et/ou mixte 2
 
 -   Les résidus suivent à peu près une distribution normale
 
@@ -306,6 +313,44 @@ Discusson: Ide
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
 
+```{r}
+#library(lme4)
+#Fish_glm2 <- glmer(data = Fish_data, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station + (1 | Ordre), family = binomial())
+#summary(Fish_glm2) 
+```
+
+Dans notre jeu de données, l’inclusion d’un effet aléatoire sur la variable Ordre n’est pas appropriée. En effet, ce facteur ne comporte que trois niveaux, ce qui est insuffisant pour estimer de manière fiable la variance d’un intercept aléatoire dans un modèle mixte. Les modèles à effets aléatoires requièrent un nombre de groupes nettement plus élevé afin d’obtenir une estimation stable et interprétable des paramètres. Dans notre cas, l’ajustement du modèle présente une non-convergence et une matrice Hessienne singulière, indiquant que les paramètres ne peuvent pas être déterminés de façon unique. Compte tenu de ces limitations méthodologiques, nous avons donc opté pour un modèle linéaire généralisé (GLM) classique, qui permet d’évaluer efficacement l’influence des variables explicatives sur la probabilité d’appartenir à la forme “short/deep”, sans dépendre d’un effet aléatoire impossible à estimer de manière fiable dans ce cas.
+
+```{r}
+Fish_data$Forme_deep <- ifelse(Fish_data$Forme_corps == "short/deep", 1, 0)
+
+Fish_glm2 <- glm(data = Fish_data, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station, family = binomial(link = "logit"))
+summary_(Fish_glm2) |> tabularise()
+```
+
+```{r}
+#Visualisation du modèle
+chart(data = Fish_data, Forme_deep ~ Rapport_aspect) +
+  geom_point(alpha = 0.6, size = 3) +
+  geom_smooth(
+    method = "glm",
+    method.args = list(family = binomial(link = "logit")),
+    formula = y ~ x,
+    se = TRUE
+  ) +
+  labs(
+    title = "Probabilité d'avoir une forme 'short/deep' selon le rapport d'aspect",
+    x = "Rapport d'aspect",
+    y = "Probabilité (forme short/deep)"
+  )
+
+```
+
+```{r}
+#Analyse des résidus
+chart$residuals(Fish_glm2)
+```
+
 Discussion: Amal
 
 #### Modèle linéaire généralisé et/ou mixte 2
@@ -317,16 +362,10 @@ Fish_data$Comportement_banc_num <- ifelse(Fish_data$Comportement_banc == "school
 #Fish_glm2A <- glm(data = Fish_data, Comportement_banc_num ~ Longueur_max, family = binomial())
 #summary(Fish_glm2A)
 
-Fish_glm2 <- glm(data = Fish_data, Comportement_banc_num ~ Longueur_max * Taille_nageoire_pectorale,
-    family = binomial())
-summary_(Fish_glm2) |> tabularise()
-
 #Fish_glm2B <- glm(data = Fish_data, Comportement_banc_num ~ Longueur_max + Taille_nageoire_pectorale, family = binomial())
 #summary(Fish_glm2B) 
 ```
 
-```{r}
-Fish_data$Comportement_banc_num <- ifelse(Fish_data$Comportement_banc == "schooling", 1, 0)
 Le premier modèle, basé uniquement sur la longueur maximale, présente une faible capacité explicative (AIC = 127,6) et ne montre qu’un effet marginalement significatif. Le second modèle améliore l’ajustement (AIC = 120,1) mais reste limité par la complexité croissante et la sensibilité des coefficients.
 
 ```{r}
@@ -334,16 +373,10 @@ Fish_glm2 <- glm(data = Fish_data, Comportement_banc_num ~ Longueur_max * Taille
     family = binomial())
 summary_(Fish_glm2) |> tabularise()
 
-#Fish_data$Prob_predite <- predict(Fish_glm2, type = "response")
-chart(data = Fish_data,
-      Comportement_banc_num ~ Longueur_max %col=% Taille_nageoire_pectorale ) +
-  geom_point(size = 2, alpha = 0.7) +
 chart(data = Fish_data, Comportement_banc_num ~ Longueur_max %col=% Taille_nageoire_pectorale ) +
   geom_point(size = 3, alpha = 0.7) +
   scale_color_viridis_c() +
  geom_smooth(method = "glm", formula = y ~ x, se = TRUE, color = "magenta") +
-  labs(
-    x = "Longueur maximale (cm)",
   labs( x = "Longueur maximale (cm)",
     y = "Comportement de banc (0 = non, 1 = schooling)",
     title = "Comportement en banc en fonction de la longueur et de la taille de la nageoire pectorale")
