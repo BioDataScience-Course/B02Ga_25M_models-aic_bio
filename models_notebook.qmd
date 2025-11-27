@@ -182,9 +182,9 @@ chart(Poly1_lm)
 chart$residuals(Poly1_lm)
 ```
 
--   la distribition des residus est très élevé par rapports aux valeurs predites (A)
+-   la distribution des résidus est très élevé par rapports aux valeurs prédites (A)
 -   Les points suivent globalement la ligne,sauf pour les grandes valeurs qui s'écartent, donc la normalité est raisonnable.(B)
--   La tendance ascendante montre que la variance augmente avec la valeur prédite il y a hétéroscédasticité modérée.(C) -Présence des points influents avec une grande distance de cook et un effet de levier.
+-   La tendance ascendante montre que la variance augmente avec la valeur prédite il y a hétéroscédasticité modérée.(C) -Présence des points influents avec une grande distance de Cook et un effet de levier.
 
 #### Régression linéaire 2
 
@@ -285,6 +285,8 @@ Le Modèle est très robuste avec un R\^2 ajusté de 0.581 et tous ses coefficie
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 ```{r}
+Fish_lm2 <- lm(data = Fish_data, Taille_oeil ~ Longueur_max * Comportement_banc)
+summary_(Fish_lm2) |> tabularise ()
 
 ```
 
@@ -304,7 +306,6 @@ chart$residuals(Fish_lm2)
 ```
 
 -   L'etendue des residus est elevée par rapport aux valeurs prédites \#### Modèle linéaire généralisé et/ou mixte 2
-
 -   Les résidus suivent à peu près une distribution normale
 
 -   Il n' y a pas de tendance forte, homoscédasticité
@@ -312,6 +313,8 @@ chart$residuals(Fish_lm2)
 -   Il y a présence d'observations influentes par leur distance de cook
 
 -   Une observation a un effet de levier important avec une distance de cook influente
+
+
 
 #### Modèle linéaire généralisé et/ou mixte 1
 
@@ -383,12 +386,9 @@ chart(data = Fish_data, Comportement_banc_num ~ Longueur_max %col=% Taille_nageo
  geom_smooth(method = "glm", formula = y ~ x, se = TRUE, color = "magenta") +
   labs( x = "Longueur maximale (cm)",
     y = "Comportement de banc (0 = non, 1 = schooling)",
-    title = "Comportement en banc en fonction de la longueur et de la taille de la nageoire pectorale")
+  title = "Comportement en banc en fonction de la longueur et de la taille de la nageoire pectorale")
 ```
 
-```{r}
-
-```
 
 Discussion: Ide
 
