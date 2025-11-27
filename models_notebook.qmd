@@ -182,9 +182,9 @@ chart(Poly1_lm)
 chart$residuals(Poly1_lm)
 ```
 
--   la distribition des residus est très élevé par rapports aux valeurs predites (A)
+-   la distribution des résidus est très élevé par rapports aux valeurs prédites (A)
 -   Les points suivent globalement la ligne,sauf pour les grandes valeurs qui s'écartent, donc la normalité est raisonnable.(B)
--   La tendance ascendante montre que la variance augmente avec la valeur prédite il y a hétéroscédasticité modérée.(C) -Présence des points influents avec une grande distance de cook et un effet de levier.
+-   La tendance ascendante montre que la variance augmente avec la valeur prédite il y a hétéroscédasticité modérée.(C) -Présence des points influents avec une grande distance de Cook et un effet de levier.
 
 #### Régression linéaire 2
 
@@ -287,8 +287,7 @@ chart(data = Fish_data, Taille_oeil ~ Longueur_max   %col=% Comportement_banc) +
 chart$residuals(Fish_lm2)
 ```
 
--   L'etendue des residus est elevée par rapport aux valeurs prédites
-#### Modèle linéaire généralisé et/ou mixte 2
+-   L'etendue des residus est elevée par rapport aux valeurs prédites \#### Modèle linéaire généralisé et/ou mixte 2
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
 
@@ -329,7 +328,6 @@ summary_(Fish_glm2) |> tabularise()
 Fish_data$Comportement_banc_num <- ifelse(Fish_data$Comportement_banc == "schooling", 1, 0)
 Le premier modèle, basé uniquement sur la longueur maximale, présente une faible capacité explicative (AIC = 127,6) et ne montre qu’un effet marginalement significatif. Le second modèle améliore l’ajustement (AIC = 120,1) mais reste limité par la complexité croissante et la sensibilité des coefficients.
 
-```{r}
 Fish_glm2 <- glm(data = Fish_data, Comportement_banc_num ~ Longueur_max * Taille_nageoire_pectorale,
     family = binomial())
 summary_(Fish_glm2) |> tabularise()
