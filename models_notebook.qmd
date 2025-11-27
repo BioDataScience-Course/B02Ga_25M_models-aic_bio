@@ -278,8 +278,7 @@ summary_(Fish_lm1) |> tabularise()
 chart$residuals(Fish_lm1)
 ```
 
-Le Modèle est très robuste avec un R^2 ajusté de 0.581 et tous ses coefficients sont significatifs, notamment le terme d'interaction qui confirme l'inversion de la pente pour les pélagiques. 
-Cependant, le diagnostic des résidus (Image C) révèle une hétéroscédasticité (variance des erreurs augmente avec les valeurs prédites), justifiant l'utilisation d'une transformation logarithmique sur la Longueur_max dans le prochain modèle pour stabiliser la variance et améliorer la précision des coefficients.
+Le Modèle est très robuste avec un R\^2 ajusté de 0.581 et tous ses coefficients sont significatifs, notamment le terme d'interaction qui confirme l'inversion de la pente pour les pélagiques. Cependant, le diagnostic des résidus (Image C) révèle une hétéroscédasticité (variance des erreurs augmente avec les valeurs prédites), justifiant l'utilisation d'une transformation logarithmique sur la Longueur_max dans le prochain modèle pour stabiliser la variance et améliorer la précision des coefficients.
 
 #### Modèle linéaire
 
