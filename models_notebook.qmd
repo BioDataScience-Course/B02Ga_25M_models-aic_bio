@@ -262,7 +262,7 @@ chart$residuals(Fish_lm1)
 
 Discussion: Ide
 
-#### linéaire 2
+#### Modèle linéaire 2
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
