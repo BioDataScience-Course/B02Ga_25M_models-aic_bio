@@ -124,8 +124,7 @@ chart(data = Fish_data,
   labs(
     x = "Comportement de banc",
     y = "Taille de la nageoire pectorale (mm)",
-    title = "Taille des nageoires pectorales selon le comportement et la forme du corps"
-  ) 
+    title = "Taille des nageoires pectorales selon le comportement et la forme du corps") 
 ```
 
 ... interprétation #3...
@@ -138,20 +137,12 @@ Effet de la forme du corps : le groupe Short/deep a des nageoires plus grandes, 
 
 ### Modélisation
 
-Voici la corrélation de Pearson observée entre les variables quantitatives :
-
-<!--% Création ci-dessous du tableau des corrélations de Pearson entre les variables quantitatives en passant par un objet correlation. -->
-
 Pour explorer les relations potentielles entre les différentes caractéristiques morphologiques des poissons étudiés, nous avons réalisé une analyse de corrélation de Pearson. Cette méthode permet d’évaluer la force et le sens de l’association linéaire entre deux variables quantitatives.
 
 ```{r corr}
 (Fish_data_corr <- correlation(sselect(Fish_data,Longueur_max, Profondeur_corps, Rapport_aspect, Etroitesse_pedoncule, Position_nageoire_pectorale, Taille_nageoire_pectorale, Position_oeil_vertical, Taille_oeil))) |>
   tabularise()
-plot(Fish_data_corr, type = "lower")
-
 ```
-
-<!-- Commentez la table des corrélations. -->
 
 La plupart des corrélations entre caractères sont faibles à modérées. Le rapport d’aspect et l’étroitesse du pédoncule caudal montrent une corrélation positive notable (r = 0,38), suggérant une adaptation à la nage rapide. La longueur maximale est fortement négativement corrélée avec la taille de l’œil (r = -0,69), tandis que la profondeur du corps est modérément liée à la taille des nageoires pectorales (r = 0,45).
 
@@ -236,18 +227,28 @@ Examiner l’effet combiné de plusieurs traits morphologiques et comportementau
 
 ```{r}
 
-chart(data = Fish_data, Longueur_max ~ Profondeur_corps %col=% Comportement_banc) +
+a<-chart(data = Fish_data, Longueur_max ~ Profondeur_corps %col=% Comportement_banc) +
   geom_point() +
   geom_smooth(method = "lm", formula = y ~ x, se = TRUE) +
-  labs(title = "Interaction Profondeur_corps et Comportement_banc",
-       x = "Profondeur du corps",
-       y = "Longueur max (cm)")
-chart(data = Fish_data, Longueur_max ~ Rapport_aspect %col=% Vertical_station) +
+  labs(x = "Profondeur du corps", 
+    y = "Longueur max (cm)") + 
+ theme(
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.title = element_blank())
+
+b<- chart(data = Fish_data, Longueur_max ~ Rapport_aspect %col=% Vertical_station) +
   geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = TRUE) +
-  labs(title = "Interaction Vertical_station et Rapport_aspect",
-       x = "Rapport d'aspect",
-       y = "Longueur max")
+  geom_smooth(method = "lm", formula = y ~ x, se = TRUE) + labs( x = "Rapport d'aspect",
+  y = "Longueur max (cm)") + 
+ theme(
+    
+legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.title = element_blank()) 
+
+combine_charts(list(a,b))
+
 ```
 
 Le graphique Profondeur_corps - Comportement_banc démontre une forte interaction entre la morphologie et le comportement sur la Longueur_max. Pour les espèces non-schooling (rouge), la Longueur_max est stable ou diminue légèrement lorsque la Profondeur_corps augmente (pente négative). En revanche, pour les espèces schooling (cyan), la Longueur_max augmente clairement et fortement lorsque la Profondeur_corps augmente (pente positive), ce qui suggère une allométrie positive chez ce groupe où les individus plus grands sont également plus profonds ou massifs.
@@ -287,7 +288,6 @@ Le Modèle est très robuste avec un R\^2 ajusté de 0.581 et tous ses coefficie
 ```{r}
 Fish_lm2 <- lm(data = Fish_data, Taille_oeil ~ Longueur_max * Comportement_banc)
 summary_(Fish_lm2) |> tabularise ()
-
 ```
 
 -le pvalue de Fstatistique est inférieur au seuil, le modèle est significatif dans son ensemble. -R²ajusté = 0.4982 : le modèle explique environ 50% de la variation de la taille d’œil. -Toutes les variables sont significatives (p \< 0.05), donc l’interaction est pertinente. -Les résidus sont raisonnables (étendue \[-13.56, 13.35\]), suggérant que le modèle est bien ajusté. -La taille d’œil est influencée par la longueur du poisson et par le comportement de banc. L’interaction montre que l’effet de la taille du poisson sur l’œil dépend du comportement de banc : schooling et non-schooling.
@@ -306,6 +306,7 @@ chart$residuals(Fish_lm2)
 ```
 
 -   L'etendue des residus est elevée par rapport aux valeurs prédites \#### Modèle linéaire généralisé et/ou mixte 2
+
 -   Les résidus suivent à peu près une distribution normale
 
 -   Il n' y a pas de tendance forte, homoscédasticité
@@ -313,8 +314,6 @@ chart$residuals(Fish_lm2)
 -   Il y a présence d'observations influentes par leur distance de cook
 
 -   Une observation a un effet de levier important avec une distance de cook influente
-
-
 
 #### Modèle linéaire généralisé et/ou mixte 1
 
@@ -388,7 +387,6 @@ chart(data = Fish_data, Comportement_banc_num ~ Longueur_max %col=% Taille_nageo
     y = "Comportement de banc (0 = non, 1 = schooling)",
   title = "Comportement en banc en fonction de la longueur et de la taille de la nageoire pectorale")
 ```
-
 
 Discussion: Ide
 
