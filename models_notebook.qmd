@@ -124,8 +124,7 @@ chart(data = Fish_data,
   labs(
     x = "Comportement de banc",
     y = "Taille de la nageoire pectorale (mm)",
-    title = "Taille des nageoires pectorales selon le comportement et la forme du corps"
-  ) 
+    title = "Taille des nageoires pectorales selon le comportement et la forme du corps") 
 ```
 
 ... interprétation #3...
@@ -138,20 +137,12 @@ Effet de la forme du corps : le groupe Short/deep a des nageoires plus grandes, 
 
 ### Modélisation
 
-Voici la corrélation de Pearson observée entre les variables quantitatives :
-
-<!--% Création ci-dessous du tableau des corrélations de Pearson entre les variables quantitatives en passant par un objet correlation. -->
-
 Pour explorer les relations potentielles entre les différentes caractéristiques morphologiques des poissons étudiés, nous avons réalisé une analyse de corrélation de Pearson. Cette méthode permet d’évaluer la force et le sens de l’association linéaire entre deux variables quantitatives.
 
 ```{r corr}
 (Fish_data_corr <- correlation(sselect(Fish_data,Longueur_max, Profondeur_corps, Rapport_aspect, Etroitesse_pedoncule, Position_nageoire_pectorale, Taille_nageoire_pectorale, Position_oeil_vertical, Taille_oeil))) |>
   tabularise()
-plot(Fish_data_corr, type = "lower")
-
 ```
-
-<!-- Commentez la table des corrélations. -->
 
 La plupart des corrélations entre caractères sont faibles à modérées. Le rapport d’aspect et l’étroitesse du pédoncule caudal montrent une corrélation positive notable (r = 0,38), suggérant une adaptation à la nage rapide. La longueur maximale est fortement négativement corrélée avec la taille de l’œil (r = -0,69), tandis que la profondeur du corps est modérément liée à la taille des nageoires pectorales (r = 0,45).
 
@@ -193,29 +184,15 @@ chart$residuals(Poly1_lm)
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 ```{r}
-Fish_rl2 <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + I(Taille_oeil^2) + Profondeur_corps)
+Fish_data$log_Taille_oeil <- log(Fish_data$Taille_oeil)
+Fish_rl2 <- lm(data = Fish_data,log_Taille_oeil ~ Longueur_max )
 summary_(Fish_rl2) |> tabularise()
 
 ```
 
 ```{r}
 #Visualisation du modele
-chart(data = Fish_data,
-      Longueur_max ~ Taille_oeil) +
-  geom_point(alpha = 0.5, size = 3) +
-  geom_smooth(
-    method = "lm",
-    formula = y ~ x + I(x^2),   # modèle quadratique simple
-    se = TRUE,
-    linewidth = 1,
-    color = "blue"
-  ) +
-  labs(
-    title = "Relation entre Longueur_max et Taille_oeil",
-    subtitle = "Visualisation du terme quadratique",
-    x = "Taille de l’œil",
-    y = "Longueur maximale"
-  )
+chart(Fish_rl2)
 
 ```
 
@@ -224,7 +201,15 @@ chart(data = Fish_data,
 chart$residuals(Fish_rl2)
 ```
 
-Discussion: Amal
+Discussion:
+
+Le modèle linéaire évaluant la relation entre la taille maximale du poisson (Longueur_max) et la taille relative de l’œil (log_Taille_oeil) révèle une relation négative hautement significative. Le coefficient associé à Longueur_max (β = –0,00466, p \< 2×10⁻¹⁶) indique que, chez les poissons des Grands Lacs, la taille de l’œil diminue proportionnellement lorsque la taille corporelle augmente. Autrement dit, les petites espèces présentent des yeux proportionnellement plus grands, tandis que les grandes espèces ont des yeux proportionnellement plus petits.
+
+Ce résultat est cohérent avec des principes biologiques déjà établis : chez de nombreux poissons, la taille relative de l’œil est liée à la stratégie sensorielle, à la vision en milieux moins lumineux et à la pression sélective de la prédation. Les petites espèces dépendant davantage de la vision pour détecter les prédateurs ou rechercher la nourriture présentent souvent des yeux proportionnellement plus développés. À l’inverse, les grandes espèces peuvent compenser leur perception visuelle par d’autres sens, comme la ligne latérale, ou évoluer dans des environnements où une vision fine est moins déterminante.
+
+Le modèle présente un R² de 0,525, indiquant que plus de la moitié de la variation de la taille relative de l’œil est expliquée par la taille corporelle. Pour un modèle basé sur un seul prédicteur morphologique, cette valeur est substantielle et montre que la taille corporelle est un déterminant majeur de la variation observée.
+
+L’analyse des résidus montre que les hypothèses du modèle linéaire sont globalement respectées. Les résidus sont bien centrés autour de zéro et ne montrent pas de motif systématique majeur, ce qui confirme une relation appropriée entre les variables. Le QQ-plot montre une distribution des résidus proche de la normalité, avec seulement quelques valeurs extrêmes. On observe une légère hétéroscédasticité (variance des résidus un peu plus élevée pour les grandes longueurs), mais celle-ci reste faible et ne compromet pas la validité du modèle. Aucun point à fort levier n’indique une influence excessive sur les résultats.
 
 #### Modèle linéaire 1
 
@@ -236,18 +221,28 @@ Examiner l’effet combiné de plusieurs traits morphologiques et comportementau
 
 ```{r}
 
-chart(data = Fish_data, Longueur_max ~ Profondeur_corps %col=% Comportement_banc) +
+a<-chart(data = Fish_data, Longueur_max ~ Profondeur_corps %col=% Comportement_banc) +
   geom_point() +
   geom_smooth(method = "lm", formula = y ~ x, se = TRUE) +
-  labs(title = "Interaction Profondeur_corps et Comportement_banc",
-       x = "Profondeur du corps",
-       y = "Longueur max (cm)")
-chart(data = Fish_data, Longueur_max ~ Rapport_aspect %col=% Vertical_station) +
+  labs(x = "Profondeur du corps", 
+    y = "Longueur max (cm)") + 
+ theme(
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.title = element_blank())
+
+b<- chart(data = Fish_data, Longueur_max ~ Rapport_aspect %col=% Vertical_station) +
   geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = TRUE) +
-  labs(title = "Interaction Vertical_station et Rapport_aspect",
-       x = "Rapport d'aspect",
-       y = "Longueur max")
+  geom_smooth(method = "lm", formula = y ~ x, se = TRUE) + labs( x = "Rapport d'aspect",
+  y = "Longueur max (cm)") + 
+ theme(
+    
+legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.title = element_blank()) 
+
+combine_charts(list(a,b))
+
 ```
 
 Le graphique Profondeur_corps - Comportement_banc démontre une forte interaction entre la morphologie et le comportement sur la Longueur_max. Pour les espèces non-schooling (rouge), la Longueur_max est stable ou diminue légèrement lorsque la Profondeur_corps augmente (pente négative). En revanche, pour les espèces schooling (cyan), la Longueur_max augmente clairement et fortement lorsque la Profondeur_corps augmente (pente positive), ce qui suggère une allométrie positive chez ce groupe où les individus plus grands sont également plus profonds ou massifs.
@@ -280,16 +275,13 @@ chart$residuals(Fish_lm1)
 
 Le Modèle est très robuste avec un R\^2 ajusté de 0.581 et tous ses coefficients sont significatifs, notamment le terme d'interaction qui confirme l'inversion de la pente pour les pélagiques. Cependant, le diagnostic des résidus (Image C) révèle une hétéroscédasticité (variance des erreurs augmente avec les valeurs prédites), justifiant l'utilisation d'une transformation logarithmique sur la Longueur_max dans le prochain modèle pour stabiliser la variance et améliorer la précision des coefficients.
 
-
 #### Modèle linéaire 2
-
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 ```{r}
 Fish_lm2 <- lm(data = Fish_data, Taille_oeil ~ Longueur_max * Comportement_banc)
 summary_(Fish_lm2) |> tabularise ()
-
 ```
 
 -le pvalue de Fstatistique est inférieur au seuil, le modèle est significatif dans son ensemble. -R²ajusté = 0.4982 : le modèle explique environ 50% de la variation de la taille d’œil. -Toutes les variables sont significatives (p \< 0.05), donc l’interaction est pertinente. -Les résidus sont raisonnables (étendue \[-13.56, 13.35\]), suggérant que le modèle est bien ajusté. -La taille d’œil est influencée par la longueur du poisson et par le comportement de banc. L’interaction montre que l’effet de la taille du poisson sur l’œil dépend du comportement de banc : schooling et non-schooling.
@@ -308,6 +300,7 @@ chart$residuals(Fish_lm2)
 ```
 
 -   L'etendue des residus est elevée par rapport aux valeurs prédites \#### Modèle linéaire généralisé et/ou mixte 2
+
 -   Les résidus suivent à peu près une distribution normale
 
 -   Il n' y a pas de tendance forte, homoscédasticité
@@ -316,8 +309,6 @@ chart$residuals(Fish_lm2)
 
 -   Une observation a un effet de levier important avec une distance de cook influente
 
-
-
 #### Modèle linéaire généralisé et/ou mixte 1
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
@@ -325,39 +316,55 @@ chart$residuals(Fish_lm2)
 ```{r}
 #library(lme4)
 #Fish_glm2 <- glmer(data = Fish_data, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station + (1 | Ordre), family = binomial())
-#summary(Fish_glm2) 
+#summary(Fish_glm2)
+
 ```
 
 Dans notre jeu de données, l’inclusion d’un effet aléatoire sur la variable Ordre n’est pas appropriée. En effet, ce facteur ne comporte que trois niveaux, ce qui est insuffisant pour estimer de manière fiable la variance d’un intercept aléatoire dans un modèle mixte. Les modèles à effets aléatoires requièrent un nombre de groupes nettement plus élevé afin d’obtenir une estimation stable et interprétable des paramètres. Dans notre cas, l’ajustement du modèle présente une non-convergence et une matrice Hessienne singulière, indiquant que les paramètres ne peuvent pas être déterminés de façon unique. Compte tenu de ces limitations méthodologiques, nous avons donc opté pour un modèle linéaire généralisé (GLM) classique, qui permet d’évaluer efficacement l’influence des variables explicatives sur la probabilité d’appartenir à la forme “short/deep”, sans dépendre d’un effet aléatoire impossible à estimer de manière fiable dans ce cas.
 
 ```{r}
-Fish_data$Forme_deep <- ifelse(Fish_data$Forme_corps == "short/deep", 1, 0)
+#Fish_data$Forme_deep <- ifelse(Fish_data$Forme_corps == "short/deep", 1, ifelse(Fish_data$Forme_corps == "fusiforme", 0, NA))
+#Fish_data2 <- subset(Fish_data, !is.na(Forme_deep))
+#Fish_glm2 <- glm(data = Fish_data2, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station, family = binomial(link = "logit"))
+#Fish_glm2 <- glm(data = Fish_data2, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station, family = quasibinomial)
 
-Fish_glm2 <- glm(data = Fish_data, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station, family = binomial(link = "logit"))
-summary_(Fish_glm2) |> tabularise()
+# Sous-échantillonnage pour ne garder que les deux groupes souhaités
+Fish_data2 <- subset(Fish_data, Forme_corps %in% c("fusiform", "elongated"))
+
+# Recoder la variable cible binaire:
+Fish_data2$Forme_bin <- ifelse(Fish_data2$Forme_corps == "elongated", 1, 0)
+
+# Modèle logistique (GLM binaire)
+Fish_glm1 <- glm(data = Fish_data2,
+  Forme_bin ~ Longueur_max + Profondeur_corps + Rapport_aspect + Etroitesse_pedoncule, family = binomial(link = "logit")
+)
+summary(Fish_glm1)
+
+
 ```
+
+J’ai voulu d’abord comparer la forme “short/deep” avec “fusiforme” avec un modèle logistique, mais il y avait très peu de “short/deep” dans mon jeu de données. Ça donnait des messages d’erreur et des résultats impossibles à interpréter. Du coup, j’ai choisi de comparer les formes “fusiform” et “elongated”, car il y a assez d’individus dans chaque groupe pour faire un modèle. J’ai donc gardé seulement ces deux types de formes et j’ai créé une nouvelle variable binaire (=1 si “elongated”, 0 si “fusiform”).
+
+J’ai utilisé un modèle linéaire généralisé avec les variables morphométriques suivantes: Longueur_max, Profondeur_corps, Rapport_aspect et Etroitesse_pedoncule.
+
+Le modèle a bien fonctionné et j’ai pu voir quelles variables influencent le plus la probabilité qu’un poisson ait une forme “elongated” plutôt que “fusiform”. Un effet positif signifie que ça augmente les chances d’être “elongated”, un effet négatif veut dire l’inverse.
 
 ```{r}
 #Visualisation du modèle
-chart(data = Fish_data, Forme_deep ~ Rapport_aspect) +
-  geom_point(alpha = 0.6, size = 3) +
-  geom_smooth(
-    method = "glm",
-    method.args = list(family = binomial(link = "logit")),
-    formula = y ~ x,
-    se = TRUE
-  ) +
+# Ajoute la colonne probabilité prédite si ce n'est pas déjà fait
+Fish_data2$prob_elongated <- predict(Fish_glm1, type = "response")
+
+# Visualisation
+chart(data = Fish_data2, prob_elongated ~ Profondeur_corps %col=% Rapport_aspect) +
+  geom_point(size = 3, alpha = 0.7) +
+  scale_color_viridis_c() +
+  geom_smooth(method = "glm", formula = y ~ x, se = TRUE, color = "magenta") +
   labs(
-    title = "Probabilité d'avoir une forme 'short/deep' selon le rapport d'aspect",
-    x = "Rapport d'aspect",
-    y = "Probabilité (forme short/deep)"
+    x = "Profondeur du corps",
+    y = "Probabilité d'être elongated (modèle GLM)",
+    title = "Probabilité d'être elongated selon la profondeur du corps\nCouleur : Rapport d'aspect"
   )
 
-```
-
-```{r}
-#Analyse des résidus
-chart$residuals(Fish_glm2)
 ```
 
 Discussion: Amal
@@ -390,7 +397,6 @@ chart(data = Fish_data, Comportement_banc_num ~ Longueur_max %col=% Taille_nageo
     y = "Comportement de banc (0 = non, 1 = schooling)",
   title = "Comportement en banc en fonction de la longueur et de la taille de la nageoire pectorale")
 ```
-
 
 Discussion: Ide
 

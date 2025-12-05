@@ -6,13 +6,18 @@
     "docOutlineVisible": "1",
     "rmdVisualCollapsedChunks": "",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "rmdVisualModeLocation": "20436:19063",
     "cursorPosition": "355,0",
 =======
     "rmdVisualModeLocation": "10981:6871",
     "cursorPosition": "179,0",
 >>>>>>> e3b27f15ec9d341601029612b5d9e410150a7583
+=======
+    "rmdVisualModeLocation": "2:0",
+    "cursorPosition": "287,0",
+>>>>>>> b2074340694bcae24e917d6f102ceb1efab32238
     "scrollLine": "0",
-    "last_setup_crc32": "57cd157a2b3b99c2",
+    "last_setup_crc32": "",
     "docOutlineSize": "67"
 }
