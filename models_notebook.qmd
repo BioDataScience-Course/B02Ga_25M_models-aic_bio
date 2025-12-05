@@ -184,29 +184,15 @@ chart$residuals(Poly1_lm)
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 ```{r}
-Fish_rl2 <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + I(Taille_oeil^2) + Profondeur_corps)
+Fish_data$log_Taille_oeil <- log(Fish_data$Taille_oeil)
+Fish_rl2 <- lm(data = Fish_data,log_Taille_oeil ~ Longueur_max )
 summary_(Fish_rl2) |> tabularise()
 
 ```
 
 ```{r}
 #Visualisation du modele
-chart(data = Fish_data,
-      Longueur_max ~ Taille_oeil) +
-  geom_point(alpha = 0.5, size = 3) +
-  geom_smooth(
-    method = "lm",
-    formula = y ~ x + I(x^2),   # modèle quadratique simple
-    se = TRUE,
-    linewidth = 1,
-    color = "blue"
-  ) +
-  labs(
-    title = "Relation entre Longueur_max et Taille_oeil",
-    subtitle = "Visualisation du terme quadratique",
-    x = "Taille de l’œil",
-    y = "Longueur maximale"
-  )
+chart(Fish_rl2)
 
 ```
 
@@ -322,40 +308,59 @@ chart$residuals(Fish_lm2)
 ```{r}
 #library(lme4)
 #Fish_glm2 <- glmer(data = Fish_data, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station + (1 | Ordre), family = binomial())
-#summary(Fish_glm2) 
+#summary(Fish_glm2)
+
 ```
 
 Dans notre jeu de données, l’inclusion d’un effet aléatoire sur la variable Ordre n’est pas appropriée. En effet, ce facteur ne comporte que trois niveaux, ce qui est insuffisant pour estimer de manière fiable la variance d’un intercept aléatoire dans un modèle mixte. Les modèles à effets aléatoires requièrent un nombre de groupes nettement plus élevé afin d’obtenir une estimation stable et interprétable des paramètres. Dans notre cas, l’ajustement du modèle présente une non-convergence et une matrice Hessienne singulière, indiquant que les paramètres ne peuvent pas être déterminés de façon unique. Compte tenu de ces limitations méthodologiques, nous avons donc opté pour un modèle linéaire généralisé (GLM) classique, qui permet d’évaluer efficacement l’influence des variables explicatives sur la probabilité d’appartenir à la forme “short/deep”, sans dépendre d’un effet aléatoire impossible à estimer de manière fiable dans ce cas.
 
 ```{r}
-Fish_data$Forme_deep <- ifelse(Fish_data$Forme_corps == "short/deep", 1, 0)
+#Fish_data$Forme_deep <- ifelse(Fish_data$Forme_corps == "short/deep", 1, ifelse(Fish_data$Forme_corps == "fusiforme", 0, NA))
+#Fish_data2 <- subset(Fish_data, !is.na(Forme_deep))
+#Fish_glm2 <- glm(data = Fish_data2, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station, family = binomial(link = "logit"))
+#Fish_glm2 <- glm(data = Fish_data2, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station, family = quasibinomial)
 
-Fish_glm2 <- glm(data = Fish_data, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station, family = binomial(link = "logit"))
-summary_(Fish_glm2) |> tabularise()
+# Sous-échantillonnage pour ne garder que les deux groupes souhaités
+Fish_data2 <- subset(Fish_data, Forme_corps %in% c("fusiform", "elongated"))
+
+# Recoder la variable cible binaire:
+Fish_data2$Forme_bin <- ifelse(Fish_data2$Forme_corps == "elongated", 1, 0)
+
+# Modèle logistique (GLM binaire)
+Fish_glm1 <- glm(data = Fish_data2,
+  Forme_bin ~ Longueur_max + Profondeur_corps + Rapport_aspect + Etroitesse_pedoncule, family = binomial(link = "logit")
+)
+summary(Fish_glm1)
+
+
 ```
+
+J’ai voulu d’abord comparer la forme “short/deep” avec “fusiforme” avec un modèle logistique, mais il y avait très peu de “short/deep” dans mon jeu de données. Ça donnait des messages d’erreur et des résultats impossibles à interpréter.
+Du coup, j’ai choisi de comparer les formes “fusiform” et “elongated”, car il y a assez d’individus dans chaque groupe pour faire un modèle. J’ai donc gardé seulement ces deux types de formes et j’ai créé une nouvelle variable binaire (=1 si “elongated”, 0 si “fusiform”).
+
+J’ai utilisé un modèle linéaire généralisé avec les variables morphométriques suivantes: Longueur_max, Profondeur_corps, Rapport_aspect et Etroitesse_pedoncule.
+
+Le modèle a bien fonctionné et j’ai pu voir quelles variables influencent le plus la probabilité qu’un poisson ait une forme “elongated” plutôt que “fusiform”. Un effet positif signifie que ça augmente les chances d’être “elongated”, un effet négatif veut dire l’inverse.
+
 
 ```{r}
 #Visualisation du modèle
-chart(data = Fish_data, Forme_deep ~ Rapport_aspect) +
-  geom_point(alpha = 0.6, size = 3) +
-  geom_smooth(
-    method = "glm",
-    method.args = list(family = binomial(link = "logit")),
-    formula = y ~ x,
-    se = TRUE
-  ) +
+# Ajoute la colonne probabilité prédite si ce n'est pas déjà fait
+Fish_data2$prob_elongated <- predict(Fish_glm1, type = "response")
+
+# Visualisation
+chart(data = Fish_data2, prob_elongated ~ Profondeur_corps %col=% Rapport_aspect) +
+  geom_point(size = 3, alpha = 0.7) +
+  scale_color_viridis_c() +
+  geom_smooth(method = "glm", formula = y ~ x, se = TRUE, color = "magenta") +
   labs(
-    title = "Probabilité d'avoir une forme 'short/deep' selon le rapport d'aspect",
-    x = "Rapport d'aspect",
-    y = "Probabilité (forme short/deep)"
+    x = "Profondeur du corps",
+    y = "Probabilité d'être elongated (modèle GLM)",
+    title = "Probabilité d'être elongated selon la profondeur du corps\nCouleur : Rapport d'aspect"
   )
 
 ```
 
-```{r}
-#Analyse des résidus
-chart$residuals(Fish_glm2)
-```
 
 Discussion: Amal
 
