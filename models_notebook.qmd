@@ -306,9 +306,9 @@ chart$residuals(Fish_lm2)
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
 
 ```{r}
-#library(lme4)
-#Fish_glm2 <- glmer(data = Fish_data, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station + (1 | Ordre), family = binomial())
-#summary(Fish_glm2)
+#Fish_data$Forme_deep <- ifelse(Fish_data$Forme_corps == "short/deep", 1, 0)
+#Fish_glm1 <- lme4::glmer(data = Fish_data, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station + (1 | Ordre), family = binomial())
+#summary(Fish_glm1)
 
 ```
 
@@ -317,31 +317,29 @@ Dans notre jeu de données, l’inclusion d’un effet aléatoire sur la variabl
 ```{r}
 #Fish_data$Forme_deep <- ifelse(Fish_data$Forme_corps == "short/deep", 1, ifelse(Fish_data$Forme_corps == "fusiforme", 0, NA))
 #Fish_data2 <- subset(Fish_data, !is.na(Forme_deep))
-#Fish_glm2 <- glm(data = Fish_data2, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station, family = binomial(link = "logit"))
-#Fish_glm2 <- glm(data = Fish_data2, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station, family = quasibinomial)
+#Fish_glm1 <- glm(data = Fish_data2, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station, family = binomial(link = "logit"))
+#Fish_glm1 <- glm(data = Fish_data2, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station, family = quasibinomial)
 
 # Sous-échantillonnage pour ne garder que les deux groupes souhaités
 Fish_data2 <- subset(Fish_data, Forme_corps %in% c("fusiform", "elongated"))
 
 # Recoder la variable cible binaire:
-Fish_data2$Forme_bin <- ifelse(Fish_data2$Forme_corps == "elongated", 1, 0)
+Fish_data2$Forme_deep <- ifelse(Fish_data2$Forme_corps == "elongated", 1, 0)
 
 # Modèle logistique (GLM binaire)
 Fish_glm1 <- glm(data = Fish_data2,
-  Forme_bin ~ Longueur_max + Profondeur_corps + Rapport_aspect + Etroitesse_pedoncule, family = binomial(link = "logit")
+  Forme_deep ~ Longueur_max + Profondeur_corps + Rapport_aspect + Etroitesse_pedoncule, family = binomial(link = "logit")
 )
 summary(Fish_glm1)
 
 
 ```
 
-J’ai voulu d’abord comparer la forme “short/deep” avec “fusiforme” avec un modèle logistique, mais il y avait très peu de “short/deep” dans mon jeu de données. Ça donnait des messages d’erreur et des résultats impossibles à interpréter.
-Du coup, j’ai choisi de comparer les formes “fusiform” et “elongated”, car il y a assez d’individus dans chaque groupe pour faire un modèle. J’ai donc gardé seulement ces deux types de formes et j’ai créé une nouvelle variable binaire (=1 si “elongated”, 0 si “fusiform”).
+On a voulu d’abord comparer la forme “short/deep” avec “fusiforme” avec un modèle logistique, mais il y avait très peu de “short/deep” dans mon jeu de données. Ça donnait des messages d’erreur et des résultats impossibles à interpréter. Du coup, nous avons choisi de comparer les formes “fusiform” et “elongated”, car il y a assez d’individus dans chaque groupe pour faire un modèle. Nous avons donc gardé seulement ces deux types de formes et créé une nouvelle variable binaire (=1 si “elongated”, 0 si “fusiform”).
 
-J’ai utilisé un modèle linéaire généralisé avec les variables morphométriques suivantes: Longueur_max, Profondeur_corps, Rapport_aspect et Etroitesse_pedoncule.
+Nous avons utilisé un modèle linéaire généralisé avec les variables morphométriques suivantes: Longueur_max, Profondeur_corps, Rapport_aspect et Etroitesse_pedoncule.
 
-Le modèle a bien fonctionné et j’ai pu voir quelles variables influencent le plus la probabilité qu’un poisson ait une forme “elongated” plutôt que “fusiform”. Un effet positif signifie que ça augmente les chances d’être “elongated”, un effet négatif veut dire l’inverse.
-
+Le modèle a bien fonctionné et l'on a pu voir quelles variables influencent le plus la probabilité qu’un poisson ait une forme “elongated” plutôt que “fusiform”. Un effet positif signifie que ça augmente les chances d’être “elongated”, un effet négatif veut dire l’inverse.
 
 ```{r}
 #Visualisation du modèle
@@ -360,7 +358,6 @@ chart(data = Fish_data2, prob_elongated ~ Profondeur_corps %col=% Rapport_aspect
   )
 
 ```
-
 
 Discussion: Amal
 
