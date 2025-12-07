@@ -264,8 +264,7 @@ summary_(Fish_lm1) |> tabularise()
 ```{r}
 chart$residuals(Fish_lm1)
 ```
-
-Le Modèle est très robuste avec un R\^2 ajusté de 0.581 et tous ses coefficients sont significatifs, notamment le terme d'interaction qui confirme l'inversion de la pente pour les pélagiques. Cependant, le diagnostic des résidus (Image C) révèle une hétéroscédasticité (variance des erreurs augmente avec les valeurs prédites), justifiant l'utilisation d'une transformation logarithmique sur la Longueur_max dans le prochain modèle pour stabiliser la variance et améliorer la précision des coefficients.
+Le modèle est globalement solide : tous les coefficients ressortent significatifs et l’interaction confirme bien que la pente change chez les espèces pélagiques. Par contre, l’examen des résidus (Image C) montre une hétéroscédasticité, c’est-à-dire que la variance des erreurs augmente avec les valeurs prédites. Pour corriger cela, il sera préférable d’appliquer une transformation logarithmique à la variable Longueur_max dans le modèle suivant afin de stabiliser la variance et d’obtenir des estimations plus fiables.
 
 #### Modèle linéaire
 
@@ -320,17 +319,11 @@ Dans notre jeu de données, l’inclusion d’un effet aléatoire sur la variabl
 #Fish_glm1 <- glm(data = Fish_data2, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station, family = binomial(link = "logit"))
 #Fish_glm1 <- glm(data = Fish_data2, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station, family = quasibinomial)
 
-# Sous-échantillonnage pour ne garder que les deux groupes souhaités
-Fish_data2 <- subset(Fish_data, Forme_corps %in% c("fusiform", "elongated"))
-
-# Recoder la variable cible binaire:
-Fish_data2$Forme_deep <- ifelse(Fish_data2$Forme_corps == "elongated", 1, 0)
+Fish_data$Comportement_banc_bin <- ifelse(Fish_data$Comportement_banc == "schooling", 1, 0)
 
 # Modèle logistique (GLM binaire)
-Fish_glm1 <- glm(data = Fish_data2,
-  Forme_deep ~ Longueur_max + Profondeur_corps + Rapport_aspect + Etroitesse_pedoncule, family = binomial(link = "logit")
-)
-summary(Fish_glm1)
+Fish_glm1 <- glm(data = Fish_data, Comportement_banc_bin ~ Rapport_aspect + Position_oeil_vertical, family = binomial)
+summary_(Fish_glm1) |> tabularise()
 
 
 ```
@@ -343,18 +336,22 @@ Le modèle a bien fonctionné et l'on a pu voir quelles variables influencent le
 
 ```{r}
 #Visualisation du modèle
-# Ajoute la colonne probabilité prédite si ce n'est pas déjà fait
-Fish_data2$prob_elongated <- predict(Fish_glm1, type = "response")
-
-# Visualisation
-chart(data = Fish_data2, prob_elongated ~ Profondeur_corps %col=% Rapport_aspect) +
+chart(data = Fish_data, Comportement_banc_bin ~ Rapport_aspect %col=% Position_oeil_vertical ) +
   geom_point(size = 3, alpha = 0.7) +
   scale_color_viridis_c() +
-  geom_smooth(method = "glm", formula = y ~ x, se = TRUE, color = "magenta") +
+  geom_smooth(
+    method = "glm",
+    method.args = list(family = binomial),
+    formula = y ~ x,
+    se = TRUE,
+    color = "green",
+    linewidth = 1.2
+  ) +
   labs(
-    x = "Profondeur du corps",
-    y = "Probabilité d'être elongated (modèle GLM)",
-    title = "Probabilité d'être elongated selon la profondeur du corps\nCouleur : Rapport d'aspect"
+    x = "Rapport d'aspect",
+    y = "Comportement de banc (0 = non, 1 = oui)",
+    color = "Position œil vertical",
+    title = "Modèle logistique : effet du rapport d'aspect et de la position de l'œil"
   )
 
 ```
@@ -390,7 +387,9 @@ chart(data = Fish_data, Comportement_banc_num ~ Longueur_max %col=% Taille_nageo
   title = "Comportement en banc en fonction de la longueur et de la taille de la nageoire pectorale")
 ```
 
-Discussion: Ide
+Discussion: Le modèle montre que la longueur du poisson et la taille de sa nageoire pectorale influencent toutes les deux la probabilité qu’ils vivent en groupe. Plus un poisson est long, moins il a tendance à faire du schooling, et c’est la même chose quand sa nageoire pectorale est grande. Les deux variables interagissent aussi : l’effet de la longueur n’est pas le même selon la taille de la nageoire.
+
+Le modèle s’ajuste bien aux données (pas de surdispersion), et tous les paramètres sont significatifs, donc les deux caractéristiques retenues expliquent réellement le comportement en groupe chez ces espèces.
 
 ## Conclusion
 
