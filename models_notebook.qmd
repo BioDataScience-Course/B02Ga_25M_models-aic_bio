@@ -325,7 +325,6 @@ Fish_data$Comportement_banc_bin <- ifelse(Fish_data$Comportement_banc == "school
 Fish_glm1 <- glm(data = Fish_data, Comportement_banc_bin ~ Rapport_aspect + Position_oeil_vertical, family = binomial)
 summary_(Fish_glm1) |> tabularise()
 
-
 ```
 
 On a voulu d’abord comparer la forme “short/deep” avec “fusiforme” avec un modèle logistique, mais il y avait très peu de “short/deep” dans mon jeu de données. Ça donnait des messages d’erreur et des résultats impossibles à interpréter. Du coup, nous avons choisi de comparer les formes “fusiform” et “elongated”, car il y a assez d’individus dans chaque groupe pour faire un modèle. Nous avons donc gardé seulement ces deux types de formes et créé une nouvelle variable binaire (=1 si “elongated”, 0 si “fusiform”).
