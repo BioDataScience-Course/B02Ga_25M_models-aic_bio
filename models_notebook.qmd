@@ -264,6 +264,7 @@ summary_(Fish_lm1) |> tabularise()
 ```{r}
 chart$residuals(Fish_lm1)
 ```
+
 Le modèle est globalement solide : tous les coefficients ressortent significatifs et l’interaction confirme bien que la pente change chez les espèces pélagiques. Par contre, l’examen des résidus (Image C) montre une hétéroscédasticité, c’est-à-dire que la variance des erreurs augmente avec les valeurs prédites. Pour corriger cela, il sera préférable d’appliquer une transformation logarithmique à la variable Longueur_max dans le modèle suivant afin de stabiliser la variance et d’obtenir des estimations plus fiables.
 
 #### Modèle linéaire
