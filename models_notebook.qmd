@@ -1,5 +1,5 @@
 ---
-title: "Relations morphologie-comportement chez les poissons des Grands Lacs : (à completer)"
+title: "Relations entre morphologie et stratégies de nage chez les poissons des Grands Lacs"
 author: "Amal Abarou, Ide Tchuileng, Christelle Baseka"
 format:
   html:
@@ -347,7 +347,7 @@ Fish_data2$Forme_bin <- ifelse(Fish_data2$Forme_corps == "elongated", 1, 0)
 Fish_glm1 <- glm(data = Fish_data2,
   Forme_bin ~ Longueur_max + Profondeur_corps + Rapport_aspect + Etroitesse_pedoncule, family = binomial(link = "logit")
 )
-summary(Fish_glm1)
+summary(Fish_glm1) |> tabularise ()
 
 
 ```
