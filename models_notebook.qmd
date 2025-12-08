@@ -204,7 +204,15 @@ chart(Fish_rl2)
 chart$residuals(Fish_rl2)
 ```
 
-Discussion: Amal
+Discussion:
+
+Le modèle linéaire évaluant la relation entre la taille maximale du poisson (Longueur_max) et la taille relative de l’œil (log_Taille_oeil) révèle une relation négative hautement significative. Le coefficient associé à Longueur_max (β = –0,00466, p \< 2×10⁻¹⁶) indique que, chez les poissons des Grands Lacs, la taille de l’œil diminue proportionnellement lorsque la taille corporelle augmente. Autrement dit, les petites espèces présentent des yeux proportionnellement plus grands, tandis que les grandes espèces ont des yeux proportionnellement plus petits.
+
+Ce résultat est cohérent avec des principes biologiques déjà établis : chez de nombreux poissons, la taille relative de l’œil est liée à la stratégie sensorielle, à la vision en milieux moins lumineux et à la pression sélective de la prédation. Les petites espèces dépendant davantage de la vision pour détecter les prédateurs ou rechercher la nourriture présentent souvent des yeux proportionnellement plus développés. À l’inverse, les grandes espèces peuvent compenser leur perception visuelle par d’autres sens, comme la ligne latérale, ou évoluer dans des environnements où une vision fine est moins déterminante.
+
+Le modèle présente un R² de 0,525, indiquant que plus de la moitié de la variation de la taille relative de l’œil est expliquée par la taille corporelle. Pour un modèle basé sur un seul prédicteur morphologique, cette valeur est substantielle et montre que la taille corporelle est un déterminant majeur de la variation observée.
+
+L’analyse des résidus montre que les hypothèses du modèle linéaire sont globalement respectées. Les résidus sont bien centrés autour de zéro et ne montrent pas de motif systématique majeur, ce qui confirme une relation appropriée entre les variables. Le QQ-plot montre une distribution des résidus proche de la normalité, avec seulement quelques valeurs extrêmes. On observe une légère hétéroscédasticité (variance des résidus un peu plus élevée pour les grandes longueurs), mais celle-ci reste faible et ne compromet pas la validité du modèle. Aucun point à fort levier n’indique une influence excessive sur les résultats.
 
 #### Modèle linéaire 1
 
@@ -270,7 +278,7 @@ chart$residuals(Fish_lm1)
 
 Le Modèle est assez robuste avec un R\^2 ajusté de 0.581 et tous ses coefficients sont significatifs, notamment le terme d'interaction qui confirme l'inversion de la pente pour les pélagiques. Cependant, le diagnostic des résidus (Image C) révèle une hétéroscédasticité (variance des erreurs augmente avec les valeurs prédites), justifiant l'utilisation d'une transformation logarithmique sur la Longueur_max dans le prochain modèle pour stabiliser la variance et améliorer la précision des coefficients.
 
-#### Modèle linéaire
+#### Modèle linéaire 2
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
