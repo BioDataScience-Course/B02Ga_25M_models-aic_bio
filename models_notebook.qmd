@@ -1,5 +1,5 @@
 ---
-title: "Relations morphologie-comportement chez les poissons des Grands Lacs : (à completer)"
+title: "Relations entre morphologie et stratégies de nage chez les poissons des Grands Lacs"
 author: "Amal Abarou, Ide Tchuileng, Christelle Baseka"
 format:
   html:
@@ -129,11 +129,9 @@ chart(data = Fish_data,
 
 ... interprétation #3...
 
-\- Les poissons non-schooling présentent des nageoires pectorales plus grandes en moyenne que ceux en schooling, surtout pour la forme *short/deep*.
+Les poissons solitaires (non-schooling) présentent en moyenne des nageoires pectorales plus grandes que ceux se déplaçant en groupe (schooling), surtout pour les individus à corps court et profond (Short/deep). Cette différence pourrait refléter une adaptation à la nage collective, où la manœuvrabilité individuelle est moins cruciale.
 
-\- En schooling, la taille des nageoires est plus homogène et réduite, ce qui peut indiquer une adaptation à la nage collective où la manœuvrabilité individuelle est moins cruciale.
-
-Effet de la forme du corps : le groupe Short/deep a des nageoires plus grandes, particulièrement chez les individus non-schooling (médiane ≈ 0,26 mm). Cela suggère que les poissons à corps court et profond ont besoin de nageoires plus développées pour compenser leur morphologie et assurer la stabilité. Les poissons ayant le corps allongé (Elongated) ont une taille intermédiaire de nageoires, mais avec une forte variabilité chez les non-schooling (médiane ≈ 0,18 mm, mais étendue large). Cela pourrait refléter des stratégies variées selon l’habitat ou le comportement. En fin, les poissons fuiformes (Fusiform) ont des nageoires les plus petites et les plus constantes (≈ 0,17 mm), ce qui est cohérent avec une forme hydrodynamique favorisant la nage rapide sans nécessiter de grandes nageoires.
+Chez les individus à corps court et profond, les nageoires sont particulièrement développées chez les poissons solitaires (médiane ≈ 0,26 mm), probablement pour compenser la morphologie et assurer la stabilité. Les poissons à corps allongé (Elongated) montrent une taille intermédiaire de nageoires, avec une forte variabilité chez les solitaires (médiane ≈ 0,18 mm), ce qui pourrait refléter des stratégies adaptées à différents habitats ou comportements. Enfin, les poissons fusiformes (Fusiform) possèdent les nageoires les plus petites et les plus constantes (≈ 0,17 mm), cohérentes avec une forme hydrodynamique favorisant la nage rapide sans nécessiter de grandes nageoires.
 
 ### Modélisation
 
@@ -161,7 +159,11 @@ Poly1_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + I(Taille_oeil^2))
 summary_(Poly1_lm) |> tabularise()
 ```
 
--Tous les coefficients sont statistiquement significatifs (p-value \< au seuil), ce qui signifie que la taille de l’œil et son carré ont un effet significatif sur la longueur maximale. -Étendue des résidus : \[-95.43, 105.6\], les résidus sont très larges par rapport aux valeurs prédites, ce qui suggère des erreurs importantes pour certaines observations. -Le modèle dans son ensemble est significatif (p-value de Statistique F \< au seuil alpha) et explique un peu plus de la moitié de la variation de la longueur maximale(R\^2 ajusté 54%), ce qui est correct mais laisse encore beaucoup de variabilité non expliquée.
+-Tous les coefficients sont statistiquement significatifs au seuil de 5%, ce qui signifie que la taille de l’œil et son carré ont un effet significatif sur la longueur maximale.
+
+-Étendue des résidus : \[-95.43, 105.6\], les résidus sont très larges par rapport aux valeurs prédites, ce qui suggère des erreurs importantes pour certaines observations.
+
+-Le modèle dans son ensemble est significatif et explique un peu plus de la moitié de la variation de la longueur maximale(R\^2 ajusté 54%), ce qui est correct mais laisse encore beaucoup de variabilité non expliquée.
 
 ```{r}
 # Visualisation du modèle
@@ -175,7 +177,8 @@ chart$residuals(Poly1_lm)
 
 -   la distribution des résidus est très élevé par rapports aux valeurs prédites (A)
 -   Les points suivent globalement la ligne,sauf pour les grandes valeurs qui s'écartent, donc la normalité est raisonnable.(B)
--   La tendance ascendante montre que la variance augmente avec la valeur prédite il y a hétéroscédasticité modérée.(C) -Présence des points influents avec une grande distance de Cook et un effet de levier.
+-   La tendance ascendante montre que la variance augmente avec la valeur prédite il y a hétéroscédasticité modérée.(C)
+-   Présence des points influents avec une grande distance de Cook et un effet de levier.
 
 #### Régression linéaire 2
 
@@ -201,7 +204,15 @@ chart(Fish_rl2)
 chart$residuals(Fish_rl2)
 ```
 
-Discussion: Amal
+Discussion:
+
+Le modèle linéaire évaluant la relation entre la taille maximale du poisson (Longueur_max) et la taille relative de l’œil (log_Taille_oeil) révèle une relation négative hautement significative. Le coefficient associé à Longueur_max (β = –0,00466, p \< 2×10⁻¹⁶) indique que, chez les poissons des Grands Lacs, la taille de l’œil diminue proportionnellement lorsque la taille corporelle augmente. Autrement dit, les petites espèces présentent des yeux proportionnellement plus grands, tandis que les grandes espèces ont des yeux proportionnellement plus petits.
+
+Ce résultat est cohérent avec des principes biologiques déjà établis : chez de nombreux poissons, la taille relative de l’œil est liée à la stratégie sensorielle, à la vision en milieux moins lumineux et à la pression sélective de la prédation. Les petites espèces dépendant davantage de la vision pour détecter les prédateurs ou rechercher la nourriture présentent souvent des yeux proportionnellement plus développés. À l’inverse, les grandes espèces peuvent compenser leur perception visuelle par d’autres sens, comme la ligne latérale, ou évoluer dans des environnements où une vision fine est moins déterminante.
+
+Le modèle présente un R² de 0,525, indiquant que plus de la moitié de la variation de la taille relative de l’œil est expliquée par la taille corporelle. Pour un modèle basé sur un seul prédicteur morphologique, cette valeur est substantielle et montre que la taille corporelle est un déterminant majeur de la variation observée.
+
+L’analyse des résidus montre que les hypothèses du modèle linéaire sont globalement respectées. Les résidus sont bien centrés autour de zéro et ne montrent pas de motif systématique majeur, ce qui confirme une relation appropriée entre les variables. Le QQ-plot montre une distribution des résidus proche de la normalité, avec seulement quelques valeurs extrêmes. On observe une légère hétéroscédasticité (variance des résidus un peu plus élevée pour les grandes longueurs), mais celle-ci reste faible et ne compromet pas la validité du modèle. Aucun point à fort levier n’indique une influence excessive sur les résultats.
 
 #### Modèle linéaire 1
 
@@ -237,7 +248,7 @@ combine_charts(list(a,b))
 
 ```
 
-Le graphique Profondeur_corps - Comportement_banc démontre une forte interaction entre la morphologie et le comportement sur la Longueur_max. Pour les espèces non-schooling (rouge), la Longueur_max est stable ou diminue légèrement lorsque la Profondeur_corps augmente (pente négative). En revanche, pour les espèces schooling (cyan), la Longueur_max augmente clairement et fortement lorsque la Profondeur_corps augmente (pente positive), ce qui suggère une allométrie positive chez ce groupe où les individus plus grands sont également plus profonds ou massifs.
+Le graphique Profondeur_corps - Comportement_banc démontre une forte interaction entre la morphologie et le comportement sur la Longueur_max. Pour les espèces non-schooling, la Longueur_max est stable ou diminue légèrement lorsque la Profondeur_corps augmente (pente négative). En revanche, pour les espèces schooling (cyan), la Longueur_max augmente clairement et fortement lorsque la Profondeur_corps augmente (pente positive), ce qui suggère une allométrie positive chez ce groupe où les individus plus grands sont également plus profonds ou massifs.
 
 Le graphique Vertical_station - Rapport_aspect montre que l'effet du Rapport_aspect sur la Longueur_max est inversé selon l'habitat. Chez les espèces benthopélagiques (saumon, près du fond), l'augmentation du Rapport_aspect (vitesse) est faiblement associée à une Longueur_max plus grande (pente légèrement positive). Au contraire, chez les espèces pélagiques (bleu, pleine eau), l'augmentation du Rapport_aspect est associée à une Longueur_max plus petite (pente clairement négative), ce qui justifie l'inclusion du terme d'interaction beta_4 dans votre modèle.
 
@@ -249,7 +260,7 @@ Le graphique Vertical_station - Rapport_aspect montre que l'effet du Rapport_asp
 #summary(Fish_lm1B) 
 
 #Fish_lm1C <- lm(data = Fish_data, subset = Vertical_station %in% c("pelagic", "benthopelagic"), Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps * Comportement_banc + Vertical_station * Rapport_aspect)  
-#summary_(Fish_lm1C) 
+#summary_(Fish_lm1C)
 ```
 
 Les premiers modèles présentent plusieurs limites. Le modèle initial sans interaction, bien que simple, n’explique que 51 % de la variance et ne retient qu’une seule variable significative, ce qui réduit sa pertinence biologique. L’ajout d’interactions dans le second modèle améliore légèrement l’ajustement (R² ajusté = 54 %), mais introduit une complexité importante sans gain substantiel, avec plusieurs termes non significatifs. Le troisième modèle, plus ciblé, atteint un meilleur R² (59 %), mais reste relativement complexe et inclut des variables dont l’effet est faible. Ces limites justifient la recherche d’un modèle plus parcimonieux, capable de conserver les variables biologiquement pertinentes tout en améliorant la qualité de l’ajustement.
@@ -267,7 +278,7 @@ chart$residuals(Fish_lm1)
 
 Le modèle est globalement solide : tous les coefficients ressortent significatifs et l’interaction confirme bien que la pente change chez les espèces pélagiques. Par contre, l’examen des résidus (Image C) montre une hétéroscédasticité, c’est-à-dire que la variance des erreurs augmente avec les valeurs prédites. Pour corriger cela, il sera préférable d’appliquer une transformation logarithmique à la variable Longueur_max dans le modèle suivant afin de stabiliser la variance et d’obtenir des estimations plus fiables.
 
-#### Modèle linéaire
+#### Modèle linéaire 2
 
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
@@ -276,7 +287,13 @@ Fish_lm2 <- lm(data = Fish_data, Taille_oeil ~ Longueur_max * Comportement_banc)
 summary_(Fish_lm2) |> tabularise ()
 ```
 
--le pvalue de Fstatistique est inférieur au seuil, le modèle est significatif dans son ensemble. -R²ajusté = 0.4982 : le modèle explique environ 50% de la variation de la taille d’œil. -Toutes les variables sont significatives (p \< 0.05), donc l’interaction est pertinente. -Les résidus sont raisonnables (étendue \[-13.56, 13.35\]), suggérant que le modèle est bien ajusté. -La taille d’œil est influencée par la longueur du poisson et par le comportement de banc. L’interaction montre que l’effet de la taille du poisson sur l’œil dépend du comportement de banc : schooling et non-schooling.
+-   le modèle est significatif dans son ensemble (R²ajusté = 0.4982), expliquant environ 50% de la variation de la taille d’œil.
+
+-   Toutes les variables et l'interaction sont significatives (p \< 0.05), ce qui confirme la pertinence de l’effet combiné de la taille corporelle et du comportement de banc.
+
+-   Les résidus sont raisonnables (étendue \[-13.56, 13.35\]), suggérant que le modèle est bien ajusté.
+
+-   La taille de l’œil augmente avec la taille du corps, mais cet effet est plus marqué chez les poissons solitaires que chez ceux nageant en groupe, reflétant une moindre dépendance à la vision individuelle en banc.
 
 ```{r}
 chart(data = Fish_data, Taille_oeil ~ Longueur_max   %col=% Comportement_banc) +
@@ -291,7 +308,7 @@ chart(data = Fish_data, Taille_oeil ~ Longueur_max   %col=% Comportement_banc) +
 chart$residuals(Fish_lm2)
 ```
 
--   L'etendue des residus est elevée par rapport aux valeurs prédites \#### Modèle linéaire généralisé et/ou mixte 2
+-   L'etendue des residus est elevée par rapport aux valeurs prédites
 
 -   Les résidus suivent à peu près une distribution normale
 
@@ -328,11 +345,7 @@ summary_(Fish_glm1) |> tabularise()
 
 ```
 
-On a voulu d’abord comparer la forme “short/deep” avec “fusiforme” avec un modèle logistique, mais il y avait très peu de “short/deep” dans mon jeu de données. Ça donnait des messages d’erreur et des résultats impossibles à interpréter. Du coup, nous avons choisi de comparer les formes “fusiform” et “elongated”, car il y a assez d’individus dans chaque groupe pour faire un modèle. Nous avons donc gardé seulement ces deux types de formes et créé une nouvelle variable binaire (=1 si “elongated”, 0 si “fusiform”).
-
-Nous avons utilisé un modèle linéaire généralisé avec les variables morphométriques suivantes: Longueur_max, Profondeur_corps, Rapport_aspect et Etroitesse_pedoncule.
-
-Le modèle a bien fonctionné et l'on a pu voir quelles variables influencent le plus la probabilité qu’un poisson ait une forme “elongated” plutôt que “fusiform”. Un effet positif signifie que ça augmente les chances d’être “elongated”, un effet négatif veut dire l’inverse.
+L'on a voulu d’abord comparer la forme “short/deep” avec “fusiforme” avec un modèle logistique, mais il y avait très peu de “short/deep” dans mon jeu de données. Ça donnait des messages d’erreur et des résultats impossibles à interpréter.
 
 ```{r}
 #Visualisation du modèle
@@ -381,7 +394,7 @@ summary_(Fish_glm2) |> tabularise()
 chart(data = Fish_data, Comportement_banc_num ~ Longueur_max %col=% Taille_nageoire_pectorale ) +
   geom_point(size = 3, alpha = 0.7) +
   scale_color_viridis_c() +
- geom_smooth(method = "glm", formula = y ~ x, se = TRUE, color = "magenta") +
+ geom_smooth(method = "glm", formula = y ~ x, se = TRUE, color = "orange") +
   labs( x = "Longueur maximale (cm)",
     y = "Comportement de banc (0 = non, 1 = schooling)",
   title = "Comportement en banc en fonction de la longueur et de la taille de la nageoire pectorale")
