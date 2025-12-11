@@ -27,6 +27,8 @@ Dans ce travail, nous utilisons les données du *FishPass Sortable Attribute Dat
 
 **But** :
 
+Le but de ce projet est de mieux comprendre comment certains traits physiques des poissons sont liés à leur façon de se déplacer et de se comporter. On cherche surtout à voir si des caractéristiques comme la longueur, la forme du corps ou la taille des nageoires peuvent influencer leur comportement de banc ou leur position dans la colonne d’eau. Pour cela, on combine des graphiques, des analyses descriptives et quelques modèles statistiques afin d’identifier les traits qui semblent vraiment jouer un rôle. L’idée est simplement d’avoir une vue d’ensemble des liens entre morphologie et comportement chez les poissons étudiés.
+
 ## Matériel et méthodes
 
 <!--% Indiquez ici d'où viennent les données et aussi quel logiciel (et version) vous utilisez pour les analyses. Inspirez-vous des projets du premier module de SDD II. -->
