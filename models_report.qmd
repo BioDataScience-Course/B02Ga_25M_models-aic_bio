@@ -146,6 +146,12 @@ Le graphique de diagnostic confirme l’absence d’écarts majeurs entre les va
 
 <!--% En tenant compte du but de votre carnet de notes et de vos résultats, discutez de résultats et proposez des conclusions à votre analyse en 5 à 10 phrases. -->
 
+Les résultats obtenus confirment que certains traits morphologiques jouent un rôle important dans les stratégies de déplacement et de comportement des poissons. La relation non linéaire observée entre la longueur maximale et la taille relative de l’œil suit une logique allométrique bien documentée : les petites espèces investissent proportionnellement plus dans la vision, ce qui peut être lié à la prédation ou à la recherche de nourriture. Le modèle polynomial utilisé explique une part substantielle de la variation, même si une certaine dispersion résiduelle montre que d’autres facteurs écologiques interviennent probablement.
+
+Concernant le comportement de banc, le modèle logistique met clairement en évidence l’influence combinée du rapport d’aspect et de la position verticale de l’œil. Les poissons au corps plus élancé ont davantage tendance à se regrouper, ce qui peut s’expliquer par une meilleure efficacité hydrodynamique en formation serrée. À l’inverse, une position oculaire plus haute semble associée à un mode de vie moins grégaire, peut-être lié à une vigilance accrue ou à une écologie plus solitaire.
+
+Dans l’ensemble, ces modèles montrent que la morphologie n’est pas seulement un reflet de l’évolution, mais aussi une clé pour comprendre les comportements observés dans les milieux aquatiques. Même si les analyses restent limitées par les variables disponibles et les différences d’effectifs entre ordres, elles mettent en lumière des tendances cohérentes avec la littérature. En conclusion, la morphologie apparaît comme un bon prédicteur de certaines stratégies de nage, et ces résultats peuvent contribuer à mieux anticiper la capacité des espèces à se déplacer ou à franchir des structures dans les environnements aménagés.
+
 ## Bibliographie
 
 Benoit, D., Zielinski, D. P., Swanson, R. A., McLaughlin, R. L., Castro-Santos, T., Goodwin, A. E., Pratt, T. C., & Muir, A. M. (2023). *FishPass Sortable Attribute Database* (Version 1) \[Data set\]. Dryad. <https://doi.org/10.5061/dryad.fqz612jwj>
