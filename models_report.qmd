@@ -12,15 +12,24 @@ bibliography: references.bib
 
 <!--# Un rapport est différent d'un carnet de notes. Il ne s'agit donc pas de faire du copier-coller d'un document vers l'autre. Un rapport de synthèse doit être compréhensible sans devoir lire le carnet de notes. Le rapport de synthèse doit être  rédigé avec un style et une présentation adéquats. -->
 
+```{r configuration}
+# Configuration de l'environnement
+SciViews::R("model","infer", lang = "fr")
+# Importation des données
+Fish_data <- read.csv("data/Fish_data.csv", header = TRUE, sep = ",")
+#nouvelle variable binaire
+Fish_data$Comportement_banc_bin <- ifelse(Fish_data$Comportement_banc == "schooling", 1, 0)
+```
+
 ## Introduction
 
 <!--% Rédigez l'introduction de ce rapport en 5-6 phrases.-->
 
-La morphologie des poissons constitue un déterminant majeur de leur écologie de déplacement, influençant la performance de nage, l’efficacité énergétique, les interactions sociales ainsi que la capacité à franchir des obstacles physiques tels que des rapides ou des passes à poissons. Les traits morphologiques tels que la forme du corps, la profondeur relative, le rapport d’aspect de la nageoire caudale ou encore la taille des nageoires pectorales sont directement associés aux stratégies de nage, qu’elles soient axées sur la vitesse, l’endurance, la manœuvrabilité ou la stabilité dans la colonne d’eau. De même, certains traits comportementaux, tels que la tendance à former des bancs, constituent des réponses écologiques façonnées par le régime hydrodynamique, la prédation ou les modes d’alimentation.
+La morphologie des poissons constitue un déterminant majeur de leur écologie de déplacement, influençant la performance de nage, l’efficacité énergétique, les interactions sociales ainsi que la capacité à franchir des obstacles physiques tels que des rapides ou des passes à poissons. Les traits morphologiques tels que la forme du corps, la profondeur relative, le rapport d’aspect de la nageoire caudale ou encore la taille des nageoires pectorales sont directement associés aux stratégies de nage, qu’elles soient axées sur la vitesse, l’endurance, la manoeuvrabilité ou la stabilité dans la colonne d’eau. De même, certains traits comportementaux, tels que la tendance à former des bancs, constituent des réponses écologiques façonnées par le régime hydrodynamique, la prédation ou les modes d’alimentation.
 
 Dans ce contexte, la base de données FishPass Sortable Attribute Database (Benoit et al., 2023) constitue une ressource pertinente, regroupant des informations morphologiques, physiologiques, comportementales et phénologiques pour un large ensemble d’espèces des Grands Lacs. Elle permet notamment d’analyser les facteurs influençant la capacité des poissons à se déplacer et à franchir des aménagements anthropiques.
 
-Pour ce projet, nous avons combiné deux ensembles de données issus de cette base : FishPass Morphology et FishPass Behaviour. L’objectif est d’étudier les relations entre traits morphologiques et comportements de nage, en particulier la tendance à former des bancs et la position verticale dans la colonne d’eau. Les variables retenues incluent des indicateurs de forme corporelle (profondeur du corps, rapport d’aspect, étroitesse du pédoncule caudal) ainsi que des traits fonctionnels liés à la nage (position et taille des nageoires, position et taille de l’œil).
+Pour ce projet, nous avons combiné deux ensembles de données issus de cette base : FishPass Morphology et FishPass Behaviour. L’objectif est d’étudier les relations entre traits morphologiques et comportements de nage, en particulier la tendance à former des bancs et la position verticale dans la colonne d’eau. Les variables retenues incluent des indicateurs de forme corporelle (profondeur du corps, rapport d’aspect, étroitesse du pédoncule caudal) ainsi que des traits fonctionnels liés à la nage (position et taille des nageoires, position et taille de l’oeil).
 
 Cette étude vise à déterminer si certains profils morphologiques sont associés à des stratégies de déplacement collectives ou individuelles, et dans quelle mesure la morphologie peut prédire le comportement. Une meilleure compréhension de ces relations éclaire les mécanismes sous-jacents à l’adaptation écologique et peut guider l’aménagement de dispositifs favorisant la migration des poissons dans les systèmes fluviaux aménagés.
 
@@ -55,9 +64,9 @@ La base combinée couvre 220 espèces, réparties initialement sur 21 ordres tax
 
 -   Taille de la nageoire pectorale
 
--   Position verticale de l’œil
+-   Position verticale de l’oeil
 
--   Taille de l’œil (% HL) : diamètre de l’œil rapporté à la longueur de la tête.
+-   Taille de l’oeil (% HL) : diamètre de l’œil rapporté à la longueur de la tête.
 
 ### Variables qualitatives retenues (4) :
 
@@ -85,18 +94,18 @@ La base combinée couvre 220 espèces, réparties initialement sur 21 ordres tax
 
 <!--% Présentez les deux modèles les plus pertinents que vous avez sélectionnés. Structurez la section en deux parties avec deux titres de niveau trois.-->
 
-**Relation entre la longueur maximale et la taille relative de l’œil (modèle linéaire polynomial):**
+### **Relation entre la longueur maximale et la taille relative de l’œil (modèle linéaire polynomial):**
 
-Un modèle polynomial d’ordre deux a été ajusté pour décrire la relation entre la taille maximale du poisson (Longueur_max) et la taille relative de l’œil (Taille_oeil).
+Un modèle polynomial d’ordre deux a été ajusté pour décrire la relation entre la taille maximale du poisson (Longueur_max) et la taille relative de l’oeil (Taille_oeil).
 
-```{r}
+```{r modele 1}
 Poly1_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + I(Taille_oeil^2))
 summary_(Poly1_lm) |> tabularise()
 ```
 
-Le modèle s’ajuste de manière satisfaisante aux données morphologiques. Les coefficients des deux termes sont significativement différents de zéro au seuil de 5 %, indiquant une relation non linéaire entre les deux variables. Le coefficient de détermination (R² ajusté = 0,536) montre qu’un peu plus de la moitié de la variation de la taille relative de l’œil est expliquée par la longueur maximale du poisson.
+Le modèle s’ajuste de manière satisfaisante aux données morphologiques. Les coefficients des deux termes sont significativement différents de zéro au seuil de 5 %, indiquant une relation non linéaire entre les deux variables. Le coefficient de détermination (R² ajusté = 0,536) montre qu’un peu plus de la moitié de la variation de la taille relative de l’oeil est expliquée par la longueur maximale du poisson.
 
-```{r}
+```{r residus modele1}
 #Le graphique du modèle (Fig. X)
 chart(Poly1_lm)
 #Analyse des résidus (Fig. Y)
@@ -107,19 +116,18 @@ Le graphique du modèle (Fig. X) montre que les espèces de petite taille possè
 
 L’analyse des résidus (Fig. Y) révèle une distribution globalement conforme à la normalité, malgré une légère hétéroscédasticité pour les grandes longueurs et quelques points influents, ce qui demeure acceptable pour ce type de données biologiques.
 
-**Déterminants morphologiques du comportement de banc (GLM binomial):**
+### **Déterminants morphologiques du comportement de banc (GLM binomial):**
 
 Un modèle linéaire généralisé de type logistique a été ajusté afin d’évaluer l’effet de deux variables morphologiques sur la probabilité pour une espèce de présenter un comportement de banc (*Comportement_banc_bin*).
 
-```{r}
+```{r modele 2}
 Fish_glm1 <- glm(data = Fish_data, Comportement_banc_bin ~ Rapport_aspect + Position_oeil_vertical, family = binomial)
 summary_(Fish_glm1) |> tabularise()
 ```
 
-Les résultats montrent que le rapport d’aspect et la position verticale de l’œil sont tous deux significativement associés au comportement grégaire (p \< 0,05). Le rapport d’aspect présente un effet positif, indiquant que les poissons de forme plus élancée ont une probabilité accrue d’adopter un comportement de banc. À l’inverse, la position verticale de l’œil montre un effet négatif marqué, suggérant que les espèces dont l’œil est situé plus haut ont davantage tendance à un comportement non grégaire.
+Les résultats montrent que le rapport d’aspect et la position verticale de l’oeil sont tous deux significativement associés au comportement grégaire (p \< 0,05). Le rapport d’aspect présente un effet positif, indiquant que les poissons de forme plus élancée ont une probabilité accrue d’adopter un comportement de banc. À l’inverse, la position verticale de l’œil montre un effet négatif marqué, suggérant que les espèces dont l’œil est situé plus haut ont davantage tendance à un comportement non grégaire.
 
-```{r}
-#Visualisation du modèle
+```{r graphique modele 2}
 chart(data = Fish_data, Comportement_banc_bin ~ Rapport_aspect %col=% Position_oeil_vertical ) +
   geom_point(size = 3, alpha = 0.7) +
   scale_color_viridis_c() +
@@ -134,10 +142,9 @@ chart(data = Fish_data, Comportement_banc_bin ~ Rapport_aspect %col=% Position_o
   labs(
     x = "Rapport d'aspect",
     y = "Comportement de banc (0 = non, 1 = oui)",
-    color = "Position œil vertical",
-    title = "Modèle logistique : effet du rapport d'aspect et de la position de l'œil"
+    color = "Position oeil vertical",
+    title = "Modèle logistique : effet du rapport d'aspect et de la position de l'oeil"
   )
-
 ```
 
 Le graphique de diagnostic confirme l’absence d’écarts majeurs entre les valeurs observées et prédites. Ce modèle met ainsi en évidence un lien fonctionnel entre la morphologie et l’écologie comportementale, reliant des caractéristiques de forme à des stratégies sociales chez les poissons.

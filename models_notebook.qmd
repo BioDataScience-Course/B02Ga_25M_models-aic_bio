@@ -216,9 +216,9 @@ L’analyse des résidus montre que les hypothèses du modèle linéaire sont gl
 
 Examiner l’effet combiné de plusieurs traits morphologiques et comportementaux sur la longueur maximale.
 
-```{r}
+```{r graphique lm1}
 
-a<-chart(data = Fish_data, Longueur_max ~ Profondeur_corps %col=% Comportement_banc) +
+a <- chart(data = Fish_data, Longueur_max ~ Profondeur_corps %col=% Comportement_banc) +
   geom_point() +
   geom_smooth(method = "lm", formula = y ~ x, se = TRUE) +
   labs(x = "Profondeur du corps", 
@@ -228,7 +228,7 @@ a<-chart(data = Fish_data, Longueur_max ~ Profondeur_corps %col=% Comportement_b
     legend.direction = "horizontal",
     legend.title = element_blank())
 
-b<- chart(data = Fish_data, Longueur_max ~ Rapport_aspect %col=% Vertical_station) +
+b <- chart(data = Fish_data, Longueur_max ~ Rapport_aspect %col=% Vertical_station) +
   geom_point() +
   geom_smooth(method = "lm", formula = y ~ x, se = TRUE) + labs( x = "Rapport d'aspect",
   y = "Longueur max (cm)") + 
@@ -259,14 +259,14 @@ Le graphique Vertical_station - Rapport_aspect montre que l'effet du Rapport_asp
 
 Les premiers modèles présentent plusieurs limites. Le modèle initial sans interaction, bien que simple, n’explique que 51 % de la variance et ne retient qu’une seule variable significative, ce qui réduit sa pertinence biologique. L’ajout d’interactions dans le second modèle améliore légèrement l’ajustement (R² ajusté = 54 %), mais introduit une complexité importante sans gain substantiel, avec plusieurs termes non significatifs. Le troisième modèle, plus ciblé, atteint un meilleur R² (59 %), mais reste relativement complexe et inclut des variables dont l’effet est faible. Ces limites justifient la recherche d’un modèle plus parcimonieux, capable de conserver les variables biologiquement pertinentes tout en améliorant la qualité de l’ajustement.
 
-```{r}
+```{r modele linéaire 1}
 Fish_lm1 <- lm(data = Fish_data,
                subset = Vertical_station %in% c("pelagic", "benthopelagic"), 
 Longueur_max ~ Taille_oeil + Vertical_station + Vertical_station * Rapport_aspect)
 summary_(Fish_lm1) |> tabularise()
 ```
 
-```{r}
+```{r analyse residus lm1}
 chart$residuals(Fish_lm1)
 ```
 
@@ -336,7 +336,6 @@ Fish_data$Comportement_banc_bin <- ifelse(Fish_data$Comportement_banc == "school
 # Modèle logistique (GLM binaire)
 Fish_glm1 <- glm(data = Fish_data, Comportement_banc_bin ~ Rapport_aspect + Position_oeil_vertical, family = binomial)
 summary_(Fish_glm1) |> tabularise()
-
 ```
 
 L'on a voulu d’abord comparer la forme “short/deep” avec “fusiforme” avec un modèle logistique, mais il y avait très peu de “short/deep” dans mon jeu de données. Ça donnait des messages d’erreur et des résultats impossibles à interpréter.
@@ -383,26 +382,27 @@ Dans l’ensemble, ces résultats soutiennent l’idée qu’une partie importan
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
 
-```{r}
-Fish_data$Comportement_banc_num <- ifelse(Fish_data$Comportement_banc == "schooling", 1, 0)
-#Fish_glm2A <- glm(data = Fish_data, Comportement_banc_num ~ Longueur_max, family = binomial())
+```{r essais glm2}
+#Fish_glm2A <- glm(data = Fish_data, Comportement_banc_bin ~ Longueur_max, family = binomial())
 #summary(Fish_glm2A)
 
-#Fish_glm2B <- glm(data = Fish_data, Comportement_banc_num ~ Longueur_max + Taille_nageoire_pectorale, family = binomial())
+#Fish_glm2B <- glm(data = Fish_data, Comportement_banc_bin ~ Longueur_max + Taille_nageoire_pectorale, family = binomial())
 #summary(Fish_glm2B) 
 ```
 
 Le premier modèle, basé uniquement sur la longueur maximale, présente une faible capacité explicative (AIC = 127,6) et ne montre qu’un effet marginalement significatif. Le second modèle améliore l’ajustement (AIC = 120,1) mais reste limité par la complexité croissante et la sensibilité des coefficients.
 
-```{r}
-Fish_glm2 <- glm(data = Fish_data, Comportement_banc_num ~ Longueur_max * Taille_nageoire_pectorale,
+```{r glm2}
+Fish_glm2 <- glm(data = Fish_data, Comportement_banc_bin ~ Longueur_max * Taille_nageoire_pectorale,
     family = binomial())
 summary_(Fish_glm2) |> tabularise()
+```
 
-chart(data = Fish_data, Comportement_banc_num ~ Longueur_max %col=% Taille_nageoire_pectorale ) +
+```{r graphique glm2}
+chart(data = Fish_data, Comportement_banc_bin ~ Longueur_max %col=% Taille_nageoire_pectorale ) +
   geom_point(size = 3, alpha = 0.7) +
   scale_color_viridis_c() +
- geom_smooth(method = "glm", formula = y ~ x, se = TRUE, color = "orange") +
+ geom_smooth(method = "glm", formula = y ~ x, se = TRUE, color = "magenta") +
   labs( x = "Longueur maximale (cm)",
     y = "Comportement de banc (0 = non, 1 = schooling)",
   title = "Comportement en banc en fonction de la longueur et de la taille de la nageoire pectorale")
