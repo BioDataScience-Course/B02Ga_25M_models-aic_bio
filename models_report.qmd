@@ -85,9 +85,72 @@ La base combinée couvre 220 espèces, réparties initialement sur 21 ordres tax
 
 <!--% Présentez les deux modèles les plus pertinents que vous avez sélectionnés. Structurez la section en deux parties avec deux titres de niveau trois.-->
 
+**Relation entre la longueur maximale et la taille relative de l’œil (modèle linéaire polynomial):**
+
+Un modèle polynomial d’ordre deux a été ajusté pour décrire la relation entre la taille maximale du poisson (Longueur_max) et la taille relative de l’œil (Taille_oeil).
+
+```{r}
+Poly1_lm <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + I(Taille_oeil^2))
+summary_(Poly1_lm) |> tabularise()
+```
+
+Le modèle s’ajuste de manière satisfaisante aux données morphologiques. Les coefficients des deux termes sont significativement différents de zéro au seuil de 5 %, indiquant une relation non linéaire entre les deux variables. Le coefficient de détermination (R² ajusté = 0,536) montre qu’un peu plus de la moitié de la variation de la taille relative de l’œil est expliquée par la longueur maximale du poisson.
+
+```{r}
+#Le graphique du modèle (Fig. X)
+chart(Poly1_lm)
+#Analyse des résidus (Fig. Y)
+chart$residuals(Poly1_lm)
+```
+
+Le graphique du modèle (Fig. X) montre que les espèces de petite taille possèdent des yeux proportionnellement plus grands, tandis que les espèces plus grandes présentent des valeurs plus faibles. Cette tendance est cohérente avec les lois allométriques habituellement observées chez les poissons.
+
+L’analyse des résidus (Fig. Y) révèle une distribution globalement conforme à la normalité, malgré une légère hétéroscédasticité pour les grandes longueurs et quelques points influents, ce qui demeure acceptable pour ce type de données biologiques.
+
+**Déterminants morphologiques du comportement de banc (GLM binomial):**
+
+Un modèle linéaire généralisé de type logistique a été ajusté afin d’évaluer l’effet de deux variables morphologiques sur la probabilité pour une espèce de présenter un comportement de banc (*Comportement_banc_bin*).
+
+```{r}
+Fish_glm1 <- glm(data = Fish_data, Comportement_banc_bin ~ Rapport_aspect + Position_oeil_vertical, family = binomial)
+summary_(Fish_glm1) |> tabularise()
+```
+
+Les résultats montrent que le rapport d’aspect et la position verticale de l’œil sont tous deux significativement associés au comportement grégaire (p \< 0,05). Le rapport d’aspect présente un effet positif, indiquant que les poissons de forme plus élancée ont une probabilité accrue d’adopter un comportement de banc. À l’inverse, la position verticale de l’œil montre un effet négatif marqué, suggérant que les espèces dont l’œil est situé plus haut ont davantage tendance à un comportement non grégaire.
+
+```{r}
+#Visualisation du modèle
+chart(data = Fish_data, Comportement_banc_bin ~ Rapport_aspect %col=% Position_oeil_vertical ) +
+  geom_point(size = 3, alpha = 0.7) +
+  scale_color_viridis_c() +
+  geom_smooth(
+    method = "glm",
+    method.args = list(family = binomial),
+    formula = y ~ x,
+    se = TRUE,
+    color = "green",
+    linewidth = 1.2
+  ) +
+  labs(
+    x = "Rapport d'aspect",
+    y = "Comportement de banc (0 = non, 1 = oui)",
+    color = "Position œil vertical",
+    title = "Modèle logistique : effet du rapport d'aspect et de la position de l'œil"
+  )
+
+```
+
+Le graphique de diagnostic confirme l’absence d’écarts majeurs entre les valeurs observées et prédites. Ce modèle met ainsi en évidence un lien fonctionnel entre la morphologie et l’écologie comportementale, reliant des caractéristiques de forme à des stratégies sociales chez les poissons.
+
 ## Discussion et Conclusion
 
 <!--% En tenant compte du but de votre carnet de notes et de vos résultats, discutez de résultats et proposez des conclusions à votre analyse en 5 à 10 phrases. -->
+
+Les résultats obtenus confirment que certains traits morphologiques jouent un rôle important dans les stratégies de déplacement et de comportement des poissons. La relation non linéaire observée entre la longueur maximale et la taille relative de l’œil suit une logique allométrique bien documentée : les petites espèces investissent proportionnellement plus dans la vision, ce qui peut être lié à la prédation ou à la recherche de nourriture. Le modèle polynomial utilisé explique une part substantielle de la variation, même si une certaine dispersion résiduelle montre que d’autres facteurs écologiques interviennent probablement.
+
+Concernant le comportement de banc, le modèle logistique met clairement en évidence l’influence combinée du rapport d’aspect et de la position verticale de l’œil. Les poissons au corps plus élancé ont davantage tendance à se regrouper, ce qui peut s’expliquer par une meilleure efficacité hydrodynamique en formation serrée. À l’inverse, une position oculaire plus haute semble associée à un mode de vie moins grégaire, peut-être lié à une vigilance accrue ou à une écologie plus solitaire.
+
+Dans l’ensemble, ces modèles montrent que la morphologie n’est pas seulement un reflet de l’évolution, mais aussi une clé pour comprendre les comportements observés dans les milieux aquatiques. Même si les analyses restent limitées par les variables disponibles et les différences d’effectifs entre ordres, elles mettent en lumière des tendances cohérentes avec la littérature. En conclusion, la morphologie apparaît comme un bon prédicteur de certaines stratégies de nage, et ces résultats peuvent contribuer à mieux anticiper la capacité des espèces à se déplacer ou à franchir des structures dans les environnements aménagés.
 
 ## Bibliographie
 

@@ -21,13 +21,13 @@ bibliography: references.bib
 
 <!--% Rédigez une courte introduction de 3 ou 5 phrases qui présente vos données. Ajoutez une phrase de but (que vous remanierez éventuellement en fonction des modèles que vous ajouterez plus tard). Vous pouvez citer la bibliographie en utilisant le formatage Markdown ad hoc et en incluant votre référence au format bibtex dans le fichier references.bib. -->
 
-... Introduction et but...
-
 Les poissons des Grands Lacs présentent une grande diversité de morphologies et de comportements, qui influencent leur capacité à se déplacer dans leur environnement et à franchir des obstacles tels que barrages, passes à poissons ou variations de débit. L’ensemble de ces caractéristiques peut conditionner leur performance de nage et donc leurs chances de migration et de survie.
 
 Dans ce travail, nous utilisons les données du *FishPass Sortable Attribute Database* (Benoit *et al.*, 2023) qui regroupent des traits morphologiques (par ex. longueur maximale, forme du corps, taille et position des nageoires) ainsi que des traits comportementaux (position verticale dans la colonne d'eau, comportement de banc).
 
 **But** :
+
+Le but de ce projet est de mieux comprendre comment certains traits physiques des poissons sont liés à leur façon de se déplacer et de se comporter. On cherche surtout à voir si des caractéristiques comme la longueur, la forme du corps ou la taille des nageoires peuvent influencer leur comportement de banc ou leur position dans la colonne d’eau. Pour cela, on combine des graphiques, des analyses descriptives et quelques modèles statistiques afin d’identifier les traits qui semblent vraiment jouer un rôle. L’idée est simplement d’avoir une vue d’ensemble des liens entre morphologie et comportement chez les poissons étudiés.
 
 ## Matériel et méthodes
 
@@ -107,8 +107,6 @@ chart(data = Fish_data, Taille_oeil ~ Vertical_station %fill=% Comportement_banc
 
 ```
 
-... interprétation #2...
-
 Benthopelagic: Les espèces en groupe (bleu) ont généralement une médiane et un écart interquartile plus élevés que les espèces non-schooling (rouge). Et donc l'on peut dire que les poissons benthopelagic en groupe tendent a avoir des yeux proportionnellement plus grands,impliquant ainsi une dependance accrue a la vision dans ce comportement.
 
 Demersal: La mediane des especes en grope(bleu) est egalement plus elevee que celle des especes non en groupe(rouge). La distribution en groupe est aussi plus compacte(moins de variabilite). Ici, le comportement en groupe est associe a des yeux plus grands, mais la distinction est moins nette que pour le groupe benthopelagic.
@@ -126,8 +124,6 @@ chart(data = Fish_data,
     y = "Taille de la nageoire pectorale (mm)",
     title = "Taille des nageoires pectorales selon le comportement et la forme du corps") 
 ```
-
-... interprétation #3...
 
 Les poissons solitaires (non-schooling) présentent en moyenne des nageoires pectorales plus grandes que ceux se déplaçant en groupe (schooling), surtout pour les individus à corps court et profond (Short/deep). Cette différence pourrait refléter une adaptation à la nage collective, où la manœuvrabilité individuelle est moins cruciale.
 
@@ -216,8 +212,6 @@ L’analyse des résidus montre que les hypothèses du modèle linéaire sont gl
 
 #### Modèle linéaire 1
 
-Modèle linéaire 1
-
 <!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
 
 Examiner l’effet combiné de plusieurs traits morphologiques et comportementaux sur la longueur maximale.
@@ -276,7 +270,7 @@ summary_(Fish_lm1) |> tabularise()
 chart$residuals(Fish_lm1)
 ```
 
-Le Modèle est assez robuste avec un R\^2 ajusté de 0.581 et tous ses coefficients sont significatifs, notamment le terme d'interaction qui confirme l'inversion de la pente pour les pélagiques. Cependant, le diagnostic des résidus (Image C) révèle une hétéroscédasticité (variance des erreurs augmente avec les valeurs prédites), justifiant l'utilisation d'une transformation logarithmique sur la Longueur_max dans le prochain modèle pour stabiliser la variance et améliorer la précision des coefficients.
+Le modèle est globalement solide : tous les coefficients ressortent significatifs et l’interaction confirme bien que la pente change chez les espèces pélagiques. Par contre, l’examen des résidus (Image C) montre une hétéroscédasticité, c’est-à-dire que la variance des erreurs augmente avec les valeurs prédites. Pour corriger cela, il sera préférable d’appliquer une transformation logarithmique à la variable Longueur_max dans le modèle suivant afin de stabiliser la variance et d’obtenir des estimations plus fiables.
 
 #### Modèle linéaire 2
 
@@ -323,9 +317,9 @@ chart$residuals(Fish_lm2)
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
 
 ```{r}
-#library(lme4)
-#Fish_glm2 <- glmer(data = Fish_data, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station + (1 | Ordre), family = binomial())
-#summary(Fish_glm2)
+#Fish_data$Forme_deep <- ifelse(Fish_data$Forme_corps == "short/deep", 1, 0)
+#Fish_glm1 <- lme4::glmer(data = Fish_data, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station + (1 | Ordre), family = binomial())
+#summary(Fish_glm1)
 
 ```
 
@@ -334,49 +328,56 @@ Dans notre jeu de données, l’inclusion d’un effet aléatoire sur la variabl
 ```{r}
 #Fish_data$Forme_deep <- ifelse(Fish_data$Forme_corps == "short/deep", 1, ifelse(Fish_data$Forme_corps == "fusiforme", 0, NA))
 #Fish_data2 <- subset(Fish_data, !is.na(Forme_deep))
-#Fish_glm2 <- glm(data = Fish_data2, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station, family = binomial(link = "logit"))
-#Fish_glm2 <- glm(data = Fish_data2, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station, family = quasibinomial)
+#Fish_glm1 <- glm(data = Fish_data2, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station, family = binomial(link = "logit"))
+#Fish_glm1 <- glm(data = Fish_data2, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station, family = quasibinomial)
 
-# Sous-échantillonnage pour ne garder que les deux groupes souhaités
-Fish_data2 <- subset(Fish_data, Forme_corps %in% c("fusiform", "elongated"))
-
-# Recoder la variable cible binaire:
-Fish_data2$Forme_bin <- ifelse(Fish_data2$Forme_corps == "elongated", 1, 0)
+Fish_data$Comportement_banc_bin <- ifelse(Fish_data$Comportement_banc == "schooling", 1, 0)
 
 # Modèle logistique (GLM binaire)
-Fish_glm1 <- glm(data = Fish_data2,
-  Forme_bin ~ Longueur_max + Profondeur_corps + Rapport_aspect + Etroitesse_pedoncule, family = binomial(link = "logit")
-)
-summary(Fish_glm1) |> tabularise ()
-
+Fish_glm1 <- glm(data = Fish_data, Comportement_banc_bin ~ Rapport_aspect + Position_oeil_vertical, family = binomial)
+summary_(Fish_glm1) |> tabularise()
 
 ```
 
-J’ai voulu d’abord comparer la forme “short/deep” avec “fusiforme” avec un modèle logistique, mais il y avait très peu de “short/deep” dans mon jeu de données. Ça donnait des messages d’erreur et des résultats impossibles à interpréter. Du coup, j’ai choisi de comparer les formes “fusiform” et “elongated”, car il y a assez d’individus dans chaque groupe pour faire un modèle. J’ai donc gardé seulement ces deux types de formes et j’ai créé une nouvelle variable binaire (=1 si “elongated”, 0 si “fusiform”).
-
-J’ai utilisé un modèle linéaire généralisé avec les variables morphométriques suivantes: Longueur_max, Profondeur_corps, Rapport_aspect et Etroitesse_pedoncule.
-
-Le modèle a bien fonctionné et j’ai pu voir quelles variables influencent le plus la probabilité qu’un poisson ait une forme “elongated” plutôt que “fusiform”. Un effet positif signifie que ça augmente les chances d’être “elongated”, un effet négatif veut dire l’inverse.
+L'on a voulu d’abord comparer la forme “short/deep” avec “fusiforme” avec un modèle logistique, mais il y avait très peu de “short/deep” dans mon jeu de données. Ça donnait des messages d’erreur et des résultats impossibles à interpréter.
 
 ```{r}
 #Visualisation du modèle
-# Ajoute la colonne probabilité prédite si ce n'est pas déjà fait
-Fish_data2$prob_elongated <- predict(Fish_glm1, type = "response")
-
-# Visualisation
-chart(data = Fish_data2, prob_elongated ~ Profondeur_corps %col=% Rapport_aspect) +
+chart(data = Fish_data, Comportement_banc_bin ~ Rapport_aspect %col=% Position_oeil_vertical ) +
   geom_point(size = 3, alpha = 0.7) +
   scale_color_viridis_c() +
-  geom_smooth(method = "glm", formula = y ~ x, se = TRUE, color = "magenta") +
+  geom_smooth(
+    method = "glm",
+    method.args = list(family = binomial),
+    formula = y ~ x,
+    se = TRUE,
+    color = "green",
+    linewidth = 1.2
+  ) +
   labs(
-    x = "Profondeur du corps",
-    y = "Probabilité d'être elongated (modèle GLM)",
-    title = "Probabilité d'être elongated selon la profondeur du corps\nCouleur : Rapport d'aspect"
+    x = "Rapport d'aspect",
+    y = "Comportement de banc (0 = non, 1 = oui)",
+    color = "Position œil vertical",
+    title = "Modèle logistique : effet du rapport d'aspect et de la position de l'œil"
   )
 
 ```
 
-Discussion: Amal
+Discussion:
+
+Le modèle logistique évaluant les déterminants morphologiques du comportement de banc montre que deux traits sont significativement associés à la probabilité qu’une espèce soit grégaire : le rapport d’aspect de la nageoire caudale et la position verticale de l’œil. Le coefficient positif du rapport d’aspect (β = 0,982, p = 0,036) indique que les espèces possédant une nageoire caudale plus effilée et plus haute ont une probabilité plus élevée de former des bancs. Ce résultat est cohérent avec la fonction hydrodynamique d’une caudale à fort rapport d’aspect, qui favorise une nage stable, économique et efficace dans des groupes denses.
+
+À l’inverse, la position de l’œil montre un effet fortement négatif (β = –12,32, p = 0,0015) : plus l’œil est situé haut verticalement, plus la probabilité de comportement grégaire diminue. Ce résultat suggère qu’une position oculaire plus élevée serait associée à des espèces adoptant des stratégies d’alimentation ou de vigilance différentes, moins centrées sur le déplacement collectif. L’œil positionné plus haut peut être lié à des comportements plus benthiques ou plus solitaires, où la coordination avec des congénères est moins cruciale.
+
+D’un point de vue biologique, ces deux traits capturent des principes importants en écologie fonctionnelle :
+
+-   le rapport d’aspect reflète des capacités locomotrices adaptées aux déplacements groupés.
+
+-   la position de l’œil reflète des contraintes sensorielles et comportementales influençant la nécessité d’un comportement social.
+
+Le modèle présente une déviance résiduelle réduite par rapport à la déviance nulle et un AIC de 115,8, indiquant que l’ajout de ces deux prédicteurs améliore réellement la capacité du modèle à expliquer la présence du comportement de banc. La courbe ajustée montre une augmentation claire de la probabilité de banc lorsque le rapport d’aspect augmente, tandis que la position de l’œil module fortement ce lien.
+
+Dans l’ensemble, ces résultats soutiennent l’idée qu’une partie importante du comportement social des poissons peut être prédite à partir de traits morphologiques clés, ce qui correspond directement à l’objectif initial du projet : comprendre comment la morphologie influence la tendance des poissons à former des bancs.
 
 #### Modèle linéaire généralisé et/ou mixte 2
 
@@ -407,13 +408,19 @@ chart(data = Fish_data, Comportement_banc_num ~ Longueur_max %col=% Taille_nageo
   title = "Comportement en banc en fonction de la longueur et de la taille de la nageoire pectorale")
 ```
 
-Discussion: Ide
+Discussion: Le modèle montre que la longueur du poisson et la taille de sa nageoire pectorale influencent toutes les deux la probabilité qu’ils vivent en groupe. Plus un poisson est long, moins il a tendance à faire du schooling, et c’est la même chose quand sa nageoire pectorale est grande. Les deux variables interagissent aussi : l’effet de la longueur n’est pas le même selon la taille de la nageoire.
+
+Le modèle s’ajuste bien aux données (pas de surdispersion), et tous les paramètres sont significatifs, donc les deux caractéristiques retenues expliquent réellement le comportement en groupe chez ces espèces.
 
 ## Conclusion
 
 <!--% Lorsque toutes les analyses sont réalisées, terminez ce bloc-notes avec 3 à 6 phrases de conclusion en rapport avec ce que vous avez observé dans vos analyses. Quels sont les modèles les plus pertinents que vous retenez ? -->
 
-...vos conclusions ici...
+Dans l’ensemble, nos analyses montrent que plusieurs traits morphologiques clés influencent à la fois la performance locomotrice et certains comportements sociaux chez les poissons des Grands Lacs. Les relations exploratoires soulignent notamment l’importance du rapport d’aspect et de l’étroitesse du pédoncule caudal, fortement associés aux espèces formant des bancs et à des stratégies de nage rapides et efficaces. Les modèles linéaires confirment également que la taille relative de l’œil diminue avec l’augmentation de la taille corporelle, un pattern classique d’allométrie sensorielle que nous retrouvons clairement dans nos données.
+
+Parmi les modèles testés, les régressions intégrant des interactions biologiquement pertinentes (par exemple, l’effet différent du rapport d’aspect selon la position verticale) se révèlent plus informatives que les modèles simples, tout en restant suffisamment parcimonieuses. Enfin, le modèle logistique identifie deux prédicteurs robustes du comportement de banc le rapport d’aspect et la position verticale de l’œil indiquant que ces traits morphologiques jouent un rôle majeur dans la structuration des comportements sociaux.
+
+Les modèles retenus comme les plus pertinents sont donc : la régression polynomiale reliant la taille de l’œil à la longueur maximale, le modèle linéaire avec interaction Rapport_aspect × Vertical_station, et le GLM logistique expliquant le comportement de banc, car ils offrent les résultats les plus cohérents et biologiquement interprétables.
 
 ## Références
 
