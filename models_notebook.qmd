@@ -369,7 +369,21 @@ chart(data = Fish_data, Comportement_banc_bin ~ Rapport_aspect %col=% Position_o
 
 ```
 
-Discussion: Amal
+Discussion:
+
+Le modèle logistique évaluant les déterminants morphologiques du comportement de banc montre que deux traits sont significativement associés à la probabilité qu’une espèce soit grégaire : le rapport d’aspect de la nageoire caudale et la position verticale de l’œil. Le coefficient positif du rapport d’aspect (β = 0,982, p = 0,036) indique que les espèces possédant une nageoire caudale plus effilée et plus haute ont une probabilité plus élevée de former des bancs. Ce résultat est cohérent avec la fonction hydrodynamique d’une caudale à fort rapport d’aspect, qui favorise une nage stable, économique et efficace dans des groupes denses.
+
+À l’inverse, la position de l’œil montre un effet fortement négatif (β = –12,32, p = 0,0015) : plus l’œil est situé haut verticalement, plus la probabilité de comportement grégaire diminue. Ce résultat suggère qu’une position oculaire plus élevée serait associée à des espèces adoptant des stratégies d’alimentation ou de vigilance différentes, moins centrées sur le déplacement collectif. L’œil positionné plus haut peut être lié à des comportements plus benthiques ou plus solitaires, où la coordination avec des congénères est moins cruciale.
+
+D’un point de vue biologique, ces deux traits capturent des principes importants en écologie fonctionnelle :
+
+-   le rapport d’aspect reflète des capacités locomotrices adaptées aux déplacements groupés.
+
+-   la position de l’œil reflète des contraintes sensorielles et comportementales influençant la nécessité d’un comportement social.
+
+Le modèle présente une déviance résiduelle réduite par rapport à la déviance nulle et un AIC de 115,8, indiquant que l’ajout de ces deux prédicteurs améliore réellement la capacité du modèle à expliquer la présence du comportement de banc. La courbe ajustée montre une augmentation claire de la probabilité de banc lorsque le rapport d’aspect augmente, tandis que la position de l’œil module fortement ce lien.
+
+Dans l’ensemble, ces résultats soutiennent l’idée qu’une partie importante du comportement social des poissons peut être prédite à partir de traits morphologiques clés, ce qui correspond directement à l’objectif initial du projet : comprendre comment la morphologie influence la tendance des poissons à former des bancs.
 
 #### Modèle linéaire généralisé et/ou mixte 2
 
