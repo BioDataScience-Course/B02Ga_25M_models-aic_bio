@@ -91,7 +91,7 @@ Ce graphique met en évidence que les espèces présentant une morphologie cauda
 
 <!--% Graphique et interprétation de l'étudiant #2 ci-dessous. -->
 
-```{r chart2} +}
+```{r chart2}
 #chart(data = Fish_data, Profondeur_corps ~ Taille_oeil %col=% Vertical_station | Ordre) +
 chart(data = Fish_data, Taille_oeil ~ Vertical_station %fill=% Comportement_banc) +
   geom_violin(trim = FALSE, alpha = 0.7) +
@@ -255,14 +255,17 @@ Le graphique Vertical_station - Rapport_aspect montre que l'effet du Rapport_asp
 
 #Fish_lm1C <- lm(data = Fish_data, subset = Vertical_station %in% c("pelagic", "benthopelagic"), Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps * Comportement_banc + Vertical_station * Rapport_aspect)  
 #summary_(Fish_lm1C)
+
+#Fish_lm1 <- lm(data = Fish_data,
+#               subset = Vertical_station %in% c("pelagic", "benthopelagic"), Longueur_max ~ Taille_oeil + Vertical_station + Vertical_station * Rapport_aspect)
+#summary_(Fish_lm1) |> tabularise()
 ```
 
-Les premiers modèles présentent plusieurs limites. Le modèle initial sans interaction, bien que simple, n’explique que 51 % de la variance et ne retient qu’une seule variable significative, ce qui réduit sa pertinence biologique. L’ajout d’interactions dans le second modèle améliore légèrement l’ajustement (R² ajusté = 54 %), mais introduit une complexité importante sans gain substantiel, avec plusieurs termes non significatifs. Le troisième modèle, plus ciblé, atteint un meilleur R² (59 %), mais reste relativement complexe et inclut des variables dont l’effet est faible. Ces limites justifient la recherche d’un modèle plus parcimonieux, capable de conserver les variables biologiquement pertinentes tout en améliorant la qualité de l’ajustement.
+Les premiers modèles présentent plusieurs limites. Le modèle initial sans interaction, bien que simple, n’explique que 51 % de la variance et ne retient qu’une seule variable significative, ce qui réduit sa pertinence biologique. L’ajout d’interactions dans le second modèle améliore légèrement l’ajustement (R² ajusté = 54 %), mais introduit une complexité importante sans gain substantiel, avec plusieurs termes non significatifs. Le troisième modèle, plus ciblé, atteint un meilleur R² (59 %), mais reste relativement complexe et inclut des variables dont l’effet est faible, et les résidus présentent une hétéroscédasticité. La **transformation logarithmique de Longueur_max** dans le quatrième modèle a permis de stabiliser la variance et de corriger les problèmes de résidus. Cette transformation a également rendu l’interaction non significative, conduisant à un modèle plus simple et robuste, ne conservant que les variables **Taille_oeil** et **Vertical_station**, avec un R² ajusté de 0,63.
 
 ```{r modele linéaire 1}
-Fish_lm1 <- lm(data = Fish_data,
-               subset = Vertical_station %in% c("pelagic", "benthopelagic"), 
-Longueur_max ~ Taille_oeil + Vertical_station + Vertical_station * Rapport_aspect)
+Fish_lm1 <- lm(data = Fish_data, 
+               subset = Vertical_station %in% c("pelagic", "benthopelagic"), log(Longueur_max) ~ Taille_oeil + Vertical_station )  
 summary_(Fish_lm1) |> tabularise()
 ```
 
@@ -336,6 +339,8 @@ Fish_data$Comportement_banc_bin <- ifelse(Fish_data$Comportement_banc == "school
 # Modèle logistique (GLM binaire)
 Fish_glm1 <- glm(data = Fish_data, Comportement_banc_bin ~ Rapport_aspect + Position_oeil_vertical, family = binomial)
 summary_(Fish_glm1) |> tabularise()
+
+
 ```
 
 L'on a voulu d’abord comparer la forme “short/deep” avec “fusiforme” avec un modèle logistique, mais il y avait très peu de “short/deep” dans mon jeu de données. Ça donnait des messages d’erreur et des résultats impossibles à interpréter.
@@ -411,6 +416,20 @@ chart(data = Fish_data, Comportement_banc_bin ~ Longueur_max %col=% Taille_nageo
 Discussion: Le modèle montre que la longueur du poisson et la taille de sa nageoire pectorale influencent toutes les deux la probabilité qu’ils vivent en groupe. Plus un poisson est long, moins il a tendance à faire du schooling, et c’est la même chose quand sa nageoire pectorale est grande. Les deux variables interagissent aussi : l’effet de la longueur n’est pas le même selon la taille de la nageoire.
 
 Le modèle s’ajuste bien aux données (pas de surdispersion), et tous les paramètres sont significatifs, donc les deux caractéristiques retenues expliquent réellement le comportement en groupe chez ces espèces.
+
+### Comparaison des modèles et choix des modèles finaux
+
+#### Régressions linéaires
+
+#### Modèles linéaires
+
+Les deux modèles linéaires n’étant pas directement comparables par AIC, en raison de différences dans les variables explicatives et les niveaux retenus, ils seront comparés via le R² ajusté, la significativité des coefficients et la pertinence biologique. En comparant les deux modèles linéaires, le modèle linéaire 1 avec transformation logarithmique de la variable Longueur_max présente le meilleur compromis entre ajustement statistique et pertinence biologique. Il explique une proportion plus élevée de la variance (R² ajusté = 0.630), ses résidus sont homogènes et approximativement normaux, et toutes les variables retenues sont significatives. En revanche, le second modèle (Fish_lm2) présente un R² ajusté plus faible (0.498) et des résidus influencés par quelques observations extrêmes, ce qui limite sa robustesse. Ainsi, Fish_lm1 constitue le modèle le plus pertinent pour interpréter les relations entre traits morphologiques et position verticale chez les poissons.
+
+#### Modèle linéaire généralisé
+
+```{r}
+
+```
 
 ## Conclusion
 
