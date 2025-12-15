@@ -421,6 +421,8 @@ Le modèle s’ajuste bien aux données (pas de surdispersion), et tous les para
 
 #### Régressions linéaires
 
+Les deux modèles testés montrent une relation significative entre la taille du poisson et la taille de l’œil. Le modèle polynomial d’ordre 2 présente toutefois un R² ajusté légèrement plus élevé (0,536) que le modèle linéaire simple (0,521), indiquant un meilleur ajustement global
+
 #### Modèles linéaires
 
 Les deux modèles linéaires n’étant pas directement comparables par AIC, en raison de différences dans les variables explicatives et les niveaux retenus, ils seront comparés via le R² ajusté, la significativité des coefficients et la pertinence biologique. En comparant les deux modèles linéaires, le modèle linéaire 1 avec transformation logarithmique de la variable Longueur_max présente le meilleur compromis entre ajustement statistique et pertinence biologique. Il explique une proportion plus élevée de la variance (R² ajusté = 0.630), ses résidus sont homogènes et approximativement normaux, et toutes les variables retenues sont significatives. En revanche, le second modèle (Fish_lm2) présente un R² ajusté plus faible (0.498) et des résidus influencés par quelques observations extrêmes, ce qui limite sa robustesse. Ainsi, Fish_lm1 constitue le modèle le plus pertinent pour interpréter les relations entre traits morphologiques et position verticale chez les poissons.
@@ -435,7 +437,7 @@ Les deux modèles linéaires n’étant pas directement comparables par AIC, en 
 
 <!--% Lorsque toutes les analyses sont réalisées, terminez ce bloc-notes avec 3 à 6 phrases de conclusion en rapport avec ce que vous avez observé dans vos analyses. Quels sont les modèles les plus pertinents que vous retenez ? -->
 
-Dans l’ensemble, nos analyses montrent que plusieurs traits morphologiques clés influencent à la fois la performance locomotrice et certains comportements sociaux chez les poissons des Grands Lacs. Les relations exploratoires soulignent notamment l’importance du rapport d’aspect et de l’étroitesse du pédoncule caudal, fortement associés aux espèces formant des bancs et à des stratégies de nage rapides et efficaces. Les modèles linéaires confirment également que la taille relative de l’œil diminue avec l’augmentation de la taille corporelle, un pattern classique d’allométrie sensorielle que nous retrouvons clairement dans nos données.
+Dans l’ensemble, nos analyses montrent que plusieurs traits morphologiques clés influencent à la fois la performance locomotrice et certains comportements sociaux chez les poissons des Grands Lacs. Les relations exploratoires soulignent notamment l’importance du rapport d’aspect et de l’étroitesse du pédoncule caudal, fortement associés aux espèces formant des bancs et à des stratégies de nage rapides et efficaces. Les modèles linéaires confirment également que la taille relative de l’œil diminue avec l’augmentation de la taille corporelle.
 
 Parmi les modèles testés, les régressions intégrant des interactions biologiquement pertinentes (par exemple, l’effet différent du rapport d’aspect selon la position verticale) se révèlent plus informatives que les modèles simples, tout en restant suffisamment parcimonieuses. Enfin, le modèle logistique identifie deux prédicteurs robustes du comportement de banc le rapport d’aspect et la position verticale de l’œil indiquant que ces traits morphologiques jouent un rôle majeur dans la structuration des comportements sociaux.
 
