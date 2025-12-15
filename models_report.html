@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Amal Abarou, Ide Tchuileng, Christelle Baseka">
+
+<title>Relations entre morphologie et stratégies de nage chez les poissons des Grands Lacs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="models_report_files/libs/clipboard/clipboard.min.js"></script>
+<script src="models_report_files/libs/quarto-html/quarto.js"></script>
+<script src="models_report_files/libs/quarto-html/popper.min.js"></script>
+<script src="models_report_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="models_report_files/libs/quarto-html/anchor.min.js"></script>
+<link href="models_report_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="models_report_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="models_report_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="models_report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="models_report_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="models_report_files/libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="models_report_files/libs/tabwid-1.1.3/tabwid.js"></script>
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table des matières</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#but" id="toc-but" class="nav-link" data-scroll-target="#but">But</a></li>
+  <li><a href="#matériel-et-méthodes" id="toc-matériel-et-méthodes" class="nav-link" data-scroll-target="#matériel-et-méthodes">Matériel et méthodes</a>
+  <ul class="collapse">
+  <li><a href="#matériel" id="toc-matériel" class="nav-link" data-scroll-target="#matériel"><strong>Matériel :</strong></a></li>
+  <li><a href="#variables-qualitatives-retenues-4" id="toc-variables-qualitatives-retenues-4" class="nav-link" data-scroll-target="#variables-qualitatives-retenues-4">Variables qualitatives retenues (4) :</a></li>
+  </ul></li>
+  <li><a href="#résultats" id="toc-résultats" class="nav-link" data-scroll-target="#résultats">Résultats</a>
+  <ul class="collapse">
+  <li><a href="#relation-entre-la-longueur-maximale-et-la-taille-relative-de-lœil-modèle-linéaire-polynomial" id="toc-relation-entre-la-longueur-maximale-et-la-taille-relative-de-lœil-modèle-linéaire-polynomial" class="nav-link" data-scroll-target="#relation-entre-la-longueur-maximale-et-la-taille-relative-de-lœil-modèle-linéaire-polynomial"><strong>Relation entre la longueur maximale et la taille relative de l’œil (modèle linéaire polynomial):</strong></a></li>
+  <li><a href="#déterminants-morphologiques-du-comportement-de-banc-glm-binomial" id="toc-déterminants-morphologiques-du-comportement-de-banc-glm-binomial" class="nav-link" data-scroll-target="#déterminants-morphologiques-du-comportement-de-banc-glm-binomial"><strong>Déterminants morphologiques du comportement de banc (GLM binomial):</strong></a></li>
+  </ul></li>
+  <li><a href="#discussion-et-conclusion" id="toc-discussion-et-conclusion" class="nav-link" data-scroll-target="#discussion-et-conclusion">Discussion et Conclusion</a></li>
+  <li><a href="#bibliographie" id="toc-bibliographie" class="nav-link" data-scroll-target="#bibliographie">Bibliographie</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Autres formats</h2><ul><li><a href="models_report.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Relations entre morphologie et stratégies de nage chez les poissons des Grands Lacs</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Auteur·rice</div>
+    <div class="quarto-title-meta-contents">
+             <p>Amal Abarou, Ide Tchuileng, Christelle Baseka </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!--# Un rapport est différent d'un carnet de notes. Il ne s'agit donc pas de faire du copier-coller d'un document vers l'autre. Un rapport de synthèse doit être compréhensible sans devoir lire le carnet de notes. Le rapport de synthèse doit être  rédigé avec un style et une présentation adéquats. -->
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Configuration de l'environnement</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>SciViews<span class="sc">::</span><span class="fu">R</span>(<span class="st">"model"</span>,<span class="st">"infer"</span>, <span class="at">lang =</span> <span class="st">"fr"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Importation des données</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Fish_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/Fish_data.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">","</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#nouvelle variable binaire</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>Fish_data<span class="sc">$</span>Comportement_banc_bin <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(Fish_data<span class="sc">$</span>Comportement_banc <span class="sc">==</span> <span class="st">"schooling"</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<!--% Rédigez l'introduction de ce rapport en 5-6 phrases.-->
+<p>La morphologie des poissons constitue un déterminant majeur de leur écologie de déplacement, influençant la performance de nage, l’efficacité énergétique, les interactions sociales ainsi que la capacité à franchir des obstacles physiques tels que des rapides ou des passes à poissons <span class="citation" data-cites="webb1984">(<a href="#ref-webb1984" role="doc-biblioref">WEBB 1984</a>)</span>. Les traits morphologiques tels que la forme du corps, la profondeur relative, le rapport d’aspect de la nageoire caudale ou encore la taille des nageoires pectorales sont directement associés aux stratégies de nage, qu’elles soient axées sur la vitesse, l’endurance, la manoeuvrabilité ou la stabilité dans la colonne d’eau <span class="citation" data-cites="fulton2005">(<a href="#ref-fulton2005" role="doc-biblioref">Fulton, Bellwood, et Wainwright 2005</a>)</span>. De même, certains traits comportementaux, tels que la tendance à former des bancs, constituent des réponses écologiques façonnées par le régime hydrodynamique, la prédation ou les modes d’alimentation<span class="citation" data-cites="hoare2000">(<a href="#ref-hoare2000" role="doc-biblioref">Hoare et al. 2000</a>)</span>.</p>
+<p>Dans ce contexte, la base de données FishPass Sortable Attribute Database <span class="citation" data-cites="benoit2023">(<a href="#ref-benoit2023" role="doc-biblioref">Benoit et al. 2023</a>)</span> constitue une ressource pertinente, regroupant des informations morphologiques, physiologiques, comportementales et phénologiques pour un large ensemble d’espèces des Grands Lacs. Elle permet notamment d’analyser les facteurs influençant la capacité des poissons à se déplacer et à franchir des aménagements anthropiques.</p>
+<p>Pour ce projet, nous avons combiné deux ensembles de données issus de cette base : FishPass Morphology et FishPass Behaviour. L’objectif est d’étudier les relations entre traits morphologiques et comportements de nage, en particulier la tendance à former des bancs et la position verticale dans la colonne d’eau. Les variables retenues incluent des indicateurs de forme corporelle (profondeur du corps, rapport d’aspect, étroitesse du pédoncule caudal) ainsi que des traits fonctionnels liés à la nage (position et taille des nageoires, position et taille de l’oeil).</p>
+<p>Cette étude vise à déterminer si certains profils morphologiques sont associés à des stratégies de déplacement collectives ou individuelles, et dans quelle mesure la morphologie peut prédire le comportement. Une meilleure compréhension de ces relations éclaire les mécanismes sous-jacents à l’adaptation écologique et peut guider l’aménagement de dispositifs favorisant la migration des poissons dans les systèmes fluviaux aménagés.</p>
+</section>
+<section id="but" class="level2">
+<h2 class="anchored" data-anchor-id="but">But</h2>
+<!--% Rédigez le but de ce rapport en 2 phrases.-->
+<p>Cette étude vise à déterminer si certains profils morphologiques sont associés à des stratégies de déplacement collectives ou individuelles. Plus précisément, nous examinons comment les traits morphologiques influencent la position verticale dans la colonne d’eau et la tendance à former des bancs, afin de mieux comprendre les mécanismes sous-jacents à l’adaptation écologique et de guider l’aménagement de dispositifs favorisant la migration des poissons dans les systèmes fluviaux aménagés.</p>
+</section>
+<section id="matériel-et-méthodes" class="level2">
+<h2 class="anchored" data-anchor-id="matériel-et-méthodes">Matériel et méthodes</h2>
+<!--% Cette section doit comprendre deux parties. La première partie doit expliciter les données employées et la seconde traiter des analyses réalisées et des logiciels employés.-->
+<section id="matériel" class="level3">
+<h3 class="anchored" data-anchor-id="matériel"><strong>Matériel :</strong></h3>
+<p>Le jeu de données utilisé provient de la base FishPass Sortable Attribute Database <span class="citation" data-cites="benoit2023">(<a href="#ref-benoit2023" role="doc-biblioref">Benoit et al. 2023</a>)</span>, qui regroupe des informations morphologiques, physiologiques, comportementales et phénologiques pour les poissons des Grands Lacs.<br>
+Pour ce projet, nous avons exploité les fichiers <strong>FishPass_Morphology_Database.csv</strong> et <strong>FishPass_Behaviour_Database.csv</strong>.</p>
+<p>La base combinée couvre 220 espèces, réparties initialement sur 21 ordres taxonomiques et comprenant 21 variables biologiques. Pour étudier le lien entre morphologie et stratégies de nage, nous avons sélectionné un sous-ensemble pertinent de variables morphologiques et comportementales.</p>
+<section id="variables-quantitatives-retenues-8" class="level4">
+<h4 class="anchored" data-anchor-id="variables-quantitatives-retenues-8">Variables quantitatives retenues (8) :</h4>
+<ul>
+<li><p>Longueur maximale (cm) : taille maximale observée de l’espèce.</p></li>
+<li><p>Profondeur du corps (% TL) : rapport entre la profondeur maximale et la longueur totale du corps.</p></li>
+<li><p>Rapport d’aspect : indicateur de la forme et de la performance de la nageoire caudale.</p></li>
+<li><p>Étroitesse du pédoncule caudal : finesse de la jonction entre le corps et la nageoire caudale.</p></li>
+<li><p>Position verticale de la nageoire pectorale</p></li>
+<li><p>Taille de la nageoire pectorale</p></li>
+<li><p>Position verticale de l’oeil</p></li>
+<li><p>Taille de l’oeil (% HL) : diamètre de l’œil rapporté à la longueur de la tête.</p></li>
+</ul>
+</section>
+</section>
+<section id="variables-qualitatives-retenues-4" class="level3">
+<h3 class="anchored" data-anchor-id="variables-qualitatives-retenues-4">Variables qualitatives retenues (4) :</h3>
+<ul>
+<li><p>Ordre : classification taxonomique de l’espèce.</p></li>
+<li><p>Forme du corps : fusiform, elongated et short/deep.</p></li>
+<li><p>Comportement de banc : schooling et non-schooling.</p></li>
+<li><p>Position verticale dans la colonne d’eau : benthopelagic, dermesal et pelagic</p></li>
+</ul>
+<section id="méthodes" class="level4">
+<h4 class="anchored" data-anchor-id="méthodes">Méthodes</h4>
+<ul>
+<li><p><strong>Fusion des données</strong> : Les bases Morphology et Behaviour ont été combinées par espèce en utilisant les clés: <code>Order</code>, <code>Family</code>, <code>Genus</code>, <code>Scientific.Name</code> et <code>Common.Name</code>.</p></li>
+<li><p><strong>Nettoyage</strong> : renommage des colonnes en français, conversion des variables numériques, suppression des lignes avec valeurs manquantes, conversion en <code>factor</code> pour les variables qualitatives et ajout de labels et unités.</p></li>
+<li><p><strong>Filtrage des ordres</strong> : afin d’assurer une représentativité statistique suffisante, seuls les ordres présentant un effectif ≥ 10 individus ont été conservés. Les ordres retenus pour les analyses sont <em>Cypriniformes, Perciformes et Salmoniformes.</em> Les autres ordres ont été exclus pour éviter les biais liés aux faibles tailles d’échantillon.</p>
+<p><strong>Traitement des données :</strong></p>
+<p><strong>Logiciel :</strong> Les analyses statistiques sont réalisées dans R version 4.4.1 (2024-06-14) et plus précisément avec <code>{tidyverse}</code> version 2.0.0, <code>{tabularise}</code> version 0.7.0 et <code>{labelled}</code> version 2.14.0 sous Ubuntu 22.04.5 LTS. Le seuil α est fixé à 5 %.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="résultats" class="level2">
+<h2 class="anchored" data-anchor-id="résultats">Résultats</h2>
+<!--% Présentez les deux modèles les plus pertinents que vous avez sélectionnés. Structurez la section en deux parties avec deux titres de niveau trois.-->
+<section id="relation-entre-la-longueur-maximale-et-la-taille-relative-de-lœil-modèle-linéaire-polynomial" class="level3">
+<h3 class="anchored" data-anchor-id="relation-entre-la-longueur-maximale-et-la-taille-relative-de-lœil-modèle-linéaire-polynomial"><strong>Relation entre la longueur maximale et la taille relative de l’œil (modèle linéaire polynomial):</strong></h3>
+<p>Un modèle polynomial d’ordre deux a été ajusté pour décrire la relation entre la taille maximale du poisson (Longueur_max) et la taille relative de l’oeil (Taille_oeil).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Poly1_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> Fish_data, Longueur_max <span class="sc">~</span> Taille_oeil <span class="sc">+</span> <span class="fu">I</span>(Taille_oeil<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary_</span>(Poly1_lm) <span class="sc">|&gt;</span> <span class="fu">tabularise</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in set2(resolve(...)): The object is read-only and cannot be modified.
+If you have to modify it for a legitimate reason, call the method $lock(FALSE)
+on the object before $set(). Using $lock(FALSE) to modify the object will be
+enforced in future versions of knitr and this warning will become an error.</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-b72936f8{}.cl-b7166c8a{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b7166c9e{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:italic;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b7166c9f{font-family:'Arial';font-size:7.2pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.6pt;}.cl-b72059ac{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b72059c0{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b72059ca{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b7209fca{width:0.953in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b7209fde{width:1.397in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b7209fe8{width:1.036in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b7209ff2{width:1.091in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b7209ffc{width:1.138in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a006{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a010{width:0.953in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a011{width:1.397in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a01a{width:1.036in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a024{width:1.091in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a025{width:1.138in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a02e{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a038{width:0.953in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a042{width:1.397in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a043{width:1.036in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a04c{width:1.091in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a056{width:1.138in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a060{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a06a{width:0.953in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a074{width:1.397in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a075{width:1.036in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a07e{width:1.091in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a088{width:1.138in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a089{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a092{width:0.953in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a09c{width:1.397in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a09d{width:1.036in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a0a6{width:1.091in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a0b0{width:1.138in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a0b1{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a0ba{width:0.953in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a0c4{width:1.397in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a0c5{width:1.036in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a0ce{width:1.091in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a0d8{width:1.138in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a0d9{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a0e2{width:0.953in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a0ec{width:1.397in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a0f6{width:1.036in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a0f7{width:1.091in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a100{width:1.138in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a10a{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a114{width:0.953in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a115{width:1.397in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a11e{width:1.036in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a11f{width:1.091in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a128{width:1.138in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b720a129{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-b72936f8"><thead><tr style="overflow-wrap:break-word;"><th colspan="6" class="cl-b7209fca"><p class="cl-b72059ac"><span class="cl-b7166c8a">Modèle linéaire</span></p></th></tr><tr style="overflow-wrap:break-word;"><th colspan="6" class="cl-b720a010"><p class="cl-b72059ac"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" data-external="1"><span class="cl-b7166c8a"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" data-external="1">
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal"><mi mathvariant="normal">L</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">u</mi><msub><mi mathvariant="normal">r</mi><mi mathvariant="normal">m</mi></msub><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></mi><mo>⁡</mo><mo>=</mo><mi>α</mi><mo>+</mo><msub><mi>β</mi><mn>1</mn></msub><mo stretchy="false">(</mo><mi mathvariant="normal"><mi mathvariant="normal">T</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">l</mi><msub><mi mathvariant="normal">e</mi><mi mathvariant="normal">o</mi></msub><mi mathvariant="normal">e</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">l</mi></mi><mo>⁡</mo><mo stretchy="false">)</mo><mo>+</mo><msub><mi>β</mi><mn>2</mn></msub><mo stretchy="false">(</mo><mi mathvariant="normal"><mi mathvariant="normal">T</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">l</mi><msub><mi mathvariant="normal">e</mi><mi mathvariant="normal">o</mi></msub><mi mathvariant="normal">e</mi><mi mathvariant="normal">i</mi><msup><mi mathvariant="normal">l</mi><mn>2</mn></msup></mi><mo>⁡</mo><mo stretchy="false">)</mo><mo>+</mo><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\operatorname{Longueur_max} = \alpha + \beta_{1}(\operatorname{Taille_oeil}) + \beta_{2}(\operatorname{Taille_oeil^{2}}) + \epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mop"><span class="mord mathrm">Longueu</span><span class="mord"><span class="mord mathrm">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathrm mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathrm">ax</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0528em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mop"><span class="mord mathrm">Taill</span><span class="mord"><span class="mord mathrm">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathrm mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathrm">eil</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0528em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mop"><span class="mord mathrm">Taill</span><span class="mord"><span class="mord mathrm">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathrm mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathrm">ei</span><span class="mord"><span class="mord mathrm">l</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">2</span></span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">ϵ</span></span></span></span></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-b720a038"><p class="cl-b72059c0"><span class="cl-b7166c8a"></span><span class="cl-b7166c8a">Terme</span></p></th><th class="cl-b720a042"><p class="cl-b72059ca"><span class="cl-b7166c8a"></span><span class="cl-b7166c8a">Valeur estimée</span></p></th><th class="cl-b720a043"><p class="cl-b72059ca"><span class="cl-b7166c8a"></span><span class="cl-b7166c8a">Ecart type</span></p></th><th class="cl-b720a04c"><p class="cl-b72059ca"><span class="cl-b7166c8a"></span><span class="cl-b7166c8a">Valeur de </span><span class="cl-b7166c9e">t</span><span class="cl-b7166c8a"></span></p></th><th class="cl-b720a056"><p class="cl-b72059ca"><span class="cl-b7166c8a"></span><span class="cl-b7166c8a">Valeur de </span><span class="cl-b7166c9e">p</span><span class="cl-b7166c8a"></span></p></th><th class="cl-b720a060"><p class="cl-b72059c0"><span class="cl-b7166c8a"></span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b720a06a"><p class="cl-b72059c0"><span class="cl-b7166c8a"></span><span class="cl-b7166c8a"></span><span class="cl-b7166c8a"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" data-external="1">
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span></span><span class="cl-b7166c8a"></span></p></td><td class="cl-b720a074"><p class="cl-b72059ca"><span class="cl-b7166c8a">271.864</span><span class="cl-b7166c8a"></span><span class="cl-b7166c9f"></span></p></td><td class="cl-b720a075"><p class="cl-b72059ca"><span class="cl-b7166c8a">31.9234</span><span class="cl-b7166c8a"></span><span class="cl-b7166c9f"></span></p></td><td class="cl-b720a07e"><p class="cl-b72059ca"><span class="cl-b7166c8a"> 8.52</span><span class="cl-b7166c8a"></span><span class="cl-b7166c9f"></span></p></td><td class="cl-b720a088"><p class="cl-b72059ca"><span class="cl-b7166c8a">1.86</span><span class="cl-b7166c8a">·10</span><span class="cl-b7166c9f">-13</span></p></td><td class="cl-b720a089"><p class="cl-b72059c0"><span class="cl-b7166c8a">***</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b720a092"><p class="cl-b72059c0"><span class="cl-b7166c8a"></span><span class="cl-b7166c8a"></span><span class="cl-b7166c8a"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" data-external="1">
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>β</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\beta_{1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0528em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span class="cl-b7166c8a"></span></p></td><td class="cl-b720a09c"><p class="cl-b72059ca"><span class="cl-b7166c8a">-15.126</span><span class="cl-b7166c8a"></span><span class="cl-b7166c9f"></span></p></td><td class="cl-b720a09d"><p class="cl-b72059ca"><span class="cl-b7166c8a"> 2.7736</span><span class="cl-b7166c8a"></span><span class="cl-b7166c9f"></span></p></td><td class="cl-b720a0a6"><p class="cl-b72059ca"><span class="cl-b7166c8a">-5.45</span><span class="cl-b7166c8a"></span><span class="cl-b7166c9f"></span></p></td><td class="cl-b720a0b0"><p class="cl-b72059ca"><span class="cl-b7166c8a">3.64</span><span class="cl-b7166c8a">·10</span><span class="cl-b7166c9f">-07</span></p></td><td class="cl-b720a0b1"><p class="cl-b72059c0"><span class="cl-b7166c8a">***</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b720a0ba"><p class="cl-b72059c0"><span class="cl-b7166c8a"></span><span class="cl-b7166c8a"></span><span class="cl-b7166c8a"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" data-external="1">
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>β</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\beta_{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0528em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span class="cl-b7166c8a"></span></p></td><td class="cl-b720a0c4"><p class="cl-b72059ca"><span class="cl-b7166c8a">  0.215</span><span class="cl-b7166c8a"></span><span class="cl-b7166c9f"></span></p></td><td class="cl-b720a0c5"><p class="cl-b72059ca"><span class="cl-b7166c8a"> 0.0583</span><span class="cl-b7166c8a"></span><span class="cl-b7166c9f"></span></p></td><td class="cl-b720a0ce"><p class="cl-b72059ca"><span class="cl-b7166c8a"> 3.69</span><span class="cl-b7166c8a"></span><span class="cl-b7166c9f"></span></p></td><td class="cl-b720a0d8"><p class="cl-b72059ca"><span class="cl-b7166c8a">3.63</span><span class="cl-b7166c8a">·10</span><span class="cl-b7166c9f">-04</span></p></td><td class="cl-b720a0d9"><p class="cl-b72059c0"><span class="cl-b7166c8a">***</span></p></td></tr></tbody><tfoot><tr style="overflow-wrap:break-word;"><td colspan="6" class="cl-b720a0e2"><p class="cl-b72059ca"><span class="cl-b7166c8a">0 &lt;= '***' &lt; 0.001 &lt; '**' &lt; 0.01 &lt; '*' &lt; 0.05</span></p></td></tr><tr style="overflow-wrap:break-word;"><td colspan="6" class="cl-b720a114"><p class="cl-b72059c0"><span class="cl-b7166c8a">Etendue des résidus : [-95.43, 105.6]</span><br><span class="cl-b7166c8a">Ecart type des résidus : 30.85 pour 99 degrés de liberté</span><br><span class="cl-b7166c9e">R</span><span class="cl-b7166c9f">2</span><span class="cl-b7166c8a"> multiple : 0.5452 - </span><span class="cl-b7166c9e">R</span><span class="cl-b7166c9f">2</span><span class="cl-b7166c8a"> ajusté : 0.536</span><br><span class="cl-b7166c8a">Statistique </span><span class="cl-b7166c9e">F</span><span class="cl-b7166c8a"> : 59.35 sur 2 et 99 ddl - valeur de </span><span class="cl-b7166c9e">p</span><span class="cl-b7166c8a"> : &lt; 2.22e-16</span></p></td></tr></tfoot></table></div>
+</div>
+</div>
+<p>Le modèle s’ajuste de manière satisfaisante aux données morphologiques. Les coefficients des deux termes sont significativement différents de zéro au seuil de 5 %, indiquant une relation non linéaire entre les deux variables. Le coefficient de détermination (R² ajusté = 0,536) montre qu’un peu plus de la moitié de la variation de la taille relative de l’oeil est expliquée par la longueur maximale du poisson.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Le graphique du modèle (Fig. X)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chart</span>(Poly1_lm)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="models_report_files/figure-html/residus%20modele1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Analyse des résidus (Fig. Y)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>chart<span class="sc">$</span><span class="fu">residuals</span>(Poly1_lm)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="models_report_files/figure-html/residus%20modele1-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Le graphique du modèle (Fig. X) montre que les espèces de petite taille possèdent des yeux proportionnellement plus grands, tandis que les espèces plus grandes présentent des valeurs plus faibles. Cette tendance est cohérente avec les lois allométriques habituellement observées chez les poissons.</p>
+<p>L’analyse des résidus (Fig. Y) révèle une distribution globalement conforme à la normalité, malgré une légère hétéroscédasticité pour les grandes longueurs et quelques points influents, ce qui demeure acceptable pour ce type de données biologiques.</p>
+</section>
+<section id="déterminants-morphologiques-du-comportement-de-banc-glm-binomial" class="level3">
+<h3 class="anchored" data-anchor-id="déterminants-morphologiques-du-comportement-de-banc-glm-binomial"><strong>Déterminants morphologiques du comportement de banc (GLM binomial):</strong></h3>
+<p>Un modèle linéaire généralisé de type logistique a été ajusté afin d’évaluer l’effet de deux variables morphologiques sur la probabilité pour une espèce de présenter un comportement de banc (<em>Comportement_banc_bin</em>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Fish_glm1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> Fish_data, Comportement_banc_bin <span class="sc">~</span> Rapport_aspect <span class="sc">+</span> Position_oeil_vertical, <span class="at">family =</span> binomial)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary_</span>(Fish_glm1) <span class="sc">|&gt;</span> <span class="fu">tabularise</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in set2(resolve(...)): The object is read-only and cannot be modified.
+If you have to modify it for a legitimate reason, call the method $lock(FALSE)
+on the object before $set(). Using $lock(FALSE) to modify the object will be
+enforced in future versions of knitr and this warning will become an error.</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-b9d21e60{}.cl-b9c81924{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b9c8192e{font-family:'Arial';font-size:12pt;font-weight:normal;font-style:italic;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-b9c81938{font-family:'Arial';font-size:7.2pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.6pt;}.cl-b9ce0140{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b9ce0154{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b9ce0155{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-b9ce222e{width:0.953in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce2238{width:1.397in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce2239{width:1.036in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce2242{width:1.128in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce2243{width:1.138in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce224c{width:0.953in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce224d{width:1.397in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce2256{width:1.036in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce2257{width:1.128in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce2260{width:1.138in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce226a{width:0.953in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce2274{width:1.397in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce2275{width:1.036in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce227e{width:1.128in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce2288{width:1.138in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce2289{width:0.953in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce228a{width:1.397in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce2292{width:1.036in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce2293{width:1.128in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce229c{width:1.138in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce229d{width:0.953in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce22a6{width:1.397in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce22b0{width:1.036in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce22b1{width:1.128in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce22ba{width:1.138in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce22bb{width:0.953in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce22c4{width:1.397in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce22c5{width:1.036in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce22ce{width:1.128in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce22cf{width:1.138in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce22d0{width:0.953in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce22d8{width:1.397in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce22d9{width:1.036in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce22e2{width:1.128in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce22e3{width:1.138in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce22ec{width:0.953in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce22ed{width:1.397in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce22f6{width:1.036in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce22f7{width:1.128in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b9ce2300{width:1.138in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-b9d21e60"><thead><tr style="overflow-wrap:break-word;"><th colspan="5" class="cl-b9ce222e"><p class="cl-b9ce0140"><span class="cl-b9c81924">Modèle linéaire généralisé</span></p></th></tr><tr style="overflow-wrap:break-word;"><th colspan="5" class="cl-b9ce224c"><p class="cl-b9ce0140"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" data-external="1"><span class="cl-b9c81924"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" data-external="1">
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>log</mi><mo>⁡</mo><mrow><mo fence="true">[</mo><mfrac><mrow><mi>P</mi><mo stretchy="false">(</mo><mi mathvariant="normal"><mi mathvariant="normal">C</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">n</mi><msub><mi mathvariant="normal">t</mi><mi mathvariant="normal">b</mi></msub><mi mathvariant="normal">a</mi><mi mathvariant="normal">n</mi><msub><mi mathvariant="normal">c</mi><mi mathvariant="normal">b</mi></msub><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi></mi><mo>⁡</mo><mo>=</mo><mi mathvariant="normal">1</mi><mo>⁡</mo><mo stretchy="false">)</mo></mrow><mrow><mn>1</mn><mo>−</mo><mi>P</mi><mo stretchy="false">(</mo><mi mathvariant="normal"><mi mathvariant="normal">C</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">n</mi><msub><mi mathvariant="normal">t</mi><mi mathvariant="normal">b</mi></msub><mi mathvariant="normal">a</mi><mi mathvariant="normal">n</mi><msub><mi mathvariant="normal">c</mi><mi mathvariant="normal">b</mi></msub><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi></mi><mo>⁡</mo><mo>=</mo><mi mathvariant="normal">1</mi><mo>⁡</mo><mo stretchy="false">)</mo></mrow></mfrac><mo fence="true">]</mo></mrow><mo>=</mo><mi>α</mi><mo>+</mo><msub><mi>β</mi><mn>1</mn></msub><mo stretchy="false">(</mo><mi mathvariant="normal"><mi mathvariant="normal">R</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">r</mi><msub><mi mathvariant="normal">t</mi><mi mathvariant="normal">a</mi></msub><mi mathvariant="normal">s</mi><mi mathvariant="normal">p</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">t</mi></mi><mo>⁡</mo><mo stretchy="false">)</mo><mo>+</mo><msub><mi>β</mi><mn>2</mn></msub><mo stretchy="false">(</mo><mi mathvariant="normal"><mi mathvariant="normal">P</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">o</mi><msub><mi mathvariant="normal">n</mi><mi mathvariant="normal">o</mi></msub><mi mathvariant="normal">e</mi><mi mathvariant="normal">i</mi><msub><mi mathvariant="normal">l</mi><mi mathvariant="normal">v</mi></msub><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">l</mi></mi><mo>⁡</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\log\left[ \frac { P( \operatorname{Comportement_banc_bin} = \operatorname{1} ) }{ 1 - P( \operatorname{Comportement_banc_bin} = \operatorname{1} ) } \right] = \alpha + \beta_{1}(\operatorname{Rapport_aspect}) + \beta_{2}(\operatorname{Position_oeil_vertical})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.8em;vertical-align:-0.65em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">[</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span><span class="mopen mtight">(</span><span class="mop mtight"><span class="mord mathrm mtight">Comportemen</span><span class="mord mtight"><span class="mord mathrm mtight">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3488em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathrm mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1512em;"><span></span></span></span></span></span></span><span class="mord mathrm mtight">an</span><span class="mord mtight"><span class="mord mathrm mtight">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3488em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathrm mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1512em;"><span></span></span></span></span></span></span><span class="mord mathrm mtight">in</span></span><span class="mrel mtight">=</span><span class="mop mtight"><span class="mord mathrm mtight">1</span></span><span class="mclose mtight">)</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span><span class="mopen mtight">(</span><span class="mop mtight"><span class="mord mathrm mtight">Comportemen</span><span class="mord mtight"><span class="mord mathrm mtight">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3488em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathrm mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1512em;"><span></span></span></span></span></span></span><span class="mord mathrm mtight">an</span><span class="mord mtight"><span class="mord mathrm mtight">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3488em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathrm mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1512em;"><span></span></span></span></span></span></span><span class="mord mathrm mtight">in</span></span><span class="mrel mtight">=</span><span class="mop mtight"><span class="mord mathrm mtight">1</span></span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">]</span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0528em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mop"><span class="mord mathrm">Rappor</span><span class="mord"><span class="mord mathrm">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathrm mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathrm">spect</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0528em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mop"><span class="mord mathrm">Positio</span><span class="mord"><span class="mord mathrm">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathrm mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathrm">ei</span><span class="mord"><span class="mord mathrm">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathrm mtight" style="margin-right:0.01389em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathrm">ertical</span></span><span class="mclose">)</span></span></span></span></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-b9ce226a"><p class="cl-b9ce0154"><span class="cl-b9c81924"></span><span class="cl-b9c81924">Terme</span></p></th><th class="cl-b9ce2274"><p class="cl-b9ce0155"><span class="cl-b9c81924"></span><span class="cl-b9c81924">Valeur estimée</span></p></th><th class="cl-b9ce2275"><p class="cl-b9ce0155"><span class="cl-b9c81924"></span><span class="cl-b9c81924">Ecart type</span></p></th><th class="cl-b9ce227e"><p class="cl-b9ce0155"><span class="cl-b9c81924"></span><span class="cl-b9c81924">Valeur de </span><span class="cl-b9c8192e">z</span><span class="cl-b9c81924"></span></p></th><th class="cl-b9ce2288"><p class="cl-b9ce0155"><span class="cl-b9c81924"></span><span class="cl-b9c81924">Valeur de </span><span class="cl-b9c8192e">p</span><span class="cl-b9c81924"></span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-b9ce2289"><p class="cl-b9ce0154"><span class="cl-b9c81924"></span><span class="cl-b9c81924"></span><span class="cl-b9c81924"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" data-external="1">
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span></span><span class="cl-b9c81924"></span></p></td><td class="cl-b9ce228a"><p class="cl-b9ce0155"><span class="cl-b9c81924">  5.990</span><span class="cl-b9c81924"></span><span class="cl-b9c81938"></span></p></td><td class="cl-b9ce2292"><p class="cl-b9ce0155"><span class="cl-b9c81924">2.219</span><span class="cl-b9c81924"></span><span class="cl-b9c81938"></span></p></td><td class="cl-b9ce2293"><p class="cl-b9ce0155"><span class="cl-b9c81924"> 2.70</span><span class="cl-b9c81924"></span><span class="cl-b9c81938"></span></p></td><td class="cl-b9ce229c"><p class="cl-b9ce0155"><span class="cl-b9c81924">0.00694</span><span class="cl-b9c81924"></span><span class="cl-b9c81938"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b9ce229d"><p class="cl-b9ce0154"><span class="cl-b9c81924"></span><span class="cl-b9c81924"></span><span class="cl-b9c81924"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" data-external="1">
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>β</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\beta_{1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0528em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span class="cl-b9c81924"></span></p></td><td class="cl-b9ce22a6"><p class="cl-b9ce0155"><span class="cl-b9c81924">  0.982</span><span class="cl-b9c81924"></span><span class="cl-b9c81938"></span></p></td><td class="cl-b9ce22b0"><p class="cl-b9ce0155"><span class="cl-b9c81924">0.467</span><span class="cl-b9c81924"></span><span class="cl-b9c81938"></span></p></td><td class="cl-b9ce22b1"><p class="cl-b9ce0155"><span class="cl-b9c81924"> 2.10</span><span class="cl-b9c81924"></span><span class="cl-b9c81938"></span></p></td><td class="cl-b9ce22ba"><p class="cl-b9ce0155"><span class="cl-b9c81924">0.03575</span><span class="cl-b9c81924"></span><span class="cl-b9c81938"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-b9ce22bb"><p class="cl-b9ce0154"><span class="cl-b9c81924"></span><span class="cl-b9c81924"></span><span class="cl-b9c81924"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" data-external="1">
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>β</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\beta_{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05278em;">β</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0528em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span><span class="cl-b9c81924"></span></p></td><td class="cl-b9ce22c4"><p class="cl-b9ce0155"><span class="cl-b9c81924">-12.321</span><span class="cl-b9c81924"></span><span class="cl-b9c81938"></span></p></td><td class="cl-b9ce22c5"><p class="cl-b9ce0155"><span class="cl-b9c81924">3.877</span><span class="cl-b9c81924"></span><span class="cl-b9c81938"></span></p></td><td class="cl-b9ce22ce"><p class="cl-b9ce0155"><span class="cl-b9c81924">-3.18</span><span class="cl-b9c81924"></span><span class="cl-b9c81938"></span></p></td><td class="cl-b9ce22cf"><p class="cl-b9ce0155"><span class="cl-b9c81924">0.00148</span><span class="cl-b9c81924"></span><span class="cl-b9c81938"></span></p></td></tr></tbody><tfoot><tr style="overflow-wrap:break-word;"><td colspan="5" class="cl-b9ce22d0"><p class="cl-b9ce0155"><span class="cl-b9c81924">0 &lt;= '***' &lt; 0.001 &lt; '**' &lt; 0.01 &lt; '*' &lt; 0.05</span></p></td></tr><tr style="overflow-wrap:break-word;"><td colspan="5" class="cl-b9ce22ec"><p class="cl-b9ce0154"><span class="cl-b9c81924">(Paramètre de dispersion pour une Binomial family: 1)</span><br><span class="cl-b9c81924">Déviance totale : 126.9 pour 101 degrés de liberté</span><br><span class="cl-b9c81924">Déviance résiduelle : 109.8 pour 99 degrés de liberté</span><br><span class="cl-b9c81924">AIC: 115.8 - Nombre d’itérations de la fonction de score de Fisher : 4</span></p></td></tr></tfoot></table></div>
+</div>
+</div>
+<p>Les résultats montrent que le rapport d’aspect et la position verticale de l’oeil sont tous deux significativement associés au comportement grégaire (p &lt; 0,05). Le rapport d’aspect présente un effet positif, indiquant que les poissons de forme plus élancée ont une probabilité accrue d’adopter un comportement de banc. À l’inverse, la position verticale de l’œil montre un effet négatif marqué, suggérant que les espèces dont l’œil est situé plus haut ont davantage tendance à un comportement non grégaire.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chart</span>(<span class="at">data =</span> Fish_data, Comportement_banc_bin <span class="sc">~</span> Rapport_aspect <span class="sc">%col=%</span> Position_oeil_vertical ) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_c</span>() <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"glm"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> binomial),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">formula =</span> y <span class="sc">~</span> x,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"green"</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">1.2</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Rapport d'aspect"</span>,</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Comportement de banc (0 = non, 1 = oui)"</span>,</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Position oeil vertical"</span>,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Modèle logistique : effet du rapport d'aspect et de la position de l'oeil"</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="models_report_files/figure-html/graphique%20modele%202-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Le graphique de diagnostic confirme l’absence d’écarts majeurs entre les valeurs observées et prédites. Ce modèle met ainsi en évidence un lien fonctionnel entre la morphologie et l’écologie comportementale, reliant des caractéristiques de forme à des stratégies sociales chez les poissons.</p>
+</section>
+</section>
+<section id="discussion-et-conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion-et-conclusion">Discussion et Conclusion</h2>
+<!--% En tenant compte du but de votre carnet de notes et de vos résultats, discutez de résultats et proposez des conclusions à votre analyse en 5 à 10 phrases. -->
+<p>Les résultats obtenus confirment que certains traits morphologiques jouent un rôle important dans les stratégies de déplacement et de comportement des poissons. La relation non linéaire observée entre la longueur maximale et la taille relative de l’œil suit une logique allométrique bien documentée : les petites espèces investissent proportionnellement plus dans la vision, ce qui peut être lié à la prédation ou à la recherche de nourriture. Le modèle polynomial utilisé explique une part substantielle de la variation, même si une certaine dispersion résiduelle montre que d’autres facteurs écologiques interviennent probablement.</p>
+<p>Concernant le comportement de banc, le modèle logistique met clairement en évidence l’influence combinée du rapport d’aspect et de la position verticale de l’œil. Les poissons au corps plus élancé ont davantage tendance à se regrouper, ce qui peut s’expliquer par une meilleure efficacité hydrodynamique en formation serrée. À l’inverse, une position oculaire plus haute semble associée à un mode de vie moins grégaire, peut-être lié à une vigilance accrue ou à une écologie plus solitaire.</p>
+<p>Dans l’ensemble, ces modèles montrent que la morphologie n’est pas seulement un reflet de l’évolution, mais aussi une clé pour comprendre les comportements observés dans les milieux aquatiques. Même si les analyses restent limitées par les variables disponibles et les différences d’effectifs entre ordres, elles mettent en lumière des tendances cohérentes avec la littérature. En conclusion, la morphologie apparaît comme un bon prédicteur de certaines stratégies de nage, et ces résultats peuvent contribuer à mieux anticiper la capacité des espèces à se déplacer ou à franchir des structures dans les environnements aménagés.</p>
+</section>
+<section id="bibliographie" class="level2">
+<h2 class="anchored" data-anchor-id="bibliographie">Bibliographie</h2>
+<p>Benoit, D., Zielinski, D. P., Swanson, R. A., McLaughlin, R. L., Castro-Santos, T., Goodwin, A. E., Pratt, T. C., &amp; Muir, A. M. (2023). <em>FishPass Sortable Attribute Database</em> (Version 1) [Data set]. Dryad. <a href="https://doi.org/10.5061/dryad.fqz612jwj" class="uri">https://doi.org/10.5061/dryad.fqz612jwj</a></p>
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Les références</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-benoit2023" class="csl-entry" role="listitem">
+Benoit, David, Dan Zielinski, Reid Swanson, Robert McLaughlin, Theodore Castro-Santos, Andrew Goodwin, Thomas Pratt, et Andrew Muir. 2023. <span>«&nbsp;FishPass Sortable Attribute Database: Phenological, Morphological, Physiological, and Behavioural Characteristics Related to Passage and Movement of Great Lakes Fishes&nbsp;»</span>. Dryad. <a href="https://doi.org/10.5061/DRYAD.FQZ612JWJ">https://doi.org/10.5061/DRYAD.FQZ612JWJ</a>.
+</div>
+<div id="ref-fulton2005" class="csl-entry" role="listitem">
+Fulton, C. J, D. R Bellwood, et P. C Wainwright. 2005. <span>«&nbsp;Wave Energy and Swimming Performance Shape Coral Reef Fish Assemblages&nbsp;»</span>. <em>Proceedings of the Royal Society B: Biological Sciences</em> 272 (1565): 827‑32. <a href="https://doi.org/10.1098/rspb.2004.3029">https://doi.org/10.1098/rspb.2004.3029</a>.
+</div>
+<div id="ref-hoare2000" class="csl-entry" role="listitem">
+Hoare, D. J., J. Krause, N. Peuhkuri, et J.-G. J. Godin. 2000. <span>«&nbsp;Body Size and Shoaling in Fish&nbsp;»</span>. <em>Journal of Fish Biology</em> 57 (6): 1351‑66. <a href="https://doi.org/10.1111/j.1095-8649.2000.tb02217.x">https://doi.org/10.1111/j.1095-8649.2000.tb02217.x</a>.
+</div>
+<div id="ref-webb1984" class="csl-entry" role="listitem">
+WEBB, P. W. 1984. <span>«&nbsp;Body Form, Locomotion and Foraging in Aquatic Vertebrates&nbsp;»</span>. <em>American Zoologist</em> 24 (1): 107‑20. <a href="https://doi.org/10.1093/icb/24.1.107">https://doi.org/10.1093/icb/24.1.107</a>.
+</div>
+</div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copié");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copié");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
