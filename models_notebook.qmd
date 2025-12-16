@@ -237,7 +237,6 @@ legend.position = "bottom",
     legend.title = element_blank()) 
 
 combine_charts(list(a,b))
-
 ```
 
 Le graphique Profondeur_corps - Comportement_banc démontre une forte interaction entre la morphologie et le comportement sur la Longueur_max. Pour les espèces non-schooling, la Longueur_max est stable ou diminue légèrement lorsque la Profondeur_corps augmente (pente négative). En revanche, pour les espèces schooling (cyan), la Longueur_max augmente clairement et fortement lorsque la Profondeur_corps augmente (pente positive), ce qui suggère une allométrie positive chez ce groupe où les individus plus grands sont également plus profonds ou massifs.
@@ -424,6 +423,7 @@ Les six modèles testés explorent différentes relations entre traits morpholog
 
 Les modèles 4 à 6 intègrent explicitement le comportement de banc. Parmi eux, le modèle linéaire 4 souffre d’un pouvoir explicatif plus faible et de résidus influencés par des valeurs extrêmes. Les modèles linéaires généralisés permettent une approche plus directe de la prédiction du comportement. Le modèle 6 se distingue par le meilleur AIC et par une interaction biologiquement cohérente entre la taille corporelle et la taille des nageoires pectorales, traduisant des stratégies de nage collective.
 
+<<<<<<< HEAD
 ```{r}
 # Comparaison AIC
 AIC(Fish_glm1, Fish_glm2)
@@ -434,6 +434,8 @@ Les deux modèles linéaires généralisés analysent le comportement de banc à
 
 En conséquence, deux modèles complémentaires ont été retenus : ...
 
+=======
+>>>>>>> 068337feabeb6dfcca6d5a2022fef857be47f2fc
 ## Conclusion
 
 <!--% Lorsque toutes les analyses sont réalisées, terminez ce bloc-notes avec 3 à 6 phrases de conclusion en rapport avec ce que vous avez observé dans vos analyses. Quels sont les modèles les plus pertinents que vous retenez ? -->
