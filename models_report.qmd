@@ -160,5 +160,3 @@ Concernant le comportement de banc, le modèle logistique met clairement en évi
 Dans l’ensemble, ces modèles montrent que la morphologie n’est pas seulement un reflet de l’évolution, mais aussi une clé pour comprendre les comportements observés dans les milieux aquatiques. Même si les analyses restent limitées par les variables disponibles et les différences d’effectifs entre ordres, elles mettent en lumière des tendances cohérentes avec la littérature. En conclusion, la morphologie apparaît comme un bon prédicteur de certaines stratégies de nage, et ces résultats peuvent contribuer à mieux anticiper la capacité des espèces à se déplacer ou à franchir des structures dans les environnements aménagés.
 
 ## Bibliographie
-
-Benoit, D., Zielinski, D. P., Swanson, R. A., McLaughlin, R. L., Castro-Santos, T., Goodwin, A. E., Pratt, T. C., & Muir, A. M. (2023). *FishPass Sortable Attribute Database* (Version 1) \[Data set\]. Dryad. <https://doi.org/10.5061/dryad.fqz612jwj>
