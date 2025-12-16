@@ -21,19 +21,18 @@ bibliography: references.bib
 
 <!--% Rédigez une courte introduction de 3 ou 5 phrases qui présente vos données. Ajoutez une phrase de but (que vous remanierez éventuellement en fonction des modèles que vous ajouterez plus tard). Vous pouvez citer la bibliographie en utilisant le formatage Markdown ad hoc et en incluant votre référence au format bibtex dans le fichier references.bib. -->
 
-Les poissons des Grands Lacs présentent une grande diversité de morphologies et de comportements, qui influencent leur capacité à se déplacer dans leur environnement et à franchir des obstacles tels que barrages, passes à poissons ou variations de débit. L’ensemble de ces caractéristiques peut conditionner leur performance de nage et donc leurs chances de migration et de survie.
+Les poissons des Grands Lacs présentent une grande diversité de morphologies et de comportements, qui influencent leur capacité à se déplacer dans leur environnement et à franchir des obstacles tels que barrages, passes à poissons ou variations de débit. Ces caractéristiques conditionnent leur performance de nage et leurs chances de migration et de survie.
 
-Dans ce travail, nous utilisons les données du *FishPass Sortable Attribute Database* (Benoit *et al.*, 2023) qui regroupent des traits morphologiques (par ex. longueur maximale, forme du corps, taille et position des nageoires) ainsi que des traits comportementaux (position verticale dans la colonne d'eau, comportement de banc).
+Pour ce projet, les données de la **FishPass Sortable Attribute Database** [@benoit2023], regroupant des traits morphologiques (longueur maximale, forme du corps, taille et position des nageoires) et comportementaux (position verticale dans la colonne d'eau, comportement de banc) sont utilisées.
 
-**But** :
-
-Le but de ce projet est de mieux comprendre comment certains traits physiques des poissons sont liés à leur façon de se déplacer et de se comporter. On cherche surtout à voir si des caractéristiques comme la longueur, la forme du corps ou la taille des nageoires peuvent influencer leur comportement de banc ou leur position dans la colonne d’eau. Pour cela, on combine des graphiques, des analyses descriptives et quelques modèles statistiques afin d’identifier les traits qui semblent vraiment jouer un rôle. L’idée est simplement d’avoir une vue d’ensemble des liens entre morphologie et comportement chez les poissons étudiés.
+\
+L’objectif est de mieux comprendre comment certains traits morphologiques influencent la position verticale dans la colonne d’eau et le comportement de banc. Pour cela, nous combinons des analyses descriptives, des graphiques et quelques modèles statistiques afin d’identifier les traits qui jouent un rôle clé dans les stratégies de déplacement des poissons.
 
 ## Matériel et méthodes
 
 <!--% Indiquez ici d'où viennent les données et aussi quel logiciel (et version) vous utilisez pour les analyses. Inspirez-vous des projets du premier module de SDD II. -->
 
-Les données utilisées proviennent de la base FishPass Morphology et de la base FishPass Behaviour compilées par Benoit et al. (2023, DOI: <https://doi.org/10.5061/dryad.fqz612jwj>). Les deux bases ont été fusionnées par espèce (Order, Family, Genus, Scientific.Name, Common.Name), ce qui a permis d’obtenir un jeu unique intégrant à la fois des mesures morphologiques et des informations comportementales pour chaque espèce. Pour ce projet, seules les variables morphologiques et comportementales les plus pertinentes ont été retenues : longueur maximale, profondeur du corps, rapport d’aspect, étroitesse du pédoncule caudal, position et taille des nageoires pectorales, position verticale et taille de l’œil, forme du corps et comportement de banc.
+Les données utilisées proviennent de la base FishPass Morphology et de la base FishPass Behaviour compilées par [@benoit2023]. Les deux bases ont été fusionnées par espèce (Order, Family, Genus, Scientific.Name, Common.Name), ce qui a permis d’obtenir un jeu unique intégrant à la fois des mesures morphologiques et des informations comportementales pour chaque espèce. Pour ce projet, seules les variables morphologiques et comportementales les plus pertinentes ont été retenues : longueur maximale, profondeur du corps, rapport d’aspect, étroitesse du pédoncule caudal, position et taille des nageoires pectorales, position verticale et taille de l’œil, forme du corps et comportement de banc.
 
 Les données ont été nettoyées et harmonisées : renommage des colonnes, conversion des variables numériques, suppression des lignes avec valeurs manquantes et ajout de labels et unités. Afin d’assurer une représentativité statistique suffisante, seuls les ordres présentant un effectif ≥ 10 individus ont été conservés. Les ordres retenus pour les analyses sont *Cypriniformes, Perciformes et Salmoniformes.* Les autres ordres, comportant trop peu d’observations, ont été exclus pour garantir la robustesse des résultats.
 
@@ -210,8 +209,74 @@ Le modèle présente un R² de 0,525, indiquant que plus de la moitié de la var
 
 L’analyse des résidus montre que les hypothèses du modèle linéaire sont globalement respectées. Les résidus sont bien centrés autour de zéro et ne montrent pas de motif systématique majeur, ce qui confirme une relation appropriée entre les variables. Le QQ-plot montre une distribution des résidus proche de la normalité, avec seulement quelques valeurs extrêmes. On observe une légère hétéroscédasticité (variance des résidus un peu plus élevée pour les grandes longueurs), mais celle-ci reste faible et ne compromet pas la validité du modèle. Aucun point à fort levier n’indique une influence excessive sur les résultats.
 
-####  {r analyse residus lm1}
-chart\$residuals(Fish_lm1)
+#### Modèle linéaire 1
+
+<!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
+
+Examiner l’effet combiné de plusieurs traits morphologiques et comportementaux sur la longueur maximale.
+
+```{r graphique lm1}
+
+a <- chart(data = Fish_data, Longueur_max ~ Profondeur_corps %col=% Comportement_banc) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x, se = TRUE) +
+  labs(x = "Profondeur du corps", 
+    y = "Longueur max (cm)") + 
+ theme(
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.title = element_blank())
+
+b <- chart(data = Fish_data, Longueur_max ~ Rapport_aspect %col=% Vertical_station) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x, se = TRUE) + labs( x = "Rapport d'aspect",
+  y = "Longueur max (cm)") + 
+ theme(
+    
+legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.title = element_blank()) 
+
+combine_charts(list(a,b))
+
+```
+
+Le graphique Profondeur_corps - Comportement_banc démontre une forte interaction entre la morphologie et le comportement sur la Longueur_max. Pour les espèces non-schooling, la Longueur_max est stable ou diminue légèrement lorsque la Profondeur_corps augmente (pente négative). En revanche, pour les espèces schooling (cyan), la Longueur_max augmente clairement et fortement lorsque la Profondeur_corps augmente (pente positive), ce qui suggère une allométrie positive chez ce groupe où les individus plus grands sont également plus profonds ou massifs.
+
+Le graphique Vertical_station - Rapport_aspect montre que l'effet du Rapport_aspect sur la Longueur_max est inversé selon l'habitat. Chez les espèces benthopélagiques (saumon, près du fond), l'augmentation du Rapport_aspect (vitesse) est faiblement associée à une Longueur_max plus grande (pente légèrement positive). Au contraire, chez les espèces pélagiques (bleu, pleine eau), l'augmentation du Rapport_aspect est associée à une Longueur_max plus petite (pente clairement négative), ce qui justifie l'inclusion du terme d'interaction beta_4 dans votre modèle.
+
+```{r}
+#Fish_lm1A <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps + Comportement_banc + Vertical_station + Rapport_aspect) 
+#summary(Fish_lm1A) 
+
+#Fish_lm1B <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps * Comportement_banc + Vertical_station * Rapport_aspect) 
+#summary(Fish_lm1B) 
+
+#Fish_lm1C <- lm(data = Fish_data, subset = Vertical_station %in% c("pelagic", "benthopelagic"), Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps * Comportement_banc + Vertical_station * Rapport_aspect)  
+#summary_(Fish_lm1C)
+
+#Fish_lm1 <- lm(data = Fish_data,
+#               subset = Vertical_station %in% c("pelagic", "benthopelagic"), Longueur_max ~ Taille_oeil + Vertical_station + Vertical_station * Rapport_aspect)
+#summary_(Fish_lm1) |> tabularise()
+```
+
+Les premiers modèles présentent plusieurs limites. Le modèle initial sans interaction, bien que simple, n’explique que 51 % de la variance et ne retient qu’une seule variable significative, ce qui réduit sa pertinence biologique. L’ajout d’interactions dans le second modèle améliore légèrement l’ajustement (R² ajusté = 54 %), mais introduit une complexité importante sans gain substantiel, avec plusieurs termes non significatifs. Le troisième modèle, plus ciblé, atteint un meilleur R² (59 %), mais reste relativement complexe et inclut des variables dont l’effet est faible, et les résidus présentent une hétéroscédasticité. La **transformation logarithmique de Longueur_max** dans le quatrième modèle a permis de stabiliser la variance et de corriger les problèmes de résidus. Cette transformation a également rendu l’interaction non significative, conduisant à un modèle plus simple et robuste, ne conservant que les variables **Taille_oeil** et **Vertical_station**, avec un R² ajusté de 0,63.
+
+```{r modele linéaire 1}
+Fish_lm1 <- lm(data = Fish_data, 
+               subset = Vertical_station %in% c("pelagic", "benthopelagic"), log(Longueur_max) ~ Taille_oeil + Vertical_station )  
+summary_(Fish_lm1) |> tabularise()
+
+Fish_sub <- subset(Fish_data,
+                   Vertical_station %in% c("pelagic", "benthopelagic"))
+chart(data = Fish_sub, log(Longueur_max) ~ Taille_oeil %col=% Vertical_station) +
+  geom_point() +
+  stat_smooth(method = "lm", formula = y ~ x)
+```
+
+```{r analyse residus lm1}
+chart$residuals(Fish_lm1)
+```
 
 Le modèle est globalement solide : tous les coefficients ressortent significatifs et l’interaction confirme bien que la pente change chez les espèces pélagiques. Par contre, l’examen des résidus (Image C) montre une hétéroscédasticité, c’est-à-dire que la variance des erreurs augmente avec les valeurs prédites. Pour corriger cela, il sera préférable d’appliquer une transformation logarithmique à la variable Longueur_max dans le modèle suivant afin de stabiliser la variance et d’obtenir des estimations plus fiables.
 
@@ -359,23 +424,17 @@ Le modèle s’ajuste bien aux données (pas de surdispersion), et tous les para
 
 ### Comparaison des modèles et choix des modèles finaux
 
-#### Régressions linéaires
+Les six modèles testés explorent différentes relations entre traits morphologiques, écologiques et comportementaux chez les poissons. Les modèles linéaires simples (modèles 1 et 2) mettent en évidence des relations allométriques robustes entre la taille de l’œil et la longueur corporelle, mais restent limités par l’absence de variables écologiques ou comportementales. Le modèle 3, intégrant la position verticale dans la colonne d’eau et une transformation logarithmique de la longueur maximale, présente le meilleur compromis entre qualité d’ajustement (R² ajusté = 0.630), respect des hypothèses du modèle et pertinence biologique.
 
-#### Modèles linéaires
+Les modèles 4 à 6 intègrent explicitement le comportement de banc. Parmi eux, le modèle linéaire 4 souffre d’un pouvoir explicatif plus faible et de résidus influencés par des valeurs extrêmes. Les modèles linéaires généralisés permettent une approche plus directe de la prédiction du comportement. Le modèle 6 se distingue par le meilleur AIC et par une interaction biologiquement cohérente entre la taille corporelle et la taille des nageoires pectorales, traduisant des stratégies de nage collective.
 
-Les deux modèles linéaires n’étant pas directement comparables par AIC, en raison de différences dans les variables explicatives et les niveaux retenus, ils seront comparés via le R² ajusté, la significativité des coefficients et la pertinence biologique. En comparant les deux modèles linéaires, le modèle linéaire 1 avec transformation logarithmique de la variable Longueur_max présente le meilleur compromis entre ajustement statistique et pertinence biologique. Il explique une proportion plus élevée de la variance (R² ajusté = 0.630), ses résidus sont homogènes et approximativement normaux, et toutes les variables retenues sont significatives. En revanche, le second modèle (Fish_lm2) présente un R² ajusté plus faible (0.498) et des résidus influencés par quelques observations extrêmes, ce qui limite sa robustesse. Ainsi, Fish_lm1 constitue le modèle le plus pertinent pour interpréter les relations entre traits morphologiques et position verticale chez les poissons.
-
-#### Modèle linéaire généralisé
-
-```{r}
-
-```
+En conséquence, deux modèles complémentaires ont été retenus : ...
 
 ## Conclusion
 
 <!--% Lorsque toutes les analyses sont réalisées, terminez ce bloc-notes avec 3 à 6 phrases de conclusion en rapport avec ce que vous avez observé dans vos analyses. Quels sont les modèles les plus pertinents que vous retenez ? -->
 
-Dans l’ensemble, nos analyses montrent que plusieurs traits morphologiques clés influencent à la fois la performance locomotrice et certains comportements sociaux chez les poissons des Grands Lacs. Les relations exploratoires soulignent notamment l’importance du rapport d’aspect et de l’étroitesse du pédoncule caudal, fortement associés aux espèces formant des bancs et à des stratégies de nage rapides et efficaces. Les modèles linéaires confirment également que la taille relative de l’œil diminue avec l’augmentation de la taille corporelle, un pattern classique d’allométrie sensorielle que nous retrouvons clairement dans nos données.
+Dans l’ensemble, nos analyses montrent que plusieurs traits morphologiques clés influencent à la fois la performance locomotrice et certains comportements sociaux chez les poissons des Grands Lacs. Les relations exploratoires soulignent notamment l’importance du rapport d’aspect et de l’étroitesse du pédoncule caudal, fortement associés aux espèces formant des bancs et à des stratégies de nage rapides et efficaces. Les modèles linéaires confirment également que la taille relative de l’œil diminue avec l’augmentation de la taille corporelle.
 
 Parmi les modèles testés, les régressions intégrant des interactions biologiquement pertinentes (par exemple, l’effet différent du rapport d’aspect selon la position verticale) se révèlent plus informatives que les modèles simples, tout en restant suffisamment parcimonieuses. Enfin, le modèle logistique identifie deux prédicteurs robustes du comportement de banc le rapport d’aspect et la position verticale de l’œil indiquant que ces traits morphologiques jouent un rôle majeur dans la structuration des comportements sociaux.
 

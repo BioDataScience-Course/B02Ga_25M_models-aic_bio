@@ -2,6 +2,8 @@
 title: "Relations entre morphologie et stratégies de nage chez les poissons des Grands Lacs"
 author: "Amal Abarou, Ide Tchuileng, Christelle Baseka"
 format:
+  html:
+    toc: true
   pdf:
     documentclass: report
     toc: true
@@ -25,32 +27,28 @@ Fish_data$Comportement_banc_bin <- ifelse(Fish_data$Comportement_banc == "school
 
 <!--% Rédigez l'introduction de ce rapport en 5-6 phrases.-->
 
-La morphologie des poissons constitue un déterminant majeur de leur écologie de déplacement, influençant la performance de nage, l’efficacité énergétique, les interactions sociales ainsi que la capacité à franchir des obstacles physiques tels que des rapides ou des passes à poissons. Les traits morphologiques tels que la forme du corps, la profondeur relative, le rapport d’aspect de la nageoire caudale ou encore la taille des nageoires pectorales sont directement associés aux stratégies de nage, qu’elles soient axées sur la vitesse, l’endurance, la manoeuvrabilité ou la stabilité dans la colonne d’eau. De même, certains traits comportementaux, tels que la tendance à former des bancs, constituent des réponses écologiques façonnées par le régime hydrodynamique, la prédation ou les modes d’alimentation.
+La morphologie des poissons constitue un déterminant majeur de leur écologie de déplacement, influençant la performance de nage, l’efficacité énergétique, les interactions sociales ainsi que la capacité à franchir des obstacles physiques tels que des rapides ou des passes à poissons [@webb1984]. Les traits morphologiques tels que la forme du corps, la profondeur relative, le rapport d’aspect de la nageoire caudale ou encore la taille des nageoires pectorales sont directement associés aux stratégies de nage, qu’elles soient axées sur la vitesse, l’endurance, la manoeuvrabilité ou la stabilité dans la colonne d’eau [@fulton2005]. De même, certains traits comportementaux, tels que la tendance à former des bancs, constituent des réponses écologiques façonnées par le régime hydrodynamique, la prédation ou les modes d’alimentation[@hoare2000].
 
-Dans ce contexte, la base de données FishPass Sortable Attribute Database (Benoit et al., 2023) constitue une ressource pertinente, regroupant des informations morphologiques, physiologiques, comportementales et phénologiques pour un large ensemble d’espèces des Grands Lacs. Elle permet notamment d’analyser les facteurs influençant la capacité des poissons à se déplacer et à franchir des aménagements anthropiques.
-
-Pour ce projet, nous avons combiné deux ensembles de données issus de cette base : FishPass Morphology et FishPass Behaviour. L’objectif est d’étudier les relations entre traits morphologiques et comportements de nage, en particulier la tendance à former des bancs et la position verticale dans la colonne d’eau. Les variables retenues incluent des indicateurs de forme corporelle (profondeur du corps, rapport d’aspect, étroitesse du pédoncule caudal) ainsi que des traits fonctionnels liés à la nage (position et taille des nageoires, position et taille de l’oeil).
-
-Cette étude vise à déterminer si certains profils morphologiques sont associés à des stratégies de déplacement collectives ou individuelles, et dans quelle mesure la morphologie peut prédire le comportement. Une meilleure compréhension de ces relations éclaire les mécanismes sous-jacents à l’adaptation écologique et peut guider l’aménagement de dispositifs favorisant la migration des poissons dans les systèmes fluviaux aménagés.
+Dans ce contexte, la base de données FishPass Sortable Attribute Database [@benoit2023] constitue une ressource pertinente, regroupant des informations morphologiques, physiologiques, comportementales et phénologiques pour un large ensemble d’espèces des Grands Lacs. Elle permet notamment d’analyser les facteurs influençant la capacité des poissons à se déplacer et à franchir des aménagements anthropiques.
 
 ## But
 
 <!--% Rédigez le but de ce rapport en 2 phrases.-->
 
-L’objectif de cette étude est d’examiner comment les traits morphologiques des poissons sont associés à la forme du corps, à la position verticale dans la colonne d’eau et au comportement de banc, et de déterminer dans quelle mesure la morphologie peut prédire ces stratégies de nage.
+Cette étude vise à déterminer si certains profils morphologiques sont associés à des stratégies de déplacement collectives ou individuelles. Plus précisément, nous examinons comment les traits morphologiques influencent la position verticale dans la colonne d’eau et la tendance à former des bancs, afin de mieux comprendre les mécanismes sous-jacents à l’adaptation écologique et de guider l’aménagement de dispositifs favorisant la migration des poissons dans les systèmes fluviaux aménagés.
 
 ## Matériel et méthodes
 
 <!--% Cette section doit comprendre deux parties. La première partie doit expliciter les données employées et la seconde traiter des analyses réalisées et des logiciels employés.-->
 
-**Matériel :**
+### **Matériel :**
 
-Le jeu de données utilisé provient de la base FishPass Sortable Attribute Database, rassemblée par Benoit *et al.* (2023). Cette base regroupe des informations morphologiques, physiologiques, comportementales et phénologiques pour les poissons des Grands Lacs.\
-Dans ce projet, nous avons plus spécifiquement exploité les fichiers FishPass_Morphology_Database.csv et FishPass_Behaviour_Database.csv.
+Le jeu de données utilisé provient de la base FishPass Sortable Attribute Database [@benoit2023], qui regroupe des informations morphologiques, physiologiques, comportementales et phénologiques pour les poissons des Grands Lacs.\
+Pour ce projet, les fichiers **FishPass_Morphology_Database.csv** et **FishPass_Behaviour_Database.csv** ont été exploités.
 
-La base combinée couvre 220 espèces, réparties initialement sur 21 ordres taxonomiques et comprenant 21 variables biologiques. Afin d’étudier le lien entre morphologie et stratégies de nage, nous nous sommes concentrés sur un ensemble restreint mais pertinent de variables morphologiques et comportementales.
+La base combinée couvre 220 espèces, réparties sur 21 ordres taxonomiques et comprenant 21 variables biologiques. Afin d’étudier le lien entre morphologie et stratégies de nage, un sous-ensemble pertinent de variables morphologiques et comportementales a été sélectionné.
 
-### Variables quantitatives retenues (8) :
+#### Variables quantitatives retenues (8) :
 
 -   Longueur maximale (cm) : taille maximale observée de l’espèce.
 
@@ -68,7 +66,7 @@ La base combinée couvre 220 espèces, réparties initialement sur 21 ordres tax
 
 -   Taille de l’oeil (% HL) : diamètre de l’œil rapporté à la longueur de la tête.
 
-### Variables qualitatives retenues (4) :
+#### Variables qualitatives retenues (4) :
 
 -   Ordre : classification taxonomique de l’espèce.
 
@@ -78,7 +76,7 @@ La base combinée couvre 220 espèces, réparties initialement sur 21 ordres tax
 
 -   Position verticale dans la colonne d'eau : benthopelagic, dermesal et pelagic
 
-#### Méthodes
+### Méthodes
 
 -   **Fusion des données** : Les bases Morphology et Behaviour ont été combinées par espèce en utilisant les clés: `Order`, `Family`, `Genus`, `Scientific.Name` et `Common.Name`.
 
@@ -153,9 +151,11 @@ Le graphique de diagnostic confirme l’absence d’écarts majeurs entre les va
 
 <!--% En tenant compte du but de votre carnet de notes et de vos résultats, discutez de résultats et proposez des conclusions à votre analyse en 5 à 10 phrases. -->
 
-Les résultats obtenus confirment que certains traits morphologiques jouent un rôle important dans les stratégies de déplacement et de comportement des poissons. La relation non linéaire observée entre la longueur maximale et la taille relative de l’œil suit une logique allométrique bien documentée : les petites espèces investissent proportionnellement plus dans la vision, ce qui peut être lié à la prédation ou à la recherche de nourriture. Le modèle polynomial utilisé explique une part substantielle de la variation, même si une certaine dispersion résiduelle montre que d’autres facteurs écologiques interviennent probablement.
+Les résultats obtenus confirment que certains traits morphologiques jouent un rôle important dans les stratégies de déplacement et de comportement des poissons. La relation non linéaire observée entre la longueur maximale et la taille relative de l’œil suit une logique allométrique bien documentée : les petites espèces investissent proportionnellement plus dans la vision, ce qui peut être lié à la prédation ou à la recherche de nourriture [@webb1984]. Le modèle polynomial utilisé explique une part substantielle de la variation, même si une certaine dispersion résiduelle montre que d’autres facteurs écologiques interviennent probablement.
 
-Concernant le comportement de banc, le modèle logistique met clairement en évidence l’influence combinée du rapport d’aspect et de la position verticale de l’œil. Les poissons au corps plus élancé ont davantage tendance à se regrouper, ce qui peut s’expliquer par une meilleure efficacité hydrodynamique en formation serrée. À l’inverse, une position oculaire plus haute semble associée à un mode de vie moins grégaire, peut-être lié à une vigilance accrue ou à une écologie plus solitaire.
+les petites espèces investissent proportionnellement plus dans la vision, ce qui peut être lié à la prédation ou à la recherche de nourriture
+
+Concernant le comportement de banc, le modèle logistique met clairement en évidence l’influence combinée du rapport d’aspect et de la position verticale de l’œil. Les poissons au corps plus élancé ont davantage tendance à se regrouper, ce qui peut s’expliquer par une meilleure efficacité hydrodynamique en formation serrée [@hoare2000]. À l’inverse, une position oculaire plus haute semble associée à un mode de vie moins grégaire, peut-être lié à une vigilance accrue ou à une écologie plus solitaire[@hoare2000].
 
 Dans l’ensemble, ces modèles montrent que la morphologie n’est pas seulement un reflet de l’évolution, mais aussi une clé pour comprendre les comportements observés dans les milieux aquatiques. Même si les analyses restent limitées par les variables disponibles et les différences d’effectifs entre ordres, elles mettent en lumière des tendances cohérentes avec la littérature. En conclusion, la morphologie apparaît comme un bon prédicteur de certaines stratégies de nage, et ces résultats peuvent contribuer à mieux anticiper la capacité des espèces à se déplacer ou à franchir des structures dans les environnements aménagés.
 

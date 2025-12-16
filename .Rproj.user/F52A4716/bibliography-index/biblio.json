@@ -1,4 +1,157 @@
 {
-    "sources": [],
+    "sources": [
+        {
+            "DOI": "10.5061/DRYAD.FQZ612JWJ",
+            "URL": "https://datadryad.org/dataset/doi:10.5061/dryad.fqz612jwj",
+            "author": [
+                {
+                    "family": "Benoit",
+                    "given": "David"
+                },
+                {
+                    "family": "Zielinski",
+                    "given": "Dan"
+                },
+                {
+                    "family": "Swanson",
+                    "given": "Reid"
+                },
+                {
+                    "family": "McLaughlin",
+                    "given": "Robert"
+                },
+                {
+                    "family": "Castro-Santos",
+                    "given": "Theodore"
+                },
+                {
+                    "family": "Goodwin",
+                    "given": "Andrew"
+                },
+                {
+                    "family": "Pratt",
+                    "given": "Thomas"
+                },
+                {
+                    "family": "Muir",
+                    "given": "Andrew"
+                }
+            ],
+            "id": "benoit2023",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023,
+                        11,
+                        1
+                    ]
+                ]
+            },
+            "language": "en",
+            "publisher": "Dryad",
+            "title": "FishPass Sortable Attribute Database: Phenological, morphological, physiological, and behavioural characteristics related to passage and movement of Great Lakes fishes",
+            "title-short": "FishPass Sortable Attribute Database",
+            "type": ""
+        },
+        {
+            "DOI": "10.1093/icb/24.1.107",
+            "URL": "http://dx.doi.org/10.1093/icb/24.1.107",
+            "author": [
+                {
+                    "family": "WEBB",
+                    "given": "P. W."
+                }
+            ],
+            "container-title": "American Zoologist",
+            "id": "webb1984",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        1984,
+                        2
+                    ]
+                ]
+            },
+            "language": "en",
+            "page": "107-120",
+            "title": "Body Form, Locomotion and Foraging in Aquatic Vertebrates",
+            "type": "article-journal",
+            "volume": "24"
+        },
+        {
+            "DOI": "10.1098/rspb.2004.3029",
+            "URL": "http://dx.doi.org/10.1098/rspb.2004.3029",
+            "author": [
+                {
+                    "family": "Fulton",
+                    "given": "C. J"
+                },
+                {
+                    "family": "Bellwood",
+                    "given": "D. R"
+                },
+                {
+                    "family": "Wainwright",
+                    "given": "P. C"
+                }
+            ],
+            "container-title": "Proceedings of the Royal Society B: Biological Sciences",
+            "id": "fulton2005",
+            "issue": "1565",
+            "issued": {
+                "date-parts": [
+                    [
+                        2005,
+                        4,
+                        22
+                    ]
+                ]
+            },
+            "language": "en",
+            "page": "827-832",
+            "title": "Wave energy and swimming performance shape coral reef fish assemblages",
+            "type": "article-journal",
+            "volume": "272"
+        },
+        {
+            "DOI": "10.1111/j.1095-8649.2000.tb02217.x",
+            "URL": "http://dx.doi.org/10.1111/j.1095-8649.2000.tb02217.x",
+            "author": [
+                {
+                    "family": "Hoare",
+                    "given": "D. J."
+                },
+                {
+                    "family": "Krause",
+                    "given": "J."
+                },
+                {
+                    "family": "Peuhkuri",
+                    "given": "N."
+                },
+                {
+                    "family": "Godin",
+                    "given": "J.-G. J."
+                }
+            ],
+            "container-title": "Journal of Fish Biology",
+            "id": "hoare2000",
+            "issue": "6",
+            "issued": {
+                "date-parts": [
+                    [
+                        2000,
+                        12
+                    ]
+                ]
+            },
+            "language": "en",
+            "page": "1351-1366",
+            "title": "Body size and shoaling in fish",
+            "type": "article-journal",
+            "volume": "57"
+        }
+    ],
     "project_biblios": []
 }
