@@ -210,68 +210,8 @@ Le modèle présente un R² de 0,525, indiquant que plus de la moitié de la var
 
 L’analyse des résidus montre que les hypothèses du modèle linéaire sont globalement respectées. Les résidus sont bien centrés autour de zéro et ne montrent pas de motif systématique majeur, ce qui confirme une relation appropriée entre les variables. Le QQ-plot montre une distribution des résidus proche de la normalité, avec seulement quelques valeurs extrêmes. On observe une légère hétéroscédasticité (variance des résidus un peu plus élevée pour les grandes longueurs), mais celle-ci reste faible et ne compromet pas la validité du modèle. Aucun point à fort levier n’indique une influence excessive sur les résultats.
 
-#### Modèle linéaire 1
-
-<!--% Construisez un modèle linéaire par paire d'étudiants dans cette section. -->
-
-Examiner l’effet combiné de plusieurs traits morphologiques et comportementaux sur la longueur maximale.
-
-```{r graphique lm1}
-
-a <- chart(data = Fish_data, Longueur_max ~ Profondeur_corps %col=% Comportement_banc) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = TRUE) +
-  labs(x = "Profondeur du corps", 
-    y = "Longueur max (cm)") + 
- theme(
-    legend.position = "bottom",
-    legend.direction = "horizontal",
-    legend.title = element_blank())
-
-b <- chart(data = Fish_data, Longueur_max ~ Rapport_aspect %col=% Vertical_station) +
-  geom_point() +
-  geom_smooth(method = "lm", formula = y ~ x, se = TRUE) + labs( x = "Rapport d'aspect",
-  y = "Longueur max (cm)") + 
- theme(
-    
-legend.position = "bottom",
-    legend.direction = "horizontal",
-    legend.title = element_blank()) 
-
-combine_charts(list(a,b))
-
-```
-
-Le graphique Profondeur_corps - Comportement_banc démontre une forte interaction entre la morphologie et le comportement sur la Longueur_max. Pour les espèces non-schooling, la Longueur_max est stable ou diminue légèrement lorsque la Profondeur_corps augmente (pente négative). En revanche, pour les espèces schooling (cyan), la Longueur_max augmente clairement et fortement lorsque la Profondeur_corps augmente (pente positive), ce qui suggère une allométrie positive chez ce groupe où les individus plus grands sont également plus profonds ou massifs.
-
-Le graphique Vertical_station - Rapport_aspect montre que l'effet du Rapport_aspect sur la Longueur_max est inversé selon l'habitat. Chez les espèces benthopélagiques (saumon, près du fond), l'augmentation du Rapport_aspect (vitesse) est faiblement associée à une Longueur_max plus grande (pente légèrement positive). Au contraire, chez les espèces pélagiques (bleu, pleine eau), l'augmentation du Rapport_aspect est associée à une Longueur_max plus petite (pente clairement négative), ce qui justifie l'inclusion du terme d'interaction beta_4 dans votre modèle.
-
-```{r}
-#Fish_lm1A <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps + Comportement_banc + Vertical_station + Rapport_aspect) 
-#summary(Fish_lm1A) 
-
-#Fish_lm1B <- lm(data = Fish_data, Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps * Comportement_banc + Vertical_station * Rapport_aspect) 
-#summary(Fish_lm1B) 
-
-#Fish_lm1C <- lm(data = Fish_data, subset = Vertical_station %in% c("pelagic", "benthopelagic"), Longueur_max ~ Taille_oeil + Profondeur_corps + Vertical_station + Profondeur_corps * Comportement_banc + Vertical_station * Rapport_aspect)  
-#summary_(Fish_lm1C)
-
-#Fish_lm1 <- lm(data = Fish_data,
-#               subset = Vertical_station %in% c("pelagic", "benthopelagic"), Longueur_max ~ Taille_oeil + Vertical_station + Vertical_station * Rapport_aspect)
-#summary_(Fish_lm1) |> tabularise()
-```
-
-Les premiers modèles présentent plusieurs limites. Le modèle initial sans interaction, bien que simple, n’explique que 51 % de la variance et ne retient qu’une seule variable significative, ce qui réduit sa pertinence biologique. L’ajout d’interactions dans le second modèle améliore légèrement l’ajustement (R² ajusté = 54 %), mais introduit une complexité importante sans gain substantiel, avec plusieurs termes non significatifs. Le troisième modèle, plus ciblé, atteint un meilleur R² (59 %), mais reste relativement complexe et inclut des variables dont l’effet est faible, et les résidus présentent une hétéroscédasticité. La **transformation logarithmique de Longueur_max** dans le quatrième modèle a permis de stabiliser la variance et de corriger les problèmes de résidus. Cette transformation a également rendu l’interaction non significative, conduisant à un modèle plus simple et robuste, ne conservant que les variables **Taille_oeil** et **Vertical_station**, avec un R² ajusté de 0,63.
-
-```{r modele linéaire 1}
-Fish_lm1 <- lm(data = Fish_data, 
-               subset = Vertical_station %in% c("pelagic", "benthopelagic"), log(Longueur_max) ~ Taille_oeil + Vertical_station )  
-summary_(Fish_lm1) |> tabularise()
-```
-
-```{r analyse residus lm1}
-chart$residuals(Fish_lm1)
-```
+####  {r analyse residus lm1}
+chart\$residuals(Fish_lm1)
 
 Le modèle est globalement solide : tous les coefficients ressortent significatifs et l’interaction confirme bien que la pente change chez les espèces pélagiques. Par contre, l’examen des résidus (Image C) montre une hétéroscédasticité, c’est-à-dire que la variance des erreurs augmente avec les valeurs prédites. Pour corriger cela, il sera préférable d’appliquer une transformation logarithmique à la variable Longueur_max dans le modèle suivant afin de stabiliser la variance et d’obtenir des estimations plus fiables.
 
