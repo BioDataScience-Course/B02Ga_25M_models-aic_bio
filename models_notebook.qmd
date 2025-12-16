@@ -438,7 +438,7 @@ Dans l’ensemble, nos analyses montrent que plusieurs traits morphologiques cl�
 
 Parmi les modèles testés, les régressions intégrant des interactions biologiquement pertinentes (par exemple, l’effet différent du rapport d’aspect selon la position verticale) se révèlent plus informatives que les modèles simples, tout en restant suffisamment parcimonieuses. Enfin, le modèle logistique identifie deux prédicteurs robustes du comportement de banc le rapport d’aspect et la position verticale de l’œil indiquant que ces traits morphologiques jouent un rôle majeur dans la structuration des comportements sociaux.
 
-Les modèles retenus comme les plus pertinents sont donc : la régression polynomiale reliant la taille de l’œil à la longueur maximale, le modèle linéaire avec interaction Rapport_aspect × Vertical_station, et le GLM logistique expliquant le comportement de banc, car ils offrent les résultats les plus cohérents et biologiquement interprétables.
+Les modèles retenus comme les plus pertinents sont donc : la régression polynomiale reliant la taille de l’œil à la longueur maximale, le modèle linéaire multiple sans interaction, et le GLM logistique expliquant le comportement de banc, car ils offrent les résultats les plus cohérents et biologiquement interprétables.
 
 ## Références
 
