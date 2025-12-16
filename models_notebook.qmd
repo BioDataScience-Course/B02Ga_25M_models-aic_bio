@@ -430,7 +430,7 @@ AIC(Fish_glm1, Fish_glm2)
 
 ```
 
-Les deux modèles linéaires généralisés  analysent le comportement de banc à partir de variables morphologiques différentes et ne sont pas emboîtés, ce qui ne permet pas une comparaison par ANOVA. La comparaison a donc été réalisée à l’aide de l’AIC. Le modèle incluant le rapport d’aspect et la position verticale de l’œil(Fish_glm2) présente un AIC plus faible et des coefficients biologiquement cohérents, indiquant un meilleur compromis entre qualité d’ajustement et simplicité. Il est donc retenu comme le modèle le plus pertinent pour expliquer le comportement de banc.
+Les deux modèles linéaires généralisés analysent le comportement de banc à partir de variables morphologiques différentes et ne sont pas emboîtés, ce qui ne permet pas une comparaison par ANOVA. La comparaison a donc été réalisée à l’aide de l’AIC. Le modèle incluant le rapport d’aspect et la position verticale de l’œil(Fish_glm2) présente un AIC plus faible et des coefficients biologiquement cohérents, indiquant un meilleur compromis entre qualité d’ajustement et simplicité. Il est donc retenu comme le modèle le plus pertinent pour expliquer le comportement de banc.
 
 En conséquence, deux modèles complémentaires ont été retenus : ...
 
