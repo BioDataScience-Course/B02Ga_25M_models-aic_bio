@@ -185,6 +185,7 @@ chart$residuals(Poly1_lm)
 Fish_data$log_Taille_oeil <- log(Fish_data$Taille_oeil)
 Fish_rl2 <- lm(data = Fish_data,log_Taille_oeil ~ Longueur_max )
 summary_(Fish_rl2) |> tabularise()
+
 ```
 
 ```{r}
@@ -237,6 +238,7 @@ legend.position = "bottom",
     legend.title = element_blank()) 
 
 combine_charts(list(a,b))
+
 ```
 
 Le graphique Profondeur_corps - Comportement_banc démontre une forte interaction entre la morphologie et le comportement sur la Longueur_max. Pour les espèces non-schooling, la Longueur_max est stable ou diminue légèrement lorsque la Profondeur_corps augmente (pente négative). En revanche, pour les espèces schooling (cyan), la Longueur_max augmente clairement et fortement lorsque la Profondeur_corps augmente (pente positive), ce qui suggère une allométrie positive chez ce groupe où les individus plus grands sont également plus profonds ou massifs.
@@ -276,7 +278,7 @@ chart(data = Fish_sub, log(Longueur_max) ~ Taille_oeil %col=% Vertical_station) 
 chart$residuals(Fish_lm1)
 ```
 
-Le modèle montre que la taille relative de l’œil diminue significativement avec l’augmentation de la longueur maximale, traduisant un effet allométrique classique. Par ailleurs, les espèces pelagiques atteignent des tailles maximales plus élevées que les espèces non pelagiques. Le modèle explique une proportion importante de la variabilité observée (R² ajusté = 0,63). L’analyse des graphiques de résidus montre une distribution globalement centrée autour de zéro et une normalité satisfaisante, tandis que la variance apparaît relativement homogène, malgré la présence d’une légère structure non linéaire et de quelques observations à effet levier modéré. Dans l’ensemble, ces diagnostics indiquent que les hypothèses du modèle sont raisonnablement respectées et que les résultats peuvent être interprétés de manière fiable.
+Le modèle est globalement solide : tous les coefficients ressortent significatifs et l’interaction confirme bien que la pente change chez les espèces pélagiques. Par contre, l’examen des résidus (Image C) montre une hétéroscédasticité, c’est-à-dire que la variance des erreurs augmente avec les valeurs prédites. Pour corriger cela, il sera préférable d’appliquer une transformation logarithmique à la variable Longueur_max dans le modèle suivant afin de stabiliser la variance et d’obtenir des estimations plus fiables.
 
 #### Modèle linéaire 2
 
@@ -322,10 +324,11 @@ chart$residuals(Fish_lm2)
 
 <!--% Élaborez un modèle linéaire généralisé ou mixte par paire d'étudiants dans cette section. -->
 
-```{r essaie glm1}
+```{r}
 #Fish_data$Forme_deep <- ifelse(Fish_data$Forme_corps == "short/deep", 1, 0)
 #Fish_glm1 <- lme4::glmer(data = Fish_data, Forme_deep ~ Rapport_aspect + Etroitesse_pedoncule + Vertical_station + (1 | Ordre), family = binomial())
 #summary(Fish_glm1)
+
 ```
 
 Dans notre jeu de données, l’inclusion d’un effet aléatoire sur la variable Ordre n’est pas appropriée. En effet, ce facteur ne comporte que trois niveaux, ce qui est insuffisant pour estimer de manière fiable la variance d’un intercept aléatoire dans un modèle mixte. Les modèles à effets aléatoires requièrent un nombre de groupes nettement plus élevé afin d’obtenir une estimation stable et interprétable des paramètres. Dans notre cas, l’ajustement du modèle présente une non-convergence et une matrice Hessienne singulière, indiquant que les paramètres ne peuvent pas être déterminés de façon unique. Compte tenu de ces limitations méthodologiques, nous avons donc opté pour un modèle linéaire généralisé (GLM) classique, qui permet d’évaluer efficacement l’influence des variables explicatives sur la probabilité d’appartenir à la forme “short/deep”, sans dépendre d’un effet aléatoire impossible à estimer de manière fiable dans ce cas.
@@ -341,6 +344,8 @@ Fish_data$Comportement_banc_bin <- ifelse(Fish_data$Comportement_banc == "school
 # Modèle logistique (GLM binaire)
 Fish_glm1 <- glm(data = Fish_data, Comportement_banc_bin ~ Rapport_aspect + Position_oeil_vertical, family = binomial)
 summary_(Fish_glm1) |> tabularise()
+
+
 ```
 
 L'on a voulu d’abord comparer la forme “short/deep” avec “fusiforme” avec un modèle logistique, mais il y avait très peu de “short/deep” dans mon jeu de données. Ça donnait des messages d’erreur et des résultats impossibles à interpréter.
@@ -417,19 +422,13 @@ Discussion: Le modèle montre que la longueur du poisson et la taille de sa nage
 
 Le modèle s’ajuste bien aux données (pas de surdispersion), et tous les paramètres sont significatifs, donc les deux caractéristiques retenues expliquent réellement le comportement en groupe chez ces espèces.
 
-#### Comparaison des modèles et choix des modèles finaux
+### Comparaison des modèles et choix des modèles finaux
 
 Les six modèles testés explorent différentes relations entre traits morphologiques, écologiques et comportementaux chez les poissons. Les modèles linéaires simples (modèles 1 et 2) mettent en évidence des relations allométriques robustes entre la taille de l’œil et la longueur corporelle, mais restent limités par l’absence de variables écologiques ou comportementales. Le modèle 3, intégrant la position verticale dans la colonne d’eau et une transformation logarithmique de la longueur maximale, présente le meilleur compromis entre qualité d’ajustement (R² ajusté = 0.630), respect des hypothèses du modèle et pertinence biologique.
 
 Les modèles 4 à 6 intègrent explicitement le comportement de banc. Parmi eux, le modèle linéaire 4 souffre d’un pouvoir explicatif plus faible et de résidus influencés par des valeurs extrêmes. Les modèles linéaires généralisés permettent une approche plus directe de la prédiction du comportement. Le modèle 6 se distingue par le meilleur AIC et par une interaction biologiquement cohérente entre la taille corporelle et la taille des nageoires pectorales, traduisant des stratégies de nage collective.
 
-```{r}
-# Comparaison AIC
-AIC(Fish_glm1, Fish_glm2)
-
-```
-
-Les deux modèles linéaires généralisés analysent le comportement de banc à partir de variables morphologiques différentes et ne sont pas emboîtés, ce qui ne permet pas une comparaison par ANOVA. La comparaison a donc été réalisée à l’aide de l’AIC. Le modèle incluant le rapport d’aspect et la position verticale de l’œil(Fish_glm2) présente un AIC plus faible et des coefficients biologiquement cohérents, indiquant un meilleur compromis entre qualité d’ajustement et simplicité. Il est donc retenu comme le modèle le plus pertinent pour expliquer le comportement de banc.
+En conséquence, deux modèles complémentaires ont été retenus : ...
 
 ## Conclusion
 
